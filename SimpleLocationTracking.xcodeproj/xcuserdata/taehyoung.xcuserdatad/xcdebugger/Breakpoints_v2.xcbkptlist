@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "DF39E8A6-3270-4AD6-8F18-8B13308B608A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleLocationTracking/LocationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "LocationManager"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 7846108b5aadbca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of SimpleLocationTracking.LocationManager.rotation : Swift.Double"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/SimpleLocationTracking/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - b7304ae3aa01d388"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.rotation.getter : Swift.Double"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/SimpleLocationTracking/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 236b53b355ff236b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.rotation.setter : Swift.Double"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/SimpleLocationTracking/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 1158d290efda811a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.rotation.modify : Swift.Double"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/SimpleLocationTracking/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 6b2229635b9883c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.rotation.modify : Swift.Double with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 66a9b30fbb4574f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.$rotation.getter : Combine.Published&lt;Swift.Double&gt;.Publisher"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/SimpleLocationTracking/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - 89a7905ad5b6c74f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.$rotation.setter : Combine.Published&lt;Swift.Double&gt;.Publisher"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - ceb9b69c25eafed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.$rotation.modify : Combine.Published&lt;Swift.Double&gt;.Publisher"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "1AF28246-4282-4AF3-8C8A-49CCA32D1CBA - db663177807da8a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SimpleLocationTracking.LocationManager.$rotation.modify : Combine.Published&lt;Swift.Double&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SimpleLocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/taehyoung/Desktop/SimpleLocationTracking/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

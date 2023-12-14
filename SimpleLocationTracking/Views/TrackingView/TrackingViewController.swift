@@ -21,7 +21,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     var fpc: FloatingPanelController!
 
     //Model
-    var vm: ViewModel!
+    var vm: TrackingViewModel!
     var subscriptions = Set<AnyCancellable>()
 
 
@@ -81,7 +81,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     func setFPC() {
         fpc = FloatingPanelController(delegate: self)
         let vc = SpeedInfoViewController()
-        vm = ViewModel(fpc: fpc)
+        vm = TrackingViewModel(fpc: fpc)
         vc.vm = vm
         let navigationVC = UINavigationController(rootViewController: vc)
         fpc.set(contentViewController: navigationVC)
@@ -89,7 +89,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         fpc.track(scrollView: vc.collectionView)
         fpc.isRemovalInteractionEnabled = false
 
-        fpc.layout = MyFloatingPanelLayout()
+        fpc.layout = MyFloatingPanelLayout(tipInset: vc.navigationController?.navigationBar.frame.size.height ?? 0)
         fpc.addPanel(toParent: self)
     }
 
@@ -106,6 +106,13 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .sink { bool in
                 if bool {
                     self.mapView.removeOverlays(self.mapView.overlays)
+                    let vc = TrackingResultViewController()
+//                    print("create: \(self.vm.createTrackingResults())")
+                    vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults())
+                    print("hello: \(vc.vm.speedInfos)")
+                    let navigationController = UINavigationController(rootViewController: vc)
+
+                    self.present(navigationController, animated: true)
                 }
             }.store(in: &subscriptions)
 
@@ -156,10 +163,16 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 class MyFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .half
-    let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
+    var tipInset: CGFloat
+
+    init(tipInset: CGFloat) {
+        self.tipInset = tipInset
+    }
+
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] { [
         .half: FloatingPanelLayoutAnchor(fractionalInset: 0.6, edge: .bottom, referenceGuide: .superview),
-        .tip: FloatingPanelLayoutAnchor(absoluteInset: 44, edge: .bottom, referenceGuide: .safeArea),
-    ]
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: tipInset, edge: .bottom, referenceGuide: .safeArea),
+    ] }
 }
 
 extension TrackingViewController: MKMapViewDelegate {

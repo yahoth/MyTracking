@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  TrackingViewModel.swift
 //  SimpleLocationTracking
 //
 //  Created by TAEHYOUNG KIM on 11/29/23.
@@ -11,13 +11,13 @@ import CoreLocation
 
 import FloatingPanel
 
-final class ViewModel {
+final class TrackingViewModel {
     private let locationManager = LocationManager()
     private let settingManager = SettingManager()
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
 
-    var speedInfo: [SpeedInfo] {
+    var speedInfos: [SpeedInfo] {
         [
             SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
             SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
@@ -25,6 +25,20 @@ final class ViewModel {
             SpeedInfo(value: currentAltitude, unit: "m", title: "Current Altitude"),
         ]
     }
+
+    func createTrackingResults() -> [SpeedInfo] {
+
+        let infos = [
+            SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
+            SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
+            SpeedInfo(value: distance, unit: "km", title: "Distance"),
+            SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
+            SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time")
+        ]
+
+        return infos
+    }
+
 
     @Published var state: FloatingPanelState
     var fpc: FloatingPanelController
@@ -108,16 +122,16 @@ final class ViewModel {
     }
 
     func stop() {
-        locationManager.stop()
-        stopwatch.stop()
-        locationManager.speed = 0
-        locationManager.speeds = []
-        locationManager.altitude = 0
-        locationManager.distance = 0
-        locationManager.topSpeed = 0
-        locationManager.averageSpeed = 0
-        locationManager.currentAltitude = 0
-        locationManager.coordinates = []
+//        locationManager.stop()
+//        stopwatch.stop()
+//        locationManager.speed = 0
+//        locationManager.speeds = []
+//        locationManager.altitude = 0
+//        locationManager.distance = 0
+//        locationManager.topSpeed = 0
+//        locationManager.averageSpeed = 0
+//        locationManager.currentAltitude = 0
+//        locationManager.coordinates = []
         isPaused = true
         isStopped = true
     }

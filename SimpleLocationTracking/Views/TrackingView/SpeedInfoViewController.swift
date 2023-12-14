@@ -25,8 +25,15 @@ class SpeedInfoViewController: UIViewController {
     var moveModalButtonItem: UIBarButtonItem!
     var startAndPauseButton: UIBarButtonItem!
 
+    var bottomSafeArea: CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0}
+        guard let window = windowScene.windows.first else { return 0}
+        guard let root = window.rootViewController else { return 0}
+        return root.view.safeAreaInsets.bottom
+    }
+
     //Model
-    var vm: ViewModel!
+    var vm: TrackingViewModel!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -70,7 +77,8 @@ class SpeedInfoViewController: UIViewController {
     func setupRightNavigationBarButtonItems() {
         startAndPauseButton = UIBarButtonItem(title: "StartAndPause", style: .done, target: self, action: #selector(startAndPauseButtonTapped2))
 
-        let stopButton = UIBarButtonItem(title: "Stop", image: UIImage(systemName: "stop.fill"), target: self, action: #selector(stopButtonTapped))
+        let stopButton = UIBarButtonItem(image: UIImage(systemName: "stop.fill"), style: .plain, target: self, action: #selector(stopButtonTapped))
+
 
         self.navigationItem.rightBarButtonItems = [stopButton, startAndPauseButton]
     }
@@ -104,7 +112,8 @@ class SpeedInfoViewController: UIViewController {
     func setConstraints() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.verticalEdges.equalTo(view).inset(bottomSafeArea)
+            make.horizontalEdges.equalTo(view)
         }
     }
 
@@ -116,11 +125,11 @@ class SpeedInfoViewController: UIViewController {
 
 extension SpeedInfoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 30) / 2, height: (view.safeAreaLayoutGuide.layoutFrame.height * 0.6) - (navigationController?.navigationBar.frame.height ?? 0) - 30 / 2)
+        return CGSize(width: (collectionView.frame.width - 30) / 2, height: (view.safeAreaLayoutGuide.layoutFrame.height * 0.6) - (navigationController?.navigationBar.frame.height ?? 0) - 10 - (bottomSafeArea) / 2)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -130,12 +139,12 @@ extension SpeedInfoViewController: UICollectionViewDelegateFlowLayout {
 
 extension SpeedInfoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        vm.speedInfo.count
+        vm.speedInfos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpeedInfoCell", for: indexPath) as? SpeedInfoCell else { return UICollectionViewCell() }
-        cell.configure(vm.speedInfo[indexPath.item])
+        cell.configure(vm.speedInfos[indexPath.item])
         return cell
     }
 }

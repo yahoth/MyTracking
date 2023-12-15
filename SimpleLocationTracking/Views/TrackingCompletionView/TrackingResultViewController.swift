@@ -51,6 +51,7 @@ extension TrackingResultViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpeedInfoTableViewCell", for: indexPath) as? SpeedInfoTableViewCell else { return UITableViewCell() }
             cell.vm = vm
+            cell.setCollectionViewConstraints(superViewHeight: view.frame.height)
             return cell
         }
     }

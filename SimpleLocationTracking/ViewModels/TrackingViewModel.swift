@@ -29,11 +29,11 @@ final class TrackingViewModel {
     func createTrackingResults() -> [SpeedInfo] {
 
         let infos = [
+            SpeedInfo(value: distance, unit: "km", title: "Distance"),
+            SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
             SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
             SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
-            SpeedInfo(value: distance, unit: "km", title: "Distance"),
             SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
-            SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time")
         ]
 
         return infos
@@ -122,7 +122,7 @@ final class TrackingViewModel {
     }
 
     func stop() {
-//        locationManager.stop()
+        locationManager.stop()
 //        stopwatch.stop()
 //        locationManager.speed = 0
 //        locationManager.speeds = []
@@ -132,6 +132,7 @@ final class TrackingViewModel {
 //        locationManager.averageSpeed = 0
 //        locationManager.currentAltitude = 0
 //        locationManager.coordinates = []
+        stopwatch.pause()
         isPaused = true
         isStopped = true
     }

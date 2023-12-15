@@ -9,11 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol ConfigurableCell {
-    func setTitle(to title: String)
-}
-
-class TrackingResultCell: UITableViewCell, ConfigurableCell {
+class BaseTrackingResultCell: UITableViewCell {
 
     var titleLabel: UILabel!
     var body: UIView!
@@ -27,23 +23,22 @@ class TrackingResultCell: UITableViewCell, ConfigurableCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         body = UIView()
-        body.backgroundColor = .blue
         separator = UIView()
         separator.backgroundColor = .systemGray4
 
         [titleLabel, body, separator].forEach(self.contentView.addSubview(_:))
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).inset(10)
+            make.top.equalTo(contentView).offset(10)
             make.horizontalEdges.equalTo(contentView).inset(10)
         }
 
         body.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).inset(-4)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(contentView).inset(10)
-            make.bottom.equalTo(contentView).inset(22)
+            make.bottom.equalTo(contentView).offset(-22)
         }
 
         separator.snp.makeConstraints { make in

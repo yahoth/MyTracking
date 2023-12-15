@@ -22,7 +22,6 @@ class LocationManager: NSObject {
     @Published var averageSpeed: CLLocationSpeed = 0
     @Published var rotation: Double = 0
     @Published var coordinates: [CLLocationCoordinate2D] = []
-//    @Published var coordinate: CLLocationCoordinate2D?
     @Published var points: [CLLocationCoordinate2D]?
     var previousLocation: CLLocation?
 
@@ -57,7 +56,6 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         if location.speed >= 0 {
-//            print("speed: \(speed)")
             speed = location.speed
             speeds.append(speed)
             averageSpeed = speeds.reduce(0, +) / Double(speeds.count)

@@ -12,7 +12,7 @@ import SnapKit
 class CurrentSpeedView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 30, weight: .bold)
+        label.font = .systemFont(ofSize: 28, weight: .black)
         label.textColor = .label
         return label
     }()

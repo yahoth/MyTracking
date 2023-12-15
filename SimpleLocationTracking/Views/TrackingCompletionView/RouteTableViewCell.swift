@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class RouteTableViewCell: TrackingResultCell {
+class RouteTableViewCell: BaseTrackingResultCell {
 
     var tempLabel: UILabel!
     var routeImageView: UIImageView!
@@ -43,7 +43,7 @@ class RouteTableViewCell: TrackingResultCell {
         routeImageView.snp.makeConstraints { make in
             make.top.equalTo(body)
             make.horizontalEdges.equalTo(body)
-            make.height.equalTo(body.snp.width)
+            make.height.equalTo(body.snp.width).multipliedBy(0.6)
         }
     }
 

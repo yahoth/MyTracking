@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */; };
-		761A76F12B2AB90500FABC7D /* TrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* TrackingResultCell.swift */; };
+		761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */; };
 		761A76F32B2ABF1B00FABC7D /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */; };
 		761A76F52B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */; };
 		761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */; };
@@ -17,7 +17,7 @@
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
 		763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */; };
 		76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */; };
-		76481E5D2AFA74CE00FC5B8A /* SpeedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5C2AFA74CE00FC5B8A /* SpeedInfoViewController.swift */; };
+		76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5C2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift */; };
 		76481E5F2AFA7E9100FC5B8A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5E2AFA7E9100FC5B8A /* LocationManager.swift */; };
 		764B46DD2AED197C00B0B9B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B46DC2AED197C00B0B9B5 /* AppDelegate.swift */; };
 		764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B46DE2AED197C00B0B9B5 /* SceneDelegate.swift */; };
@@ -26,7 +26,10 @@
 		764B46F22AED1A3C00B0B9B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 764B46F12AED1A3C00B0B9B5 /* SnapKit */; };
 		764B928E2AFA43E000EC8854 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 764B928D2AFA43E000EC8854 /* FloatingPanel */; };
 		7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CA2B17268800F5826F /* TrackingViewModel.swift */; };
-		7666F2CD2B17316500F5826F /* SpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CC2B17316500F5826F /* SpeedInfoCell.swift */; };
+		7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */; };
+		767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */; };
+		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
+		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
 		76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4C2B18563B00DD83F7 /* Stopwatch.swift */; };
 		76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4E2B18566B00DD83F7 /* SettingManager.swift */; };
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
@@ -36,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewController.swift; sourceTree = "<group>"; };
-		761A76F02B2AB90500FABC7D /* TrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultCell.swift; sourceTree = "<group>"; };
+		761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrackingResultCell.swift; sourceTree = "<group>"; };
 		761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoTableViewCell.swift; sourceTree = "<group>"; };
 		761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingCompletionViewModel.swift; sourceTree = "<group>"; };
@@ -45,7 +48,7 @@
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
 		763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSpeedView.swift; sourceTree = "<group>"; };
 		76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
-		76481E5C2AFA74CE00FC5B8A /* SpeedInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoViewController.swift; sourceTree = "<group>"; };
+		76481E5C2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoPanelViewController.swift; sourceTree = "<group>"; };
 		76481E5E2AFA7E9100FC5B8A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		764B46D92AED197C00B0B9B5 /* SimpleLocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleLocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764B46DC2AED197C00B0B9B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +57,10 @@
 		764B46E82AED197D00B0B9B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		764B46EA2AED197D00B0B9B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7666F2CA2B17268800F5826F /* TrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
-		7666F2CC2B17316500F5826F /* SpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCell.swift; sourceTree = "<group>"; };
+		7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSpeedInfoCell.swift; sourceTree = "<group>"; };
+		767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoPanelViewCell.swift; sourceTree = "<group>"; };
+		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
 		76849A4C2B18563B00DD83F7 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76849A4E2B18566B00DD83F7 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
@@ -80,8 +86,8 @@
 			children = (
 				76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */,
 				763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */,
-				7666F2CC2B17316500F5826F /* SpeedInfoCell.swift */,
-				76481E5C2AFA74CE00FC5B8A /* SpeedInfoViewController.swift */,
+				767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */,
+				76481E5C2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift */,
 			);
 			path = TrackingView;
 			sourceTree = "<group>";
@@ -90,9 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
-				761A76F02B2AB90500FABC7D /* TrackingResultCell.swift */,
 				761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */,
 				761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */,
+				767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */,
+				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
 			);
 			path = TrackingCompletionView;
 			sourceTree = "<group>";
@@ -175,6 +182,16 @@
 				764B46EA2AED197D00B0B9B5 /* Info.plist */,
 			);
 			path = SimpleLocationTracking;
+			sourceTree = "<group>";
+		};
+		767482FA2B2C0CB900C8F5D9 /* BaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */,
+				7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */,
+				767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */,
+			);
+			path = BaseCell;
 			sourceTree = "<group>";
 		};
 		76802AE02B21F69900B2B9E5 /* Extension */ = {
@@ -265,24 +282,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */,
+				767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */,
 				763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */,
 				761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */,
 				76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */,
 				761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
-				761A76F12B2AB90500FABC7D /* TrackingResultCell.swift in Sources */,
+				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
 				761A76F32B2ABF1B00FABC7D /* RouteTableViewCell.swift in Sources */,
 				763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */,
 				764B46DD2AED197C00B0B9B5 /* AppDelegate.swift in Sources */,
 				76481E5F2AFA7E9100FC5B8A /* LocationManager.swift in Sources */,
-				7666F2CD2B17316500F5826F /* SpeedInfoCell.swift in Sources */,
-				76481E5D2AFA74CE00FC5B8A /* SpeedInfoViewController.swift in Sources */,
+				7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */,
+				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,
+				767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */,
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
 				761A76F52B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift in Sources */,
 				76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
+				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
 				7624E1372B28ABB000094845 /* TravelData.swift in Sources */,
 				764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */,
 			);

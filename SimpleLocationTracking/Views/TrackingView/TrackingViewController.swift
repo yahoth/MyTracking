@@ -80,7 +80,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
     func setFPC() {
         fpc = FloatingPanelController(delegate: self)
-        let vc = SpeedInfoViewController()
+        let vc = SpeedInfoPanelViewController()
         vm = TrackingViewModel(fpc: fpc)
         vc.vm = vm
         let navigationVC = UINavigationController(rootViewController: vc)
@@ -105,13 +105,12 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         vm.$isStopped
             .sink { bool in
                 if bool {
-                    self.mapView.removeOverlays(self.mapView.overlays)
+//                    self.mapView.removeOverlays(self.mapView.overlays)
                     let vc = TrackingResultViewController()
-//                    print("create: \(self.vm.createTrackingResults())")
                     vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults())
-                    print("hello: \(vc.vm.speedInfos)")
                     let navigationController = UINavigationController(rootViewController: vc)
 
+                    dump(self.mapView.overlays)
                     self.present(navigationController, animated: true)
                 }
             }.store(in: &subscriptions)

@@ -1,5 +1,5 @@
 //
-//  SpeedInfoViewController.swift
+//  SpeedInfoPanelViewController.swift
 //  SimpleLocationTracking
 //
 //  Created by TAEHYOUNG KIM on 11/7/23.
@@ -12,17 +12,17 @@ import SnapKit
 import FloatingPanel
 
 
-class SpeedInfoViewController: UIViewController {
+class SpeedInfoPanelViewController: UIViewController {
 
     //View
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .systemBackground
-        view.register(SpeedInfoCell.self, forCellWithReuseIdentifier: "SpeedInfoCell")
+        view.register(SpeedInfoPanelViewCell.self, forCellWithReuseIdentifier: "SpeedInfoPanelViewCell")
         return view
     }()
-    var moveModalButtonItem: UIBarButtonItem!
+    var movePanelButtonItem: UIBarButtonItem!
     var startAndPauseButton: UIBarButtonItem!
 
     var bottomSafeArea: CGFloat {
@@ -52,7 +52,7 @@ class SpeedInfoViewController: UIViewController {
         vm.$state
             .receive(on: DispatchQueue.main)
             .sink { state in
-                self.updateMoveModalButton(state: state)
+                self.updateMovePanelButton(state: state)
             }
             .store(in: &subscriptions)
 
@@ -70,8 +70,8 @@ class SpeedInfoViewController: UIViewController {
     }
 
     func setupLeftNavigationBarItem() {
-        moveModalButtonItem = UIBarButtonItem(image: UIImage(systemName: "play"), style: .plain, target: self, action: #selector(moveModal))
-        navigationItem.leftBarButtonItem = moveModalButtonItem
+        movePanelButtonItem = UIBarButtonItem(image: UIImage(systemName: "play"), style: .plain, target: self, action: #selector(movePanel))
+        navigationItem.leftBarButtonItem = movePanelButtonItem
     }
 
     func setupRightNavigationBarButtonItems() {
@@ -87,9 +87,9 @@ class SpeedInfoViewController: UIViewController {
         navigationItem.title = vm.hhmmss
     }
 
-    func updateMoveModalButton(state: FloatingPanelState) {
+    func updateMovePanelButton(state: FloatingPanelState) {
         let imageName = state == .half ? "chevron.down" : "chevron.up"
-        moveModalButtonItem.image = UIImage(systemName: imageName)
+        movePanelButtonItem.image = UIImage(systemName: imageName)
     }
 
     func updateStartAndPauseButton(_ isPaused: Bool) {
@@ -105,7 +105,7 @@ class SpeedInfoViewController: UIViewController {
         vm.stop()
     }
 
-    @objc func moveModal() {
+    @objc func movePanel() {
         vm.fpc.move(to: vm.fpc.state == .half ? .tip : .half, animated: true)
     }
 
@@ -123,7 +123,7 @@ class SpeedInfoViewController: UIViewController {
     }
 }
 
-extension SpeedInfoViewController: UICollectionViewDelegateFlowLayout {
+extension SpeedInfoPanelViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width - 30) / 2, height: (view.safeAreaLayoutGuide.layoutFrame.height * 0.6) - (navigationController?.navigationBar.frame.height ?? 0) - 10 - (bottomSafeArea) / 2)
     }
@@ -137,13 +137,13 @@ extension SpeedInfoViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension SpeedInfoViewController: UICollectionViewDataSource {
+extension SpeedInfoPanelViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         vm.speedInfos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpeedInfoCell", for: indexPath) as? SpeedInfoCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpeedInfoPanelViewCell", for: indexPath) as? SpeedInfoPanelViewCell else { return UICollectionViewCell() }
         cell.configure(vm.speedInfos[indexPath.item])
         return cell
     }

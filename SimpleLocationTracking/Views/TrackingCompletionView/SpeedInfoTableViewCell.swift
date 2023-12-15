@@ -37,7 +37,7 @@ class SpeedInfoTableViewCell: BaseTrackingResultCell {
         body.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(body).inset(UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
-            make.height.equalTo(superViewHeight / 4)
+            make.height.equalTo(superViewHeight / 3.5)
         }
     }
 }

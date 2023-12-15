@@ -30,6 +30,7 @@
 		767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */; };
 		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
 		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
+		767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */; };
 		76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4C2B18563B00DD83F7 /* Stopwatch.swift */; };
 		76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4E2B18566B00DD83F7 /* SettingManager.swift */; };
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
@@ -61,6 +62,7 @@
 		767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoPanelViewCell.swift; sourceTree = "<group>"; };
 		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
+		767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLabelView.swift; sourceTree = "<group>"; };
 		76849A4C2B18563B00DD83F7 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76849A4E2B18566B00DD83F7 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
+				767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */,
 				761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */,
 				761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */,
 				767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */,
@@ -299,6 +302,7 @@
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
+				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,
 				761A76F52B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift in Sources */,
 				76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,

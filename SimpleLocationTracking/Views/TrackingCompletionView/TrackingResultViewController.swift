@@ -34,8 +34,6 @@ class TrackingResultViewController: UIViewController {
             make.edges.equalTo(view)
         }
     }
-
-
 }
 
 extension TrackingResultViewController: UITableViewDataSource {

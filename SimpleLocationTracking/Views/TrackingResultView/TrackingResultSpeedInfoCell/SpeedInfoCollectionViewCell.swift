@@ -7,20 +7,6 @@
 
 import UIKit
 
-/// label 공통
-/// text color
-/// font size
-///
-/// titleLabel
-///
-/// valueLabel
-/// text alignment
-///
-/// unitLabel
-///
-/// contentView
-/// corner Radius
-/// background color
 class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
 
     override init(frame: CGRect) {
@@ -52,13 +38,22 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
 
     func configure(_ info: SpeedInfo) {
         titleLabel.text = info.title
-        if info.title != "Time" {
-            valueLabel.text = String(format: "%.1f", info.value as? Double ?? 0)
-        } else {
-            guard let time = info.value as? Int else { return }
-            valueLabel.text = time.resultTime
-            valueLabel.font = .systemFont(ofSize: 15)
-        }
+
+        valueLabelText()
+
         unitLabel.text = info.unit
+
+        func valueLabelText() {
+            switch info.title {
+            case "Time":
+                guard let time = info.value as? Int else { return }
+                valueLabel.text = time.resultTime
+                valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
+            case "Altitude", "Floor":
+                valueLabel.text = String(format: "%.0f", info.value as? Double ?? 0)
+            default:
+                valueLabel.text = String(format: "%.1f", info.value as? Double ?? 0)
+            }
+        }
     }
 }

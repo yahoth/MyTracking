@@ -13,6 +13,7 @@ import FloatingPanel
 import SnapKit
 
 class TrackingViewController: UIViewController, FloatingPanelControllerDelegate {
+    var workItem: DispatchWorkItem?
 
     //View
     var mapView: MKMapView!
@@ -23,7 +24,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     //Model
     var vm: TrackingViewModel!
     var subscriptions = Set<AnyCancellable>()
-
+    var isFirstCall = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,10 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         trackingButton.layer.cornerRadius = 22
     }
 
+    @objc func trackingLocation() {
+        mapView.setUserTrackingMode(.followWithHeading, animated: true)
+    }
+
     func setFPC() {
         fpc = FloatingPanelController(delegate: self)
         let vc = SpeedInfoPanelViewController()
@@ -107,10 +112,11 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 if bool {
 //                    self.mapView.removeOverlays(self.mapView.overlays)
                     let vc = TrackingResultViewController()
+                   
                     vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults())
                     let navigationController = UINavigationController(rootViewController: vc)
 
-                    dump(self.mapView.overlays)
+//                    dump(self.mapView.overlays)
                     self.present(navigationController, animated: true)
                 }
             }.store(in: &subscriptions)
@@ -121,10 +127,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                     self.currentSpeedView.speedLabel.text = "0"
                 }
             }.store(in: &subscriptions)
-    }
-
-    @objc func trackingLocation() {
-        mapView.setUserTrackingMode(.followWithHeading, animated: true)
     }
 
     func updateTrackingOverlay() {
@@ -189,5 +191,21 @@ extension TrackingViewController: MKMapViewDelegate {
         } else {
             return MKOverlayRenderer()
         }
+    }
+
+    func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+        if isFirstCall {
+            isFirstCall = false
+            return
+        }
+        // 이전에 예약된 작업이 있다면 취소
+        workItem?.cancel()
+
+        workItem = DispatchWorkItem {
+            self.trackingLocation()
+        }
+
+        // 5초 후에 workItem을 실행
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: workItem!)
     }
 }

@@ -28,7 +28,6 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.register(SpeedInfoCollectionViewCell.self, forCellWithReuseIdentifier: "SpeedInfoCollectionViewCell")
-//        collectionView.backgroundColor = .lightGray.withAlphaComponent(0.2)
         collectionView.dataSource = self
         collectionView.delegate = self
     }

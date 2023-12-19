@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760C39472B3176A200B68A12 /* TrackingResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */; };
 		761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */; };
 		761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */; };
 		761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultHeaderView.swift; sourceTree = "<group>"; };
 		761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewController.swift; sourceTree = "<group>"; };
 		761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrackingResultCell.swift; sourceTree = "<group>"; };
 		761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCell.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
+				760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */,
 				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
 				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
 				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
@@ -307,6 +310,7 @@
 				76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */,
 				761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
+				760C39472B3176A200B68A12 /* TrackingResultHeaderView.swift in Sources */,
 				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
 				761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */,
 				763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */,

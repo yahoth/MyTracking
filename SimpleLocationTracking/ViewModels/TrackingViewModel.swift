@@ -23,6 +23,7 @@ final class TrackingViewModel {
             SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
             SpeedInfo(value: currentAltitude, unit: "m", title: "Current Altitude"),
+            SpeedInfo(value: floor, unit: "floor", title: "Floor"),
         ]
     }
 
@@ -34,6 +35,7 @@ final class TrackingViewModel {
             SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
             SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
             SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
+            SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
 
         return infos
@@ -47,6 +49,10 @@ final class TrackingViewModel {
         self.state = fpc.state
         self.fpc = fpc
         bind()
+    }
+
+    var floor: Int {
+        locationManager.floor
     }
 
     var speed: Double {
@@ -71,6 +77,10 @@ final class TrackingViewModel {
 
     var altitude: Double {
         locationManager.altitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
+    }
+
+    var locations: [CLLocation] {
+        locationManager.locations
     }
 
     @Published var isPaused: Bool = true

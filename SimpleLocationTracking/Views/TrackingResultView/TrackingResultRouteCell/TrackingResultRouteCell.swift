@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
 class TrackingResultRouteCell: BaseTrackingResultCell {
     var routeImageView: UIImageView!
     var routeLabelView: RouteLabelView!
+    var subscriptions = Set<AnyCancellable>()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,6 +25,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 
     func setRouteImage() {
         routeImageView = UIImageView()
@@ -45,7 +48,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         }
     }
 
-    func configure(/*_ data: TravelData*/) {
+    func configure() {
         routeImageView.image = UIImage(named: "map")
         routeLabelView.startPlaceLabel.text = "인천광역시 부평구 주부토로 193"
         routeLabelView.endPlaceLabel.text = "서울특별시 영등포구 여의동로 330"

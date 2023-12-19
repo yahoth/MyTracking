@@ -1,5 +1,5 @@
 //
-//  SpeedInfoTableViewCell.swift
+//  TrackingResultSpeedInfoCell.swift
 //  SimpleLocationTracking
 //
 //  Created by TAEHYOUNG KIM on 12/14/23.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class SpeedInfoTableViewCell: BaseTrackingResultCell {
+class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
 
     var collectionView: UICollectionView!
     var vm: TrackingCompletionViewModel!
@@ -42,7 +42,7 @@ class SpeedInfoTableViewCell: BaseTrackingResultCell {
     }
 }
 
-extension SpeedInfoTableViewCell: UICollectionViewDelegateFlowLayout {
+extension TrackingResultSpeedInfoCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width - 10) / 2 , height: (collectionView.frame.height - 20) / 3)
     }
@@ -52,7 +52,7 @@ extension SpeedInfoTableViewCell: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension SpeedInfoTableViewCell: UICollectionViewDataSource {
+extension TrackingResultSpeedInfoCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.speedInfos.count
     }

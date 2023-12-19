@@ -24,8 +24,8 @@ class TrackingResultViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(RouteTableViewCell.self, forCellReuseIdentifier: "RouteTableViewCell")
-        tableView.register(SpeedInfoTableViewCell.self, forCellReuseIdentifier: "SpeedInfoTableViewCell")
+        tableView.register(TrackingResultRouteCell.self, forCellReuseIdentifier: "TrackingResultRouteCell")
+        tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
 
 
         view.addSubview(tableView)
@@ -43,11 +43,11 @@ extension TrackingResultViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RouteTableViewCell", for: indexPath) as? RouteTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
             cell.configure()
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpeedInfoTableViewCell", for: indexPath) as? SpeedInfoTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }
             cell.vm = vm
             cell.setCollectionViewConstraints(superViewHeight: view.frame.height)
             return cell

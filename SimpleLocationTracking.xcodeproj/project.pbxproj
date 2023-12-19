@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */; };
 		761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */; };
-		761A76F32B2ABF1B00FABC7D /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */; };
-		761A76F52B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */; };
+		761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */; };
+		761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F42B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift */; };
 		761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */; };
 		7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1322B28AA8700094845 /* Double + Unit.swift */; };
 		7624E1372B28ABB000094845 /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1362B28ABB000094845 /* TravelData.swift */; };
@@ -41,8 +41,8 @@
 /* Begin PBXFileReference section */
 		761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewController.swift; sourceTree = "<group>"; };
 		761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrackingResultCell.swift; sourceTree = "<group>"; };
-		761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
-		761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoTableViewCell.swift; sourceTree = "<group>"; };
+		761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCell.swift; sourceTree = "<group>"; };
+		761A76F42B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultSpeedInfoCell.swift; sourceTree = "<group>"; };
 		761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingCompletionViewModel.swift; sourceTree = "<group>"; };
 		7624E1322B28AA8700094845 /* Double + Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Unit.swift"; sourceTree = "<group>"; };
 		7624E1362B28ABB000094845 /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
@@ -94,24 +94,22 @@
 			path = TrackingView;
 			sourceTree = "<group>";
 		};
-		761A76FA2B2AE2FF00FABC7D /* TrackingCompletionView */ = {
+		761A76FA2B2AE2FF00FABC7D /* TrackingResultView */ = {
 			isa = PBXGroup;
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
-				767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */,
-				761A76F22B2ABF1B00FABC7D /* RouteTableViewCell.swift */,
-				761A76F42B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift */,
-				767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */,
+				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
+				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
 				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
 			);
-			path = TrackingCompletionView;
+			path = TrackingResultView;
 			sourceTree = "<group>";
 		};
 		7624E12F2B28AA3800094845 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				761A76F92B2AE2F800FABC7D /* TrackingView */,
-				761A76FA2B2AE2FF00FABC7D /* TrackingCompletionView */,
+				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +204,24 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		76878EB52B31506500309D73 /* TrackingResultRouteCell */ = {
+			isa = PBXGroup;
+			children = (
+				761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */,
+				767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */,
+			);
+			path = TrackingResultRouteCell;
+			sourceTree = "<group>";
+		};
+		76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				761A76F42B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift */,
+				767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */,
+			);
+			path = TrackingResultSpeedInfoCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -292,7 +308,7 @@
 				761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
 				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
-				761A76F32B2ABF1B00FABC7D /* RouteTableViewCell.swift in Sources */,
+				761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */,
 				763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */,
 				764B46DD2AED197C00B0B9B5 /* AppDelegate.swift in Sources */,
 				76481E5F2AFA7E9100FC5B8A /* LocationManager.swift in Sources */,
@@ -303,7 +319,7 @@
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
 				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,
-				761A76F52B2ACE0E00FABC7D /* SpeedInfoTableViewCell.swift in Sources */,
+				761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */,
 				76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,

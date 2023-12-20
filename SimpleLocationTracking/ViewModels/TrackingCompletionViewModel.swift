@@ -5,12 +5,18 @@
 //  Created by TAEHYOUNG KIM on 12/14/23.
 //
 
-import Foundation
+import UIKit
+import CoreLocation
 
 final class TrackingCompletionViewModel {
     var speedInfos: [SpeedInfo]
 
-    init(speedInfos: [SpeedInfo]) {
+    @Published var path: [PathInfo]
+//    @Published var span: MKCoordinateSpan?
+    @Published var image: UIImage?
+
+    init(speedInfos: [SpeedInfo], path: [PathInfo]) {
         self.speedInfos = speedInfos
+        self.path = path
     }
 }

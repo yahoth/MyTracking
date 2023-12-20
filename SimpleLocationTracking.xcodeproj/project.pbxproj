@@ -13,6 +13,7 @@
 		761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */; };
 		761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F42B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift */; };
 		761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */; };
+		762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */; };
 		7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1322B28AA8700094845 /* Double + Unit.swift */; };
 		7624E1372B28ABB000094845 /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1362B28ABB000094845 /* TravelData.swift */; };
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
@@ -37,6 +38,7 @@
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
 		76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A522B1856B600DD83F7 /* ActivityType.swift */; };
 		76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A542B18602700DD83F7 /* Int + Time Notation.swift */; };
+		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,7 @@
 		761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCell.swift; sourceTree = "<group>"; };
 		761A76F42B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultSpeedInfoCell.swift; sourceTree = "<group>"; };
 		761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingCompletionViewModel.swift; sourceTree = "<group>"; };
+		762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCellViewModel.swift; sourceTree = "<group>"; };
 		7624E1322B28AA8700094845 /* Double + Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Unit.swift"; sourceTree = "<group>"; };
 		7624E1362B28ABB000094845 /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
 		76849A522B1856B600DD83F7 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		76849A542B18602700DD83F7 /* Int + Time Notation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Time Notation.swift"; sourceTree = "<group>"; };
+		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 			children = (
 				763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */,
 				7624E1362B28ABB000094845 /* TravelData.swift */,
+				76C05D942B32B8A5003F4357 /* PathInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				7666F2CA2B17268800F5826F /* TrackingViewModel.swift */,
 				761A76FB2B2AE3C800FABC7D /* TrackingCompletionViewModel.swift */,
+				762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
 				760C39472B3176A200B68A12 /* TrackingResultHeaderView.swift in Sources */,
+				76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */,
 				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
 				761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */,
 				763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */,
@@ -320,6 +327,7 @@
 				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,
 				767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */,
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,
+				762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
 				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,

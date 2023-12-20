@@ -113,7 +113,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 //                    self.mapView.removeOverlays(self.mapView.overlays)
                     let vc = TrackingResultViewController()
                    
-                    vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults())
+                    vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults(), path: self.vm.path)
                     let navigationController = UINavigationController(rootViewController: vc)
 
 //                    dump(self.mapView.overlays)

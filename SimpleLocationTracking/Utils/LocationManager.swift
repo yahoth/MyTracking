@@ -23,7 +23,7 @@ class LocationManager: NSObject {
     @Published var rotation: Double = 0
     @Published var coordinates: [CLLocationCoordinate2D] = []
     @Published var points: [CLLocationCoordinate2D]?
-    var locations: [CLLocation] = []
+    var path: [PathInfo] = []
     var previousLocation: CLLocation?
     var floor: Int = 0
     override init() {
@@ -60,7 +60,7 @@ class LocationManager: NSObject {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        self.locations.append(location)
+//        self.path.append(location)
 
         if previousLocation?.floor?.level ?? 0 < location.floor?.level ?? 0 {
             self.floor += (location.floor?.level ?? 0) - (previousLocation?.floor?.level ?? 0)
@@ -72,6 +72,8 @@ extension LocationManager: CLLocationManagerDelegate {
         self.topSpeed = self.speeds.max() ?? 0
         self.currentAltitude = location.altitude
         self.coordinates.append(location.coordinate)
+
+        self.path.append(PathInfo(coordinate: location.coordinate, speed: speed(location.speed)))
 
         if let previousLocation {
             self.distance += location.distance(from: previousLocation)

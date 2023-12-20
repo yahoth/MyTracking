@@ -79,8 +79,8 @@ final class TrackingViewModel {
         locationManager.altitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var locations: [CLLocation] {
-        locationManager.locations
+    var path: [PathInfo] {
+        locationManager.path
     }
 
     @Published var isPaused: Bool = true

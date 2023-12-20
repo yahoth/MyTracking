@@ -55,6 +55,14 @@ class LocationManager: NSObject {
     func speed(_ speed: Double) -> Double {
         return max(speed, 0)
     }
+
+    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async throws -> String {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let placemark = try await geocoder.reverseGeocodeLocation(location).first
+        let result = (placemark?.locality ?? "") + (placemark?.subLocality ?? "")
+        return result
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {

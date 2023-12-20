@@ -55,6 +55,7 @@ class RouteLabelView: UIView {
             $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         }
     }
+    
     func setVStack() {
         vStackView = UIStackView()
         self.addSubview(vStackView)

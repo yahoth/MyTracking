@@ -27,10 +27,6 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func addOverlay(_ path: [PathInfo]) {
-        let lineDraw = MKPolyline(coordinates: path.map { $0.coordinate }, count: path.map { $0.coordinate }.count)
-        mapView.addOverlay(lineDraw)
-    }
 
     func bind(path: [PathInfo]) {
         addOverlay(path)
@@ -38,6 +34,21 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         addAnnotations(path)
     }
 
+    func configure(start: String, end: String) {
+        routeLabelView.startPlaceLabel.text = start
+        routeLabelView.endPlaceLabel.text = end
+    }
+
+    func setRouteLabel() {
+        routeLabelView = RouteLabelView()
+        body.addSubview(routeLabelView)
+        routeLabelView.snp.makeConstraints { make in
+            make.top.equalTo(mapView.snp.bottom)
+            make.horizontalEdges.equalTo(body)
+            make.bottom.equalTo(body)
+            make.height.equalTo(80)
+        }
+    }
 
     func setMapview() {
         mapView = MKMapView()
@@ -49,7 +60,11 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
             make.horizontalEdges.equalTo(body)
             make.height.equalTo(body.snp.width).multipliedBy(0.8)
         }
+    }
 
+    func addOverlay(_ path: [PathInfo]) {
+        let lineDraw = MKPolyline(coordinates: path.map { $0.coordinate }, count: path.map { $0.coordinate }.count)
+        mapView.addOverlay(lineDraw)
     }
 
     private func setRegion(_ path: [PathInfo]) {
@@ -80,30 +95,6 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         endAnnotation.coordinate = endCoordinate
 
         mapView.addAnnotations([startAnnotation, endAnnotation])
-    }
-
-//    func captureMapAndOverlays(mapView: MKMapView) -> UIImage {
-//        let renderer = UIGraphicsImageRenderer(size: mapView.bounds.size)
-//        let image = renderer.image { ctx in
-//            mapView.drawHierarchy(in: mapView.bounds, afterScreenUpdates: true)
-//        }
-//        return image
-//    }
-
-    func setRouteLabel() {
-        routeLabelView = RouteLabelView()
-        body.addSubview(routeLabelView)
-        routeLabelView.snp.makeConstraints { make in
-            make.top.equalTo(mapView.snp.bottom)
-            make.horizontalEdges.equalTo(body)
-            make.bottom.equalTo(body)
-            make.height.equalTo(80)
-        }
-    }
-
-    func configure() {
-        routeLabelView.startPlaceLabel.text = "인천광역시 부평구 주부토로 193"
-        routeLabelView.endPlaceLabel.text = "서울특별시 영등포구 여의동로 330"
     }
 }
 

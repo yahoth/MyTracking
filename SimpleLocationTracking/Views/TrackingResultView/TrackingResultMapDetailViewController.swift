@@ -11,24 +11,32 @@ import MapKit
 import SnapKit
 
 class TrackingResultMapDetailViewController: UIViewController {
-
+    var vm: TrackingResultRouteCellViewModel!
     var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setMapView()
+        vm.drawMap(mapView)
+        navigationItem.title = "Route"
+        view.backgroundColor = .systemBackground
+        setDismissButton()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setMapView() {
+        mapView = MKMapView()
+        view.addSubview(mapView)
+        mapView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
-    */
 
+    func setDismissButton() {
+        let dismissItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(dismissMapView))
+        self.navigationItem.rightBarButtonItem = dismissItem
+    }
+
+    @objc func dismissMapView() {
+        self.dismiss(animated: true)
+    }
 }

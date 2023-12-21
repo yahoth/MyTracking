@@ -50,10 +50,7 @@ class TrackingResultViewController: UIViewController {
         }
     }
 
-    func presentMapDetailView() {
-        let vc = TrackingResultMapDetailViewController()
-        self.present(vc, animated: true)
-    }
+
 }
 
 extension TrackingResultViewController: UITableViewDataSource {
@@ -64,13 +61,21 @@ extension TrackingResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
-//            cell.onTap = presentMapDetailView()
-
-            cell.vm = TrackingResultRouteCellViewModel(path: vm.path)
+            let cellVM = TrackingResultRouteCellViewModel(path: vm.path)
+            cell.vm = cellVM
             cell.bind()
+            cell.presentMap = presentMapDetailView
 
             Task {
-                try await cell.configure(start: vm.reverseGeocodeLocation(vm.start), end: vm.reverseGeocodeLocation(vm.end))
+                try await cell.configure(start: self.vm.reverseGeocodeLocation(self.vm.start), end: self.vm.reverseGeocodeLocation(self.vm.end))
+            }
+
+            func presentMapDetailView() {
+                let vc = TrackingResultMapDetailViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                vc.vm = cellVM
+                self.present(nav, animated: true)
             }
 
             return cell
@@ -80,6 +85,7 @@ extension TrackingResultViewController: UITableViewDataSource {
             cell.setCollectionViewConstraints(superViewHeight: view.frame.height)
             return cell
         }
+
     }
 }
 

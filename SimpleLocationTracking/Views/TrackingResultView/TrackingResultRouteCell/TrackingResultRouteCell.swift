@@ -16,6 +16,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     var mapViewContainer: UIView!
     var mapView: MKMapView!
     var routeLabelView: RouteLabelView!
+    var presentMap: (() -> Void)!
     var subscriptions = Set<AnyCancellable>()
     var vm: TrackingResultRouteCellViewModel!
 
@@ -23,7 +24,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setTitle(to: "Route")
         setMapViewContainer()
-        setMapview()
+        setMapView()
         setRouteLabel()
     }
 
@@ -59,7 +60,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         mapViewContainer.addGestureRecognizer(tapGesture)
     }
 
-    func setMapview() {
+    func setMapView() {
         mapView = MKMapView()
         mapView.isUserInteractionEnabled = false
 
@@ -81,7 +82,6 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     }
 
     @objc func mapTapped(_ sender: UITapGestureRecognizer) {
-//        onTap
-        print("hello: \(vm.path)")
+        presentMap()
     }
 }

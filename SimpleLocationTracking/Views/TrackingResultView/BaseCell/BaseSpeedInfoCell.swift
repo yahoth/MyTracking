@@ -14,7 +14,7 @@ class BaseSpeedInfoCell: UICollectionViewCell {
         return label
     }()
 
-    let container = UIStackView()
+    let hStackView = UIStackView()
 
     let valueLabel: UILabel = {
         let label = UILabel()
@@ -44,26 +44,26 @@ class BaseSpeedInfoCell: UICollectionViewCell {
 
     func layout() {
 
-        [titleLabel, container].forEach { contentView.addSubview($0)
+        [titleLabel, hStackView].forEach { contentView.addSubview($0)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).inset(8)
+            make.top.equalTo(contentView).inset(padding_body_view)
             make.horizontalEdges.equalTo(contentView).inset(8)
         }
 
-        container.axis = .horizontal
-        container.spacing = 8
-        container.alignment = .fill
-        container.distribution = .fill
-        container.snp.makeConstraints { make in
+        hStackView.axis = .horizontal
+        hStackView.spacing = 8
+        hStackView.alignment = .fill
+        hStackView.distribution = .fill
+        hStackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
             make.horizontalEdges.equalTo(contentView).inset(8)
             make.bottom.equalTo(contentView)
         }
 
         [valueLabel, unitLabel].forEach {
-            container.addArrangedSubview($0)
+            hStackView.addArrangedSubview($0)
         }
     }
 }

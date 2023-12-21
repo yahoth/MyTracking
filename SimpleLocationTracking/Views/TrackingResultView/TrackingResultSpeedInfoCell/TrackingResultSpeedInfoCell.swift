@@ -13,7 +13,6 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
 
     var collectionView: UICollectionView!
     var vm: TrackingCompletionViewModel!
-    var tempLabel: UILabel!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,9 +32,10 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
     }
 
     func setCollectionViewConstraints(superViewHeight: CGFloat) {
-        body.addSubview(collectionView)
+        contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(body).inset(UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+            make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
+            make.horizontalEdges.bottom.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view))
             make.height.equalTo(superViewHeight / 3.5)
         }
     }

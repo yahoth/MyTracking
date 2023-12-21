@@ -60,7 +60,7 @@ class RouteLabelView: UIView {
         vStackView = UIStackView()
         self.addSubview(vStackView)
         vStackView.axis = .vertical
-        vStackView.spacing = 0
+        vStackView.spacing = padding_body_body
         vStackView.alignment = .fill
         vStackView.distribution = .fillEqually
     }
@@ -77,13 +77,13 @@ class RouteLabelView: UIView {
         vStackView.addArrangedSubview(container)
         [label, mark].forEach(container.addSubview(_:))
         mark.snp.makeConstraints { make in
-            make.top.bottom.equalTo(container).inset(8)
-            make.leading.equalTo(container).offset(8)
+            make.top.bottom.equalTo(container)
+            make.leading.equalTo(container)
         }
 
         label.snp.makeConstraints { make in
             make.centerX.equalTo(container)
-            make.top.bottom.equalTo(container).inset(8)
+            make.top.bottom.equalTo(container)
             make.leading.equalTo(mark.snp.trailing).offset(10)
         }
     }

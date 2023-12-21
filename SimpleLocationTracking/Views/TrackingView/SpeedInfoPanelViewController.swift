@@ -25,13 +25,6 @@ class SpeedInfoPanelViewController: UIViewController {
     var movePanelButtonItem: UIBarButtonItem!
     var startAndPauseButton: UIBarButtonItem!
 
-    var bottomSafeArea: CGFloat {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0}
-        guard let window = windowScene.windows.first else { return 0}
-        guard let root = window.rootViewController else { return 0}
-        return root.view.safeAreaInsets.bottom
-    }
-
     //Model
     var vm: TrackingViewModel!
     var subscriptions = Set<AnyCancellable>()
@@ -124,16 +117,34 @@ class SpeedInfoPanelViewController: UIViewController {
 }
 
 extension SpeedInfoPanelViewController: UICollectionViewDelegateFlowLayout {
+
+    var bottomSafeArea: CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0}
+        guard let window = windowScene.windows.first else { return 0}
+        guard let root = window.rootViewController else { return 0}
+        return root.view.safeAreaInsets.bottom
+    }
+
+    var bottomPadding: CGFloat {
+        bottomSafeArea == 0 ? 10 : 0
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 30) / 2, height: (view.safeAreaLayoutGuide.layoutFrame.height * 0.6) - (navigationController?.navigationBar.frame.height ?? 0) - 10 - (bottomSafeArea) / 2)
+        ///width: (view.width - (2 *  padding(leading,trailing)) - inter Item padding) / 2
+        ///height: (viewHeight (일반 뷰의 0.6배->패널설정) - bottomPadding(safeArea가 0일 때 10) - (2 * bottomSafeArea)) / 2
+        ///**collectionView의 위아래로 bottomSafeArea 만큼의 inset이 있음.
+        ///이유: 패널이 .tip버전일 때, bottomSafeArea만큼 컬렉션뷰가 노출되기 때문에 보이지 않게 constraints 설정.
+        return CGSize(
+            width: (collectionView.frame.width - (2 * padding_body_view) - padding_body_body) / 2,
+            height: (view.frame.height - 10 - bottomPadding - (2 * bottomSafeArea)) / 2)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        10
+        padding_body_body
     }
 }
 

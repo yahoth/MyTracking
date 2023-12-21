@@ -68,12 +68,7 @@ class LocationManager: NSObject {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-//        self.path.append(location)
-
-        if previousLocation?.floor?.level ?? 0 < location.floor?.level ?? 0 {
-            self.floor += (location.floor?.level ?? 0) - (previousLocation?.floor?.level ?? 0)
-        }
-
+        self.floor += (location.floor?.level ?? 0)
         self.speed = speed(location.speed)
         self.speeds.append(speed(location.speed))
         self.averageSpeed = self.speeds.reduce(0, +) / Double(self.speeds.count)
@@ -103,5 +98,21 @@ extension LocationManager: CLLocationManagerDelegate {
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("*****didFailWithError, \(error.localizedDescription)*****")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailRangingFor beaconConstraint: CLBeaconIdentityConstraint, error: Error) {
+        print("*****didFailRangingFor, \(error.localizedDescription)*****")
+    }
+
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("*****monitoringDidFailFor, \(error.localizedDescription)*****")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+        print("*****didFinishDeferredUpdatesWithError, \(String(describing: error?.localizedDescription))*****")
     }
 }

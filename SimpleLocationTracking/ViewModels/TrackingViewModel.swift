@@ -23,7 +23,6 @@ final class TrackingViewModel {
             SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
             SpeedInfo(value: currentAltitude, unit: "m", title: "Current Altitude"),
-            SpeedInfo(value: floor, unit: "floor", title: "Floor"),
         ]
     }
 

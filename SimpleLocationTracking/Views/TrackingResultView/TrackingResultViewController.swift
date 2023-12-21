@@ -49,6 +49,11 @@ class TrackingResultViewController: UIViewController {
             make.edges.equalTo(view)
         }
     }
+
+    func presentMapDetailView() {
+        let vc = TrackingResultMapDetailViewController()
+        self.present(vc, animated: true)
+    }
 }
 
 extension TrackingResultViewController: UITableViewDataSource {
@@ -59,10 +64,15 @@ extension TrackingResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
-            cell.bind(path: vm.path)
+//            cell.onTap = presentMapDetailView()
+
+            cell.vm = TrackingResultRouteCellViewModel(path: vm.path)
+            cell.bind()
+
             Task {
                 try await cell.configure(start: vm.reverseGeocodeLocation(vm.start), end: vm.reverseGeocodeLocation(vm.end))
             }
+
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }

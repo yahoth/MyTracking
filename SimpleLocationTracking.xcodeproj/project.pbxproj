@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		760C39472B3176A200B68A12 /* TrackingResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */; };
 		761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */; };
 		761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */; };
 		761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */; };
@@ -33,6 +32,8 @@
 		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
 		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
 		767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */; };
+		7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */; };
+		7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */; };
 		76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4C2B18563B00DD83F7 /* Stopwatch.swift */; };
 		76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4E2B18566B00DD83F7 /* SettingManager.swift */; };
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
@@ -42,7 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultHeaderView.swift; sourceTree = "<group>"; };
 		761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewController.swift; sourceTree = "<group>"; };
 		761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrackingResultCell.swift; sourceTree = "<group>"; };
 		761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCell.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
 		767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLabelView.swift; sourceTree = "<group>"; };
+		7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConvention.swift; sourceTree = "<group>"; };
+		7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultMapDetailViewController.swift; sourceTree = "<group>"; };
 		76849A4C2B18563B00DD83F7 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76849A4E2B18566B00DD83F7 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
-				760C39462B3176A200B68A12 /* TrackingResultHeaderView.swift */,
+				7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */,
 				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
 				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
 				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
@@ -200,6 +202,7 @@
 				761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */,
 				7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */,
 				767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */,
+				7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */,
 			);
 			path = BaseCell;
 			sourceTree = "<group>";
@@ -310,13 +313,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */,
+				7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */,
 				767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */,
 				763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */,
 				761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */,
 				76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */,
 				761A76FC2B2AE3C900FABC7D /* TrackingCompletionViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
-				760C39472B3176A200B68A12 /* TrackingResultHeaderView.swift in Sources */,
 				76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */,
 				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
 				761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */,
@@ -337,6 +340,7 @@
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
 				7624E1372B28ABB000094845 /* TravelData.swift in Sources */,
 				764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */,
+				7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

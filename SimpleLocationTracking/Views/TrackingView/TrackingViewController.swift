@@ -28,6 +28,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         self.navigationController?.isNavigationBarHidden = true
         
         currentSpeedView = CurrentSpeedView()
@@ -51,9 +52,9 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         }
 
         mapView.snp.makeConstraints { make in
-            make.bottom.equalTo(view)
-            make.horizontalEdges.equalTo(view)
             make.top.equalTo(currentSpeedView.snp.bottom)
+            make.horizontalEdges.equalTo(view)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(navigationController?.navigationBar.frame.height ?? 0)
         }
 
         trackingButton.snp.makeConstraints { make in

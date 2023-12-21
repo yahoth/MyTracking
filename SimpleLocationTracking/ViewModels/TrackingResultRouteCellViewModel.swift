@@ -44,7 +44,7 @@ class TrackingResultRouteCellViewModel: NSObject {
         let maxLon = longitudes.max() ?? 0
 
         let center = CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2)
-        let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 4, longitudeDelta: (maxLon - minLon) * 4)
+        let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 3, longitudeDelta: (maxLon - minLon) * 3)
 
         mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: true)
     }
@@ -71,7 +71,7 @@ extension TrackingResultRouteCellViewModel: MKMapViewDelegate {
 
         renderer.lineWidth = 5
         renderer.alpha = 1.0
-        renderer.strokeColor = .blue
+        renderer.strokeColor = .black
         return renderer
     }
 

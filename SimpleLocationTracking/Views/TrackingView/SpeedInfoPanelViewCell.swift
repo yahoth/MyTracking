@@ -47,7 +47,7 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
 
     func setContentView() {
         contentView.layer.cornerRadius = 12
-        contentView.backgroundColor = .orange
+        contentView.backgroundColor = .accent
     }
 
     func configure(_ info: SpeedInfo) {

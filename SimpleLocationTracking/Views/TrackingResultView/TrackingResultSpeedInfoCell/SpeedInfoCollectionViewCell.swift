@@ -20,8 +20,8 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
     }
 
     func setLabels() {
-        titleLabel.font = .systemFont(ofSize: 15)
-        titleLabel.textColor = .label
+        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        titleLabel.textColor = .gray
         titleLabel.textAlignment = .left
         valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
         valueLabel.textColor = .label

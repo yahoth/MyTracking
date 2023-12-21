@@ -15,9 +15,6 @@ class TrackingResultViewController: UIViewController {
 
     var tableView: UITableView!
     var vm: TrackingCompletionViewModel!
-    var mapView: MKMapView!
-    var imageView: UIImageView!
-    var tempMapView: MKMapView!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -32,11 +29,18 @@ class TrackingResultViewController: UIViewController {
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.allowsSelection = false
-        tableView.separatorStyle = .none
         tableView.dataSource = self
+        setTableViewSeparator()
         tableView.delegate = self
+
         tableView.register(TrackingResultRouteCell.self, forCellReuseIdentifier: "TrackingResultRouteCell")
         tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
+
+        func setTableViewSeparator() {
+            tableView.separatorStyle = .singleLine
+            tableView.separatorColor = .brown
+            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+        }
     }
 
     func setConstrains() {
@@ -111,16 +115,10 @@ extension TrackingResultViewController: MKMapViewDelegate {
 
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
         print("mapViewDidFinishLoadingMap")
-//        imageView.image = captureMapAndOverlays(mapView: mapView)
     }
 
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-
         print("mapViewDidFinishRenderingMap: \(fullyRendered)")
-//        vm.image = captureMapAndOverlays(mapView: mapView)
-
-        tempMapView = mapView
-
     }
 }
 

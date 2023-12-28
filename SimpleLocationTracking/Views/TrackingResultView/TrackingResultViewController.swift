@@ -14,7 +14,7 @@ import SnapKit
 class TrackingResultViewController: UIViewController {
 
     var tableView: UITableView!
-    var vm: TrackingCompletionViewModel!
+    var vm: TrackingResultViewModel!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -24,6 +24,16 @@ class TrackingResultViewController: UIViewController {
 
         setTableView()
         setConstrains()
+        setDismissButton()
+    }
+
+    func setDismissButton() {
+        let dismissItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTracking))
+        self.navigationItem.rightBarButtonItem = dismissItem
+    }
+
+    @objc func doneTracking() {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
 
     func setTableView() {
@@ -49,7 +59,6 @@ class TrackingResultViewController: UIViewController {
             make.edges.equalTo(view)
         }
     }
-
 
 }
 

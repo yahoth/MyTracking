@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-final class TrackingCompletionViewModel {
+final class TrackingResultViewModel {
     var speedInfos: [SpeedInfo]
 
     @Published var path: [PathInfo]

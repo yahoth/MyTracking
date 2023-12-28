@@ -111,13 +111,11 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         vm.$isStopped
             .sink { bool in
                 if bool {
-//                    self.mapView.removeOverlays(self.mapView.overlays)
                     let vc = TrackingResultViewController()
                    
-                    vc.vm = TrackingCompletionViewModel(speedInfos: self.vm.createTrackingResults(), path: self.vm.path)
+                    vc.vm = TrackingResultViewModel(speedInfos: self.vm.createTrackingResults(), path: self.vm.path)
                     let navigationController = UINavigationController(rootViewController: vc)
-
-//                    dump(self.mapView.overlays)
+                    navigationController.modalPresentationStyle = .fullScreen
                     self.present(navigationController, animated: true)
                 }
             }.store(in: &subscriptions)

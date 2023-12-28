@@ -16,9 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene) // SceneDelegate의 프로퍼티에 설정해줌
-        let mainVC = TrackingViewController() // 맨 처음 보여줄 ViewController
-        let navigationVC = UINavigationController(rootViewController: mainVC)
+        let tabBarController = MainTabBarController()
 
+        let navigationVC = UINavigationController(rootViewController: tabBarController)
+        
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }

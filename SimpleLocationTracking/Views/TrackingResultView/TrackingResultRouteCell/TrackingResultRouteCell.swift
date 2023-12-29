@@ -12,7 +12,6 @@ import MapKit
 import SnapKit
 
 class TrackingResultRouteCell: BaseTrackingResultCell {
-    var routeImageView: UIImageView!
     var mapViewContainer: UIView!
     var mapView: MKMapView!
     var routeLabelView: RouteLabelView!

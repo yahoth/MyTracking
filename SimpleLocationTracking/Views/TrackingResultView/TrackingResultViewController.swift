@@ -42,7 +42,7 @@ class TrackingResultViewController: UIViewController {
         tableView.dataSource = self
         setTableViewSeparator()
         tableView.delegate = self
-
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(TrackingResultRouteCell.self, forCellReuseIdentifier: "TrackingResultRouteCell")
         tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
 

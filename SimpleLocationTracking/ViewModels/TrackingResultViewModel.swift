@@ -40,7 +40,13 @@ final class TrackingResultViewModel {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         let placemark = try await geocoder.reverseGeocodeLocation(location).first
-        let result = "\(placemark?.locality ?? "") \(placemark?.subLocality ?? "")"
-        return result
+        //간단한 주소
+        let result = "\(placemark?.locality ?? String()) \(placemark?.subLocality ?? String())"
+
+        if result.trimmingCharacters(in: .whitespaces).count > 0 {
+            return result
+        } else {
+            return "lat: \(coordinate.latitude), long: \(coordinate.longitude)"
+        }
     }
 }

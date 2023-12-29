@@ -113,7 +113,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 if bool {
                     let vc = TrackingResultViewController()
                    
-                    vc.vm = TrackingResultViewModel(speedInfos: self.vm.createTrackingResults(), path: self.vm.path)
+                    vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResults())
                     let navigationController = UINavigationController(rootViewController: vc)
                     navigationController.modalPresentationStyle = .fullScreen
                     self.present(navigationController, animated: true)

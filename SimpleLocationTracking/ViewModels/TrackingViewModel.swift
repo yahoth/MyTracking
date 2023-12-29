@@ -26,9 +26,9 @@ final class TrackingViewModel {
         ]
     }
 
-    func createTrackingResults() -> [SpeedInfo] {
+    func createTrackingResults() -> TrackingData {
 
-        let infos = [
+        let speedInfos = [
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
             SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
             SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
@@ -36,8 +36,8 @@ final class TrackingViewModel {
             SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
-
-        return infos
+        
+        return TrackingData(speedInfos: speedInfos, pathInfos: path)
     }
 
 

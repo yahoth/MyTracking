@@ -9,9 +9,13 @@ import UIKit
 import CoreLocation
 
 final class TrackingResultViewModel {
-    var speedInfos: [SpeedInfo]
+    var speedInfos: [SpeedInfo] {
+        trackingData.speedInfos
+    }
 
-    @Published var path: [PathInfo]
+    var path: [PathInfo] {
+        trackingData.pathInfos
+    }
 
     var start: CLLocationCoordinate2D {
         guard let start = coordinates.first else { return CLLocationCoordinate2D() }
@@ -31,9 +35,10 @@ final class TrackingResultViewModel {
         path.map { $0.speed }
     }
 
-    init(speedInfos: [SpeedInfo], path: [PathInfo]) {
-        self.speedInfos = speedInfos
-        self.path = path
+    var trackingData: TrackingData
+
+    init(trackingData: TrackingData) {
+        self.trackingData = trackingData
     }
 
     func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async throws -> String {

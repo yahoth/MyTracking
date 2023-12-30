@@ -56,13 +56,31 @@ class LocationManager: NSObject {
         return max(speed, 0)
     }
 
-    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async throws -> String {
+    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D, maxAttempts: Int = 3, currentAttempt: Int = 0) async -> String {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let placemark = try await geocoder.reverseGeocodeLocation(location).first
-        let result = (placemark?.locality ?? "") + (placemark?.subLocality ?? "")
-        return result
+        do {
+            let placemark = try await geocoder.reverseGeocodeLocation(location).first
+
+            let result = "\(placemark?.locality ?? String()) \(placemark?.subLocality ?? String())"
+
+            if result.trimmingCharacters(in: .whitespaces).count > 0 {
+                return result
+            } else {
+                return "lat: \(coordinate.latitude), long: \(coordinate.longitude)"
+            }
+        } catch let error {
+            if let error = error as NSError? {
+                if error.code == CLError.network.rawValue && currentAttempt < maxAttempts {
+                    return await self.reverseGeocodeLocation(coordinate, maxAttempts: maxAttempts, currentAttempt: currentAttempt + 1)
+                } else {
+                    print(error.localizedDescription)
+                    return "title"
+                }
+            }
+        }
     }
+
 }
 
 extension LocationManager: CLLocationManagerDelegate {

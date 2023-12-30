@@ -7,8 +7,85 @@
 
 import UIKit
 
+import SnapKit
+
+struct Temp {
+    let str: String
+    let date: Date
+}
+
 class HistoryViewController: UIViewController {
+    var tableView: UITableView!
+    var vm: HistoryViewModel!
+
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        vm = HistoryViewModel()
+        setTableView()
     }
+
+    func setTableView() {
+        tableView = UITableView(frame: .zero, style: .plain)
+        tableView.dataSource = self
+        setTableViewSeparator()
+        tableView.delegate = self
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: "HistoryCell")
+        view.addSubview(tableView)
+        setTableViewConstraints()
+
+        func setTableViewSeparator() {
+            tableView.separatorStyle = .singleLine
+            tableView.separatorColor = .brown
+            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+        }
+
+        func setTableViewConstraints() {
+            tableView.snp.makeConstraints { make in
+                make.edges.equalTo(view)
+            }
+        }
+
+    }
+
+
+}
+extension HistoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
+        print("item: \(item)")
+    }
+
+}
+extension HistoryViewController: UITableViewDataSource {
+
+    // UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return vm.sortedGroups.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vm.sortedGroups[section].value.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var dateComponents = vm.sortedGroups[section].key
+        dateComponents.timeZone = TimeZone.current
+        print("ddateComponents: \(dateComponents)")
+        let date = Calendar.current.date(from: dateComponents)!
+        print("date: \(date)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 M월"
+        dateFormatter.timeZone = TimeZone.current
+
+        return dateFormatter.string(from: date)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as? HistoryCell else { return UITableViewCell() }
+        let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
+        cell.configure(item: item)
+        cell.selectionStyle = .none
+        return cell
+    }
+
 }

@@ -28,6 +28,7 @@
 		764B928E2AFA43E000EC8854 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 764B928D2AFA43E000EC8854 /* FloatingPanel */; };
 		7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CA2B17268800F5826F /* TrackingViewModel.swift */; };
 		7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */; };
+		7669B6EF2B3FDBFB00DDEDE7 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */; };
 		767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */; };
 		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
 		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
@@ -69,6 +70,7 @@
 		764B46EA2AED197D00B0B9B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7666F2CA2B17268800F5826F /* TrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
 		7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSpeedInfoCell.swift; sourceTree = "<group>"; };
+		7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoPanelViewCell.swift; sourceTree = "<group>"; };
 		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */,
+				7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */,
 				767D41C02B3EB2D500C66905 /* HistoryCell.swift */,
 			);
 			path = History;
@@ -355,6 +358,7 @@
 				7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */,
 				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,
 				767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */,
+				7669B6EF2B3FDBFB00DDEDE7 /* HistoryViewModel.swift in Sources */,
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,
 				762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */,
 				767D41C12B3EB2D500C66905 /* HistoryCell.swift in Sources */,

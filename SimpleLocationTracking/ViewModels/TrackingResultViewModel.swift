@@ -37,8 +37,15 @@ final class TrackingResultViewModel {
 
     var trackingData: TrackingData
 
-    init(trackingData: TrackingData) {
+    enum ViewType {
+        case modal
+        case navigation
+    }
+    var viewType: ViewType?
+
+    init(trackingData: TrackingData, viewType: ViewType) {
         self.trackingData = trackingData
+        self.viewType = viewType
     }
 
     func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async throws -> String {

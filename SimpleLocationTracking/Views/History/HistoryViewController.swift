@@ -59,7 +59,7 @@ extension HistoryViewController: UITableViewDelegate {
         let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
         let vc = TrackingResultViewController()
 
-        vc.vm = TrackingResultViewModel(trackingData: item)
+        vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
 //        let navigationController = UINavigationController(rootViewController: vc)
 //        navigationController.modalPresentationStyle = .fullScreen
 //        self.present(navigationController, animated: true)

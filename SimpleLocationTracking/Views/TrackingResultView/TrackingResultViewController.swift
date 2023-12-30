@@ -24,7 +24,9 @@ class TrackingResultViewController: UIViewController {
 
         setTableView()
         setConstrains()
-        setDismissButton()
+        if vm.viewType == .modal {
+            setDismissButton()
+        }
     }
 
     func setDismissButton() {

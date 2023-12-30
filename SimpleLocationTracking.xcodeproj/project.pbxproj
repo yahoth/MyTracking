@@ -14,7 +14,6 @@
 		761A76FC2B2AE3C900FABC7D /* TrackingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */; };
 		762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */; };
 		7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1322B28AA8700094845 /* Double + Unit.swift */; };
-		7624E1372B28ABB000094845 /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1362B28ABB000094845 /* TravelData.swift */; };
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
 		763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */; };
 		76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */; };
@@ -56,7 +55,6 @@
 		761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewModel.swift; sourceTree = "<group>"; };
 		762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCellViewModel.swift; sourceTree = "<group>"; };
 		7624E1322B28AA8700094845 /* Double + Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Unit.swift"; sourceTree = "<group>"; };
-		7624E1362B28ABB000094845 /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
 		763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSpeedView.swift; sourceTree = "<group>"; };
 		76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */,
-				7624E1362B28ABB000094845 /* TravelData.swift */,
 				76C05D942B32B8A5003F4357 /* PathInfo.swift */,
+				767D41C22B3EB67A00C66905 /* TrackingData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,7 +149,6 @@
 		7624E1312B28AA4800094845 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				767D41C22B3EB67A00C66905 /* TrackingData.swift */,
 				7666F2CA2B17268800F5826F /* TrackingViewModel.swift */,
 				761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */,
 				762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */,
@@ -369,7 +366,6 @@
 				76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
-				7624E1372B28ABB000094845 /* TravelData.swift in Sources */,
 				767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */,
 				764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */,
 				7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */,

@@ -10,4 +10,8 @@ import Foundation
 struct TrackingData {
     let speedInfos: [SpeedInfo]
     let pathInfos: [PathInfo]
+    let startDate: Date
+    let endData: Date
+    var startLocation: String?
+    var endLocation: String?
 }

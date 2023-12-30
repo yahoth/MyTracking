@@ -6,22 +6,29 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
-
-struct Temp {
-    let str: String
-    let date: Date
-}
 
 class HistoryViewController: UIViewController {
     var tableView: UITableView!
     var vm: HistoryViewModel!
+    var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         vm = HistoryViewModel()
         setTableView()
+        bind()
+    }
+
+    func bind() {
+        temp.$trackingData
+            .receive(on: DispatchQueue.main)
+            .sink { data in
+                self.tableView.reloadData()
+                print("reload: \(data)")
+            }.store(in: &subscriptions)
     }
 
     func setTableView() {
@@ -44,15 +51,19 @@ class HistoryViewController: UIViewController {
                 make.edges.equalTo(view)
             }
         }
-
     }
-
-
 }
+
 extension HistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
-        print("item: \(item)")
+        let vc = TrackingResultViewController()
+
+        vc.vm = TrackingResultViewModel(trackingData: item)
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        navigationController.modalPresentationStyle = .fullScreen
+//        self.present(navigationController, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -70,9 +81,7 @@ extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var dateComponents = vm.sortedGroups[section].key
         dateComponents.timeZone = TimeZone.current
-        print("ddateComponents: \(dateComponents)")
         let date = Calendar.current.date(from: dateComponents)!
-        print("date: \(date)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 M월"
         dateFormatter.timeZone = TimeZone.current
@@ -87,5 +96,4 @@ extension HistoryViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-
 }

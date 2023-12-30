@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 
 class HistoryCell: UITableViewCell {
-    var tempLabel: UILabel!
+    var timeLabel = UILabel()
+    var placeLabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,22 +19,35 @@ class HistoryCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        tempLabel = UILabel()
-        tempLabel.font = .systemFont(ofSize: 20)
-        tempLabel.textColor = .label
-        tempLabel.numberOfLines = 0
-        contentView.addSubview(tempLabel)
-        tempLabel.snp.makeConstraints { make in
-            make.edges.equalTo(contentView)
-        }
+        set(timeLabel)
+        set(placeLabel)
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(item: Temp) {
-        tempLabel.text = item.str
+    func set(_ label: UILabel) {
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .label
+        label.numberOfLines = 0
+        contentView.addSubview(label)
     }
 
+    func setConstraints() {
+        timeLabel.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(contentView)
+        }
+
+        placeLabel.snp.makeConstraints { make in
+            make.bottom.horizontalEdges.equalTo(contentView)
+            make.top.equalTo(timeLabel.snp.bottom).offset(20)
+        }
+    }
+
+    func configure(item: TrackingData) {
+        timeLabel.text = DateFormatter.localizedString(from: item.startDate, dateStyle: .short, timeStyle: .short)
+        placeLabel.text = "\(String(describing: item.startLocation)) -> \(String(describing: item.endLocation))"
+    }
 }

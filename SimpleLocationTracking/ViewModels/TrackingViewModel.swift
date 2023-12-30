@@ -16,6 +16,7 @@ final class TrackingViewModel {
     private let settingManager = SettingManager()
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
+    var startDate: Date?
 
     var speedInfos: [SpeedInfo] {
         [
@@ -26,7 +27,7 @@ final class TrackingViewModel {
         ]
     }
 
-    func createTrackingResults() -> TrackingData {
+    func createTrackingResults() async -> TrackingData {
 
         let speedInfos = [
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
@@ -36,8 +37,12 @@ final class TrackingViewModel {
             SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
-        
-        return TrackingData(speedInfos: speedInfos, pathInfos: path)
+
+        let startLocation = await locationManager.reverseGeocodeLocation(startCoordinate)
+
+        let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
+
+        return TrackingData(speedInfos: speedInfos, pathInfos: locationManager.path, startDate: startDate ?? Date(), endData: Date(), startLocation: startLocation, endLocation: endLocation)
     }
 
 
@@ -78,8 +83,16 @@ final class TrackingViewModel {
         locationManager.altitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var path: [PathInfo] {
-        locationManager.path
+    var coordinates: [CLLocationCoordinate2D] {
+        locationManager.path.map { $0.coordinate }
+    }
+
+    var startCoordinate: CLLocationCoordinate2D {
+        coordinates.first ?? CLLocationCoordinate2D()
+    }
+
+    var endCoordinate: CLLocationCoordinate2D {
+        coordinates.last ?? CLLocationCoordinate2D()
     }
 
     @Published var isPaused: Bool = true
@@ -123,6 +136,9 @@ final class TrackingViewModel {
             stopwatch.start()
             isPaused = false
             isStopped = false
+            if startDate == nil {
+                startDate = Date()
+            }
         } else {
             locationManager.stop()
             stopwatch.pause()

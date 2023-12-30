@@ -12,6 +12,7 @@ import Combine
 import FloatingPanel
 import SnapKit
 
+
 class TrackingViewController: UIViewController, FloatingPanelControllerDelegate {
     var workItem: DispatchWorkItem?
 
@@ -112,11 +113,14 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .sink { bool in
                 if bool {
                     let vc = TrackingResultViewController()
-                   
-                    vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResults())
-                    let navigationController = UINavigationController(rootViewController: vc)
-                    navigationController.modalPresentationStyle = .fullScreen
-                    self.present(navigationController, animated: true)
+
+                    Task {
+                        await   temp.trackingData.append(self.vm.createTrackingResults())
+                        await vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResults())
+                        let navigationController = UINavigationController(rootViewController: vc)
+                        navigationController.modalPresentationStyle = .fullScreen
+                        self.present(navigationController, animated: true)
+                    }
                 }
             }.store(in: &subscriptions)
 

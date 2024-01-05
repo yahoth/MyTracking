@@ -14,4 +14,5 @@ struct TrackingData {
     let endData: Date
     var startLocation: String?
     var endLocation: String?
+    var tripType: TripType = .oneWay
 }

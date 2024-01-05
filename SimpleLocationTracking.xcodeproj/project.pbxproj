@@ -44,6 +44,7 @@
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
 		76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A522B1856B600DD83F7 /* ActivityType.swift */; };
 		76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A542B18602700DD83F7 /* Int + Time Notation.swift */; };
+		769E4D252B480CF300058B22 /* TripType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769E4D242B480CF300058B22 /* TripType.swift */; };
 		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
 		76849A522B1856B600DD83F7 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		76849A542B18602700DD83F7 /* Int + Time Notation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Time Notation.swift"; sourceTree = "<group>"; };
+		769E4D242B480CF300058B22 /* TripType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripType.swift; sourceTree = "<group>"; };
 		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			children = (
 				76849A502B18567000DD83F7 /* UnitOfSpeed.swift */,
 				76849A522B1856B600DD83F7 /* ActivityType.swift */,
+				769E4D242B480CF300058B22 /* TripType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				7624E1332B28AA8700094845 /* Double + Unit.swift in Sources */,
 				767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */,
+				769E4D252B480CF300058B22 /* TripType.swift in Sources */,
 				7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */,
 				767BC5CB2B3D6F57004C8765 /* MainTabBarController.swift in Sources */,
 				767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */,

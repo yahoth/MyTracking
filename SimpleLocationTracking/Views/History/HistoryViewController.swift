@@ -27,18 +27,22 @@ class HistoryViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 self.tableView.reloadData()
-                print("reload: \(data)")
+//                print("reload: \(data)")
             }.store(in: &subscriptions)
     }
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         setTableViewSeparator()
         tableView.delegate = self
         tableView.register(HistoryCell.self, forCellReuseIdentifier: "HistoryCell")
+        tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
         setTableViewConstraints()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60 // 레이블 최소 높이 합
 
         func setTableViewSeparator() {
             tableView.separatorStyle = .singleLine
@@ -60,13 +64,11 @@ extension HistoryViewController: UITableViewDelegate {
         let vc = TrackingResultViewController()
 
         vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        navigationController.modalPresentationStyle = .fullScreen
-//        self.present(navigationController, animated: true)
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
 }
+
 extension HistoryViewController: UITableViewDataSource {
 
     // UITableViewDataSource

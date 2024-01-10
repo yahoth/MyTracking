@@ -16,7 +16,9 @@ class HistoryViewController: UIViewController {
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.title = "Tracking History"
         vm = HistoryViewModel()
         setTableView()
         bind()
@@ -27,27 +29,22 @@ class HistoryViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 self.tableView.reloadData()
-//                print("reload: \(data)")
             }.store(in: &subscriptions)
     }
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-        setTableViewSeparator()
         tableView.delegate = self
+        setTableViewSeparator()
         tableView.register(HistoryCell.self, forCellReuseIdentifier: "HistoryCell")
-        tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
         setTableViewConstraints()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 60 // 레이블 최소 높이 합
 
         func setTableViewSeparator() {
             tableView.separatorStyle = .singleLine
             tableView.separatorColor = .brown
-            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+            tableView.separatorInset = .init(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view)
         }
 
         func setTableViewConstraints() {
@@ -67,11 +64,13 @@ extension HistoryViewController: UITableViewDelegate {
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        112
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource {
-
-    // UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return vm.sortedGroups.count
     }

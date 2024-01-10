@@ -154,6 +154,7 @@
 				7666F2CA2B17268800F5826F /* TrackingViewModel.swift */,
 				761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */,
 				762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */,
+				7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -174,6 +175,7 @@
 				76849A4C2B18563B00DD83F7 /* Stopwatch.swift */,
 				76849A4E2B18566B00DD83F7 /* SettingManager.swift */,
 				76481E5E2AFA7E9100FC5B8A /* LocationManager.swift */,
+				7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -218,7 +220,6 @@
 				761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */,
 				7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */,
 				767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */,
-				7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */,
 			);
 			path = BaseCell;
 			sourceTree = "<group>";
@@ -227,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */,
-				7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */,
 				767D41C02B3EB2D500C66905 /* HistoryCell.swift */,
 			);
 			path = History;

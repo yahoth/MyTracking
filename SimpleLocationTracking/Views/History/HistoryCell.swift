@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 class HistoryCell: UITableViewCell {
-//    var timeLabel = UILabel()
     let startPlaceLabel = UILabel()
     let endPlaceLabel = UILabel()
     let tripTypeImage = UIImageView()
@@ -21,14 +20,10 @@ class HistoryCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        set(timeLabel)
         set(startPlaceLabel)
         set(endPlaceLabel)
         set(tripTypeImage)
         setConstraints()
-        print("start: \(startPlaceLabel.frame.height)")
-        print("image: \(tripTypeImage.frame.height)")
-        print("end: \(endPlaceLabel.frame.height)")
     }
     
     required init?(coder: NSCoder) {
@@ -36,45 +31,47 @@ class HistoryCell: UITableViewCell {
     }
 
     func set(_ tripTypeImage: UIImageView) {
-        tripTypeImage.frame.size = CGSize(width: 20, height: 20)
-        tripTypeImage.translatesAutoresizingMaskIntoConstraints = false
+        tripTypeImage.contentMode = .scaleAspectFit
         addSubview(tripTypeImage)
     }
 
     func set(_ label: UILabel) {
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 17)
         label.textColor = .label
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.adjustsFontSizeToFitWidth = true
+//        label.minimumScaleFactor = 0.85
+//        label.lineBreakMode = .byTruncatingTail
+//        label.setContentCompressionResistancePriority(.required, for: .vertical)
         contentView.addSubview(label)
     }
 
     func setConstraints() {
         startPlaceLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView)
-            make.height.greaterThanOrEqualTo(20)
-            make.horizontalEdges.equalTo(contentView)
+            make.top.equalTo(contentView).offset(padding_body_view)
+            make.height.equalTo(20)
+            make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
 
         tripTypeImage.snp.makeConstraints { make in
-            make.top.equalTo(startPlaceLabel.snp.bottom)
-            make.height.equalTo(20)
-            make.centerX.equalTo(contentView)
+            make.top.equalTo(startPlaceLabel.snp.bottom).offset(padding_body_body)
+            make.centerX.equalTo(contentView).inset(padding_body_view)
+            make.height.width.equalTo(20)
         }
 
         endPlaceLabel.snp.makeConstraints { make in
-            make.top.equalTo(tripTypeImage.snp.bottom)
-            make.horizontalEdges.equalTo(contentView)
-            make.height.greaterThanOrEqualTo(20)
-            make.bottom.equalTo(contentView)
+            make.top.equalTo(tripTypeImage.snp.bottom).offset(padding_body_body)
+            make.height.equalTo(20)
+            make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
+            make.bottom.equalTo(contentView).offset(-padding_body_view)
         }
     }
 
     func configure(item: TrackingData) {
-//        timeLabel.text = DateFormatter.localizedString(from: item.startDate, dateStyle: .short, timeStyle: .short)
         startPlaceLabel.text = "\(item.startLocation ?? "")"
         endPlaceLabel.text = "\(item.endLocation ?? "")"
         tripTypeImage.image = UIImage(systemName: item.tripType == .oneWay ? "arrow.down" : "arrow.up.arrow.down")
+//        print("configure: \nstart: \(startPlaceLabel.frame.height)\nimage: \(tripTypeImage.frame.height)\nend: \(endPlaceLabel.frame.height)")
     }
 }

@@ -18,11 +18,16 @@ class TrackingSetupViewController: UIViewController {
 
         startTrackingButton = UIButton()
         startTrackingButton.setTitle("Go Tracking", for: .normal)
+        startTrackingButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         startTrackingButton.setTitleColor(.accent, for: .normal)
         startTrackingButton.addTarget(self, action: #selector(start), for: .touchUpInside)
+        startTrackingButton.layer.borderWidth = 10
+        startTrackingButton.layer.borderColor = UIColor.accent.cgColor
+        startTrackingButton.layer.cornerRadius = 50
         view.addSubview(startTrackingButton)
         startTrackingButton.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.size.equalTo(200)
+            make.centerX.centerY.equalTo(view)
         }
     }
 

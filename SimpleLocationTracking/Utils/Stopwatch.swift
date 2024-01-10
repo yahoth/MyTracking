@@ -11,7 +11,7 @@ import Combine
 class Stopwatch: ObservableObject {
 
     private var timer: AnyCancellable?
-    @Published var count = 0
+    @Published var count: Double = 0
 
     func start() {
         timer = Timer.publish(every: 1, on: .main, in: .common)

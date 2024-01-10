@@ -46,13 +46,13 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
         func valueLabelText() {
             switch info.title {
             case "Time":
-                guard let time = info.value as? Int else { return }
-                valueLabel.text = time.resultTime
+//                guard let time = info.value else { return }
+                valueLabel.text = info.value.resultTime
                 valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
             case "Altitude", "Floor":
-                valueLabel.text = String(format: "%.0f", info.value as? Double ?? 0)
+                valueLabel.text = String(format: "%.0f", info.value)
             default:
-                valueLabel.text = String(format: "%.1f", info.value as? Double ?? 0)
+                valueLabel.text = String(format: "%.1f", info.value)
             }
         }
     }

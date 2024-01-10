@@ -55,8 +55,8 @@ final class TrackingViewModel {
         bind()
     }
 
-    var floor: Int {
-        locationManager.floor
+    var floor: Double {
+        Double(locationManager.floor)
     }
 
     var speed: Double {
@@ -99,7 +99,7 @@ final class TrackingViewModel {
     @Published var isStopped: Bool = false
     @Published var unitOfSpeed: UnitOfSpeed?
     @Published var isLocationDisable = false
-    @Published var totalElapsedTime = 0
+    @Published var totalElapsedTime: Double = 0
 
     var hhmmss: String {
         totalElapsedTime.hhmmss

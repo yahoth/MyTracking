@@ -43,7 +43,7 @@
 		76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4E2B18566B00DD83F7 /* SettingManager.swift */; };
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
 		76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A522B1856B600DD83F7 /* ActivityType.swift */; };
-		76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A542B18602700DD83F7 /* Int + Time Notation.swift */; };
+		76849A552B18602700DD83F7 /* Double + Time Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A542B18602700DD83F7 /* Double + Time Notation.swift */; };
 		769E4D252B480CF300058B22 /* TripType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769E4D242B480CF300058B22 /* TripType.swift */; };
 		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +85,7 @@
 		76849A4E2B18566B00DD83F7 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
 		76849A522B1856B600DD83F7 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
-		76849A542B18602700DD83F7 /* Int + Time Notation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Time Notation.swift"; sourceTree = "<group>"; };
+		76849A542B18602700DD83F7 /* Double + Time Notation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Time Notation.swift"; sourceTree = "<group>"; };
 		769E4D242B480CF300058B22 /* TripType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripType.swift; sourceTree = "<group>"; };
 		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,7 +236,7 @@
 		76802AE02B21F69900B2B9E5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				76849A542B18602700DD83F7 /* Int + Time Notation.swift */,
+				76849A542B18602700DD83F7 /* Double + Time Notation.swift */,
 				7624E1322B28AA8700094845 /* Double + Unit.swift */,
 			);
 			path = Extension;
@@ -367,7 +367,7 @@
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
 				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,
 				761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */,
-				76849A552B18602700DD83F7 /* Int + Time Notation.swift in Sources */,
+				76849A552B18602700DD83F7 /* Double + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
 				767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */,

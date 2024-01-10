@@ -53,10 +53,9 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
     func configure(_ info: SpeedInfo) {
         titleLabel.text = info.title
         if info.title != "Time" {
-            valueLabel.text = String(format: "%.1f", info.value as? Double ?? 0)
+            valueLabel.text = String(format: "%.1f", info.value)
         } else {
-            guard let time = info.value as? Int else { return }
-            valueLabel.text = time.resultTime
+            valueLabel.text = info.value.resultTime
         }
         unitLabel.text = info.unit
     }

@@ -83,11 +83,11 @@ extension HistoryViewController: UITableViewDataSource {
         var dateComponents = vm.sortedGroups[section].key
         dateComponents.timeZone = TimeZone.current
         let date = Calendar.current.date(from: dateComponents)!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 M월"
-        dateFormatter.timeZone = TimeZone.current
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy년 M월"
+//        dateFormatter.timeZone = TimeZone.current
 
-        return dateFormatter.string(from: date)
+        return date.formattedString(.yyyy_M)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

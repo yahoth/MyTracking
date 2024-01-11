@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76115A282B505E25008D83CA /* Date + FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76115A272B505E25008D83CA /* Date + FormattedString.swift */; };
 		761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */; };
 		761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */; };
 		761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76115A272B505E25008D83CA /* Date + FormattedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + FormattedString.swift"; sourceTree = "<group>"; };
 		761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewController.swift; sourceTree = "<group>"; };
 		761A76F02B2AB90500FABC7D /* BaseTrackingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrackingResultCell.swift; sourceTree = "<group>"; };
 		761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCell.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				76849A502B18567000DD83F7 /* UnitOfSpeed.swift */,
 				76849A522B1856B600DD83F7 /* ActivityType.swift */,
 				769E4D242B480CF300058B22 /* TripType.swift */,
+				76115A272B505E25008D83CA /* Date + FormattedString.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
 				767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */,
+				76115A282B505E25008D83CA /* Date + FormattedString.swift in Sources */,
 				764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */,
 				7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */,
 			);

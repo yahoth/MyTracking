@@ -49,9 +49,9 @@ class TrackingResultViewController: UIViewController {
         tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
 
         func setTableViewSeparator() {
-            tableView.separatorStyle = .singleLine
+            tableView.separatorStyle = .none
             tableView.separatorColor = .brown
-            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+//            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         }
     }
 
@@ -98,6 +98,11 @@ extension TrackingResultViewController: UITableViewDataSource {
         }
 
     }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return vm.trackingData.startDate.formattedString(.full) + " ~ " + vm.trackingData.endDate.formattedString(.full)
+    }
+
 }
 
 extension TrackingResultViewController: UITableViewDelegate {

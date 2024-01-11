@@ -42,7 +42,7 @@ final class TrackingViewModel {
 
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
-        return TrackingData(speedInfos: speedInfos, pathInfos: locationManager.path, startDate: startDate ?? Date(), endData: Date(), startLocation: startLocation, endLocation: endLocation)
+        return TrackingData(speedInfos: speedInfos, pathInfos: locationManager.path, startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
     }
 
 

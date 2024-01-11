@@ -11,7 +11,7 @@ struct TrackingData {
     let speedInfos: [SpeedInfo]
     let pathInfos: [PathInfo]
     let startDate: Date
-    let endData: Date
+    let endDate: Date
     var startLocation: String?
     var endLocation: String?
     var tripType: TripType = .oneWay

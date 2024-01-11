@@ -13,6 +13,7 @@ class HistoryCell: UITableViewCell {
     let startPlaceLabel = UILabel()
     let endPlaceLabel = UILabel()
     let tripTypeImage = UIImageView()
+    let dateLabel = UILabel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +21,7 @@ class HistoryCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setDateLabel(dateLabel)
         set(startPlaceLabel)
         set(endPlaceLabel)
         set(tripTypeImage)
@@ -47,9 +49,23 @@ class HistoryCell: UITableViewCell {
         contentView.addSubview(label)
     }
 
+    func setDateLabel(_ label: UILabel) {
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .label
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        contentView.addSubview(label)
+    }
+
     func setConstraints() {
-        startPlaceLabel.snp.makeConstraints { make in
+        dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(padding_body_view)
+            make.height.equalTo(20)
+            make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
+        }
+
+        startPlaceLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(padding_body_body)
             make.height.equalTo(20)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
@@ -69,6 +85,7 @@ class HistoryCell: UITableViewCell {
     }
 
     func configure(item: TrackingData) {
+        dateLabel.text =  item.startDate.formattedString(.yyyy_M_d)
         startPlaceLabel.text = "\(item.startLocation ?? "")"
         endPlaceLabel.text = "\(item.endLocation ?? "")"
         tripTypeImage.image = UIImage(systemName: item.tripType == .oneWay ? "arrow.down" : "arrow.up.arrow.down")

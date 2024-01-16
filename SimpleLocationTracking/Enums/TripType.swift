@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum TripType {
+import RealmSwift
+
+enum TripType: String, PersistableEnum {
     case oneWay
     case round
 }

@@ -8,12 +8,14 @@
 import UIKit
 import CoreLocation
 
+import RealmSwift
+
 final class TrackingResultViewModel {
-    var speedInfos: [SpeedInfo] {
+    var speedInfos: List<SpeedInfo> {
         trackingData.speedInfos
     }
 
-    var path: [PathInfo] {
+    var path: List<PathInfo> {
         trackingData.pathInfos
     }
 

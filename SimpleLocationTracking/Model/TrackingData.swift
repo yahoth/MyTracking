@@ -7,12 +7,26 @@
 
 import Foundation
 
-struct TrackingData {
-    let speedInfos: [SpeedInfo]
-    let pathInfos: [PathInfo]
-    let startDate: Date
-    let endDate: Date
-    var startLocation: String?
-    var endLocation: String?
-    var tripType: TripType = .oneWay
-}
+import RealmSwift
+
+class TrackingData: Object {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var speedInfos: List<SpeedInfo>
+    @Persisted var pathInfos: List<PathInfo>
+    @Persisted var startDate: Date
+    @Persisted var endDate: Date
+    @Persisted var startLocation: String?
+    @Persisted var endLocation: String?
+    @Persisted var tripType: TripType = .oneWay
+
+    convenience init(speedInfos: List<SpeedInfo>, pathInfos: List<PathInfo>, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay
+    ) {
+        self.init()
+        self.speedInfos = speedInfos
+        self.pathInfos = pathInfos
+        self.startDate = startDate
+        self.endDate = endDate
+        self.startLocation = startLocation
+        self.endLocation = endLocation
+        self.tripType = tripType
+    }}

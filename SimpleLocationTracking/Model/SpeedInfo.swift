@@ -7,21 +7,19 @@
 
 import Foundation
 
-struct SpeedInfo {
-    let value: Double
-    let unit: String?
-    let title: String
-}
+import RealmSwift
 
-extension SpeedInfo {
-    static let mocks = [
-        SpeedInfo(value: 10111111, unit: "km/h", title: "Average Speed"),
-        SpeedInfo(value: 15, unit: "km/h", title: "Top Speed"),
-        SpeedInfo(value: 0, unit: nil, title: "Time"),
-        SpeedInfo(value: 12, unit: "m", title: "Altitude"),
-        SpeedInfo(value: 12, unit: "m", title: "Current Altitude"),
-        SpeedInfo(value: 1.5, unit: "km", title: "Distance"),
-    ]
+class SpeedInfo: Object {
+    @Persisted var value: Double
+    @Persisted var unit: String? = nil
+    @Persisted var title: String
+
+    convenience init(value: Double, unit: String? = nil, title: String) {
+        self.init()
+        self.value = value
+        self.unit = unit
+        self.title = title
+    }
 }
 
 /// 저장해야할 데이터

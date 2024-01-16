@@ -9,10 +9,12 @@ import Foundation
 import CoreLocation
 import MapKit
 
-class TrackingResultRouteCellViewModel: NSObject {
-    @Published var path: [PathInfo]
+import RealmSwift
 
-    init(path: [PathInfo]) {
+class TrackingResultRouteCellViewModel: NSObject {
+    @Published var path: List<PathInfo>
+
+    init(path: List<PathInfo>) {
         self.path = path
     }
 

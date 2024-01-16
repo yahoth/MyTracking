@@ -10,10 +10,12 @@ import Combine
 import CoreLocation
 
 import FloatingPanel
+import RealmSwift
 
 final class TrackingViewModel {
     private let locationManager = LocationManager()
     private let settingManager = SettingManager()
+    private let realmManger = RealmManager()
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
     var startDate: Date?
@@ -27,7 +29,7 @@ final class TrackingViewModel {
         ]
     }
 
-    func createTrackingResults() async -> TrackingData {
+    func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
@@ -42,7 +44,12 @@ final class TrackingViewModel {
 
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
-        return TrackingData(speedInfos: speedInfos, pathInfos: locationManager.path, startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
+        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
+        DispatchQueue.main.async {
+            self.realmManger.create(object: trackingData)
+        }
+
+        return trackingData
     }
 
 

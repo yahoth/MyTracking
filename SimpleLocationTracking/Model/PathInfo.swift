@@ -8,7 +8,15 @@
 import Foundation
 import CoreLocation
 
-struct PathInfo {
-    let coordinate: CLLocationCoordinate2D
-    let speed: CLLocationSpeed
+import RealmSwift
+
+class PathInfo: Object {
+    @Persisted var coordinate: CLLocationCoordinate2D
+    @Persisted var speed: Double
+
+    convenience init(coordinate: CLLocationCoordinate2D, speed: Double) {
+        self.init()
+        self.coordinate = coordinate
+        self.speed = speed
+    }
 }

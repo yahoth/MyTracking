@@ -21,16 +21,12 @@ class HistoryViewController: UIViewController {
         navigationItem.title = "Tracking History"
         vm = HistoryViewModel()
         setTableView()
-        bind()
     }
 
-    func bind() {
-        temp.$trackingData
-            .receive(on: DispatchQueue.main)
-            .sink { data in
-                self.tableView.reloadData()
-            }.store(in: &subscriptions)
+    override func viewDidAppear(_ animated: Bool) {
+        vm.addChangeListener(tableView)
     }
+
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)

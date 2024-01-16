@@ -11,6 +11,10 @@ import Combine
 import SnapKit
 
 class HistoryViewController: UIViewController {
+    deinit {
+        print("HistoryViewController deinit")
+    }
+
     var tableView: UITableView!
     var vm: HistoryViewModel!
     var subscriptions = Set<AnyCancellable>()

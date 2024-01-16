@@ -11,6 +11,10 @@ import MapKit
 import SnapKit
 
 class TrackingResultMapDetailViewController: UIViewController {
+    deinit {
+        print("TrackingResultMapDetailViewController deinit")
+    }
+
     var vm: TrackingResultRouteCellViewModel!
     var mapView: MKMapView!
 

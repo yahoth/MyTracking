@@ -9,6 +9,9 @@ import Foundation
 import Combine
 
 class Stopwatch: ObservableObject {
+    deinit {
+        print("Stopwatch deinit")
+    }
 
     private var timer: AnyCancellable?
     @Published var count: Double = 0
@@ -17,8 +20,8 @@ class Stopwatch: ObservableObject {
         timer = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.count += 1
+            .sink { [weak self] _ in
+                self?.count += 1
             }
     }
 

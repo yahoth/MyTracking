@@ -15,7 +15,9 @@ import SnapKit
 
 class TrackingViewController: UIViewController, FloatingPanelControllerDelegate {
     var workItem: DispatchWorkItem?
-
+    deinit {
+        print("TrackingViewController deinit")
+    }
     //View
     var mapView: MKMapView!
     var trackingButton: UIButton!
@@ -88,7 +90,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     func setFPC() {
         fpc = FloatingPanelController(delegate: self)
         let vc = SpeedInfoPanelViewController()
-        vm = TrackingViewModel(fpc: fpc)
+        vm = TrackingViewModel(fpc: self.fpc)
         vc.vm = vm
         let navigationVC = UINavigationController(rootViewController: vc)
         fpc.set(contentViewController: navigationVC)
@@ -104,29 +106,29 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         vm.$totalElapsedTime
             .subscribe(on: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.currentSpeedView.speedLabel.text = String(format: "%.0f", self.vm.speed)
-                self.updateTrackingOverlay()
+            .sink { [weak self] _ in
+                self?.currentSpeedView.speedLabel.text = String(format: "%.0f", self?.vm.speed ?? 0)
+                self?.updateTrackingOverlay()
             }.store(in: &subscriptions)
 
         vm.$isStopped
-            .sink { bool in
+            .sink { [weak self] bool in
                 if bool {
                     let vc = TrackingResultViewController()
 
-                    Task {
-                        await vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResult(), viewType: .modal)
+                    Task { [weak self] in
+                        await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
                         let navigationController = UINavigationController(rootViewController: vc)
                         navigationController.modalPresentationStyle = .fullScreen
-                        self.present(navigationController, animated: true)
+                        self?.present(navigationController, animated: true)
                     }
                 }
             }.store(in: &subscriptions)
 
         vm.$isPaused
-            .sink { bool in
+            .sink { [weak self] bool in
                 if bool {
-                    self.currentSpeedView.speedLabel.text = "0"
+                    self?.currentSpeedView.speedLabel.text = "0"
                 }
             }.store(in: &subscriptions)
     }
@@ -203,8 +205,8 @@ extension TrackingViewController: MKMapViewDelegate {
         // 이전에 예약된 작업이 있다면 취소
         workItem?.cancel()
 
-        workItem = DispatchWorkItem {
-            self.trackingLocation()
+        workItem = DispatchWorkItem { [weak self] in
+            self?.trackingLocation()
         }
 
         // 5초 후에 workItem을 실행

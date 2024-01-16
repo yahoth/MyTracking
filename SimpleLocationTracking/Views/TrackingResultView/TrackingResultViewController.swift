@@ -12,6 +12,9 @@ import Combine
 import SnapKit
 
 class TrackingResultViewController: UIViewController {
+    deinit {
+        print("TrackingResultViewController deinit")
+    }
 
     var tableView: UITableView!
     var vm: TrackingResultViewModel!
@@ -72,13 +75,15 @@ extension TrackingResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
-            let cellVM = TrackingResultRouteCellViewModel(path: vm.path)
+//            let cellVM = TrackingResultRouteCellViewModel(path: self.vm.path)
+            let cellVM = TrackingResultRouteCellViewModel()
+            cellVM.tempPath?.send(self.vm.path)
             cell.vm = cellVM
             cell.bind()
             cell.presentMap = presentMapDetailView
 
-            Task {
-                try await cell.configure(start: self.vm.reverseGeocodeLocation(self.vm.start), end: self.vm.reverseGeocodeLocation(self.vm.end))
+            Task { [weak self]  in
+                try await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()) ?? "", end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()) ?? "")
             }
 
             func presentMapDetailView() {
@@ -92,8 +97,8 @@ extension TrackingResultViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }
-            cell.vm = vm
-            cell.setCollectionViewConstraints(superViewHeight: view.frame.height)
+            cell.vm = self.vm
+            cell.setCollectionViewConstraints(superViewHeight: self.view.frame.height)
             return cell
         }
 

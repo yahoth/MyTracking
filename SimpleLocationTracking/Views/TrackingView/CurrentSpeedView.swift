@@ -10,6 +10,9 @@ import UIKit
 import SnapKit
 
 class CurrentSpeedView: UIView {
+    deinit {
+        print("CurrentSpeedView")
+    }
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28, weight: .black)

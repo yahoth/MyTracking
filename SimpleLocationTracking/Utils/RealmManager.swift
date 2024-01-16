@@ -10,6 +10,9 @@ import Foundation
 import RealmSwift
 
 class RealmManager {
+    deinit {
+        print("RealmManager deinit")
+    }
     var realm: Realm
 
     var notificationToken: NotificationToken?

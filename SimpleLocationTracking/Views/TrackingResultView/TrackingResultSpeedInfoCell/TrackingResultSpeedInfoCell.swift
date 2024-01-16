@@ -12,7 +12,7 @@ import SnapKit
 class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
 
     var collectionView: UICollectionView!
-    var vm: TrackingResultViewModel!
+    weak var vm: TrackingResultViewModel!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,12 +31,12 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
         collectionView.delegate = self
     }
 
-    func setCollectionViewConstraints(superViewHeight: CGFloat) {
+    func setCollectionViewConstraints(superViewHeight: CGFloat?) {
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
             make.horizontalEdges.bottom.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view))
-            make.height.equalTo(superViewHeight / 3.5)
+            make.height.equalTo((superViewHeight ?? 0) / 3.5)
         }
     }
 }

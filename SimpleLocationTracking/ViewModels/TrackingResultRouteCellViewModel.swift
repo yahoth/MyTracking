@@ -8,18 +8,25 @@
 import Foundation
 import CoreLocation
 import MapKit
+import Combine
 
 import RealmSwift
 
 class TrackingResultRouteCellViewModel: NSObject {
-    @Published var path: List<PathInfo>
-
-    init(path: List<PathInfo>) {
-        self.path = path
+    deinit {
+        print("TrackingResultRouteCellViewModel deinit")
     }
 
+//    @Published var path: List<PathInfo>
+    weak var tempPath: CurrentValueSubject<List<PathInfo>, Never>?
+
+//    init(path: List<PathInfo>?) {
+////        self.path = path
+//        self.tempPath?.send(path ?? List<PathInfo>())
+//    }
+
     var coordinates: [CLLocationCoordinate2D] {
-        path.map { $0.coordinate }
+        tempPath?.value.map { $0.coordinate } ?? []
     }
 
     func drawMap(_ mapView: MKMapView) {
@@ -36,7 +43,7 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     func setRegion(_ mapView: MKMapView) {
-        let coordinate: [CLLocationCoordinate2D] = path.map { $0.coordinate }
+        let coordinate: [CLLocationCoordinate2D] = coordinates
         let latitudes = coordinate.map { $0.latitude }
         let longitudes = coordinate.map { $0.longitude }
 

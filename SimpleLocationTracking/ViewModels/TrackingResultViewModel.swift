@@ -11,6 +11,10 @@ import CoreLocation
 import RealmSwift
 
 final class TrackingResultViewModel {
+    deinit {
+        print("TrackingResultViewModel deinit")
+    }
+
     var speedInfos: List<SpeedInfo> {
         trackingData.speedInfos
     }

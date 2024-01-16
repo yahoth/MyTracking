@@ -9,6 +9,9 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject {
+    deinit {
+        print("LocationManager deinit")
+    }
 
     private let locationManager = CLLocationManager()
 

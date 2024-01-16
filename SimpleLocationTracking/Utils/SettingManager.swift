@@ -8,6 +8,9 @@
 import Foundation
 
 class SettingManager {
+    deinit {
+        print("SettingManager deinit")
+    }
     private let defaults = UserDefaults.standard
 
     @Published var unit: UnitOfSpeed

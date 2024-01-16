@@ -13,9 +13,14 @@ import FloatingPanel
 import RealmSwift
 
 final class TrackingViewModel {
+
+    deinit {
+        print("TrackingViewModel deinit")
+        realmManager.notificationToken?.invalidate()
+    }
     private let locationManager = LocationManager()
     private let settingManager = SettingManager()
-    private let realmManger = RealmManager()
+    private let realmManager = RealmManager()
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
     var startDate: Date?
@@ -45,8 +50,8 @@ final class TrackingViewModel {
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
         let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
-        DispatchQueue.main.async {
-            self.realmManger.create(object: trackingData)
+        DispatchQueue.main.async { [weak self] in
+            self?.realmManager.create(object: trackingData)
         }
 
         return trackingData
@@ -54,7 +59,7 @@ final class TrackingViewModel {
 
 
     @Published var state: FloatingPanelState
-    var fpc: FloatingPanelController
+    weak var fpc: FloatingPanelController?
 
     init(fpc: FloatingPanelController) {
         self.state = fpc.state
@@ -122,13 +127,13 @@ final class TrackingViewModel {
 
     private func bind() {
         stopwatch.$count
-            .sink { count in
-                self.totalElapsedTime = count
+            .sink { [weak self] count in
+                self?.totalElapsedTime = count
             }.store(in: &subscriptions)
 
         settingManager.$unit
-            .sink { unit in
-                self.unitOfSpeed = unit
+            .sink { [weak self] unit in
+                self?.unitOfSpeed = unit
             }.store(in: &subscriptions)
     }
 

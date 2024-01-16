@@ -120,8 +120,8 @@
 			children = (
 				76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */,
 				763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */,
-				767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */,
 				76481E5C2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift */,
+				767482F62B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift */,
 			);
 			path = TrackingView;
 			sourceTree = "<group>";

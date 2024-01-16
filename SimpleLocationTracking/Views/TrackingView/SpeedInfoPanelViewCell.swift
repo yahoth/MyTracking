@@ -7,21 +7,10 @@
 
 import UIKit
 
-/// label 공통
-/// text color
-/// font size
-///
-/// titleLabel
-///
-/// valueLabel
-/// text alignment
-///
-/// unitLabel
-///
-/// contentView
-/// corner Radius
-/// background color
 class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
+    deinit {
+        print("SpeedInfoPanelViewCell deinit")
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

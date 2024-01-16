@@ -13,7 +13,9 @@ import FloatingPanel
 
 
 class SpeedInfoPanelViewController: UIViewController {
-
+    deinit {
+        print("SpeedInfoPanelViewController deinit")
+    }
     //View
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,21 +46,21 @@ class SpeedInfoPanelViewController: UIViewController {
     func bind() {
         vm.$state
             .receive(on: DispatchQueue.main)
-            .sink { state in
-                self.updateMovePanelButton(state: state)
+            .sink { [weak self] state in
+                self?.updateMovePanelButton(state: state)
             }
             .store(in: &subscriptions)
 
         vm.$isPaused
-            .sink { isPaused in
-                self.updateStartAndPauseButton(isPaused)
+            .sink { [weak self] isPaused in
+                self?.updateStartAndPauseButton(isPaused)
             }.store(in: &subscriptions)
 
         vm.$totalElapsedTime
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.collectionView.reloadData()
-                self.updateNavigationTitle()
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+                self?.updateNavigationTitle()
             }.store(in: &subscriptions)
     }
 
@@ -99,7 +101,7 @@ class SpeedInfoPanelViewController: UIViewController {
     }
 
     @objc func movePanel() {
-        vm.fpc.move(to: vm.fpc.state == .half ? .tip : .half, animated: true)
+        vm.fpc?.move(to: vm.fpc?.state == .half ? .tip : .half, animated: true)
     }
 
     func setConstraints() {

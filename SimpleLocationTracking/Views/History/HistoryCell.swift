@@ -34,11 +34,12 @@ class HistoryCell: UITableViewCell {
 
     func set(_ tripTypeImage: UIImageView) {
         tripTypeImage.contentMode = .scaleAspectFit
-        addSubview(tripTypeImage)
+        tripTypeImage.frame.size = CGSize(width: 20, height: 20)
+        contentView.addSubview(tripTypeImage)
     }
 
     func set(_ label: UILabel) {
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 20)
         label.textColor = .label
         label.numberOfLines = 1
         label.textAlignment = .center
@@ -50,7 +51,7 @@ class HistoryCell: UITableViewCell {
     }
 
     func setDateLabel(_ label: UILabel) {
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 20)
         label.textColor = .label
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -59,13 +60,13 @@ class HistoryCell: UITableViewCell {
 
     func setConstraints() {
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(padding_body_view)
+            make.top.equalTo(contentView).inset(padding_body_view)
             make.height.equalTo(20)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
 
         startPlaceLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(padding_body_body)
+            make.top.equalTo(dateLabel.snp.bottom).offset(padding_body_view)
             make.height.equalTo(20)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
@@ -73,19 +74,19 @@ class HistoryCell: UITableViewCell {
         tripTypeImage.snp.makeConstraints { make in
             make.top.equalTo(startPlaceLabel.snp.bottom).offset(padding_body_body)
             make.centerX.equalTo(contentView).inset(padding_body_view)
-            make.height.width.equalTo(20)
+//            make.height.width.height.equalTo(20)
         }
 
         endPlaceLabel.snp.makeConstraints { make in
             make.top.equalTo(tripTypeImage.snp.bottom).offset(padding_body_body)
             make.height.equalTo(20)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
-            make.bottom.equalTo(contentView).offset(-padding_body_view)
+            make.bottom.equalTo(contentView).inset(padding_body_view)
         }
     }
 
     func configure(item: TrackingData) {
-        dateLabel.text =  item.startDate.formattedString(.yyyy_M_d)
+        dateLabel.text =  item.startDate.formattedString(.m_d_h_m)
         startPlaceLabel.text = "\(item.startLocation ?? "")"
         endPlaceLabel.text = "\(item.endLocation ?? "")"
         tripTypeImage.image = UIImage(systemName: item.tripType == .oneWay ? "arrow.down" : "arrow.up.arrow.down")

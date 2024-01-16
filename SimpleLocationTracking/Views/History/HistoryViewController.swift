@@ -59,14 +59,8 @@ extension HistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
         let vc = TrackingResultViewController()
-
         vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
-
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        112
     }
 }
 
@@ -83,10 +77,6 @@ extension HistoryViewController: UITableViewDataSource {
         var dateComponents = vm.sortedGroups[section].key
         dateComponents.timeZone = TimeZone.current
         let date = Calendar.current.date(from: dateComponents)!
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy년 M월"
-//        dateFormatter.timeZone = TimeZone.current
-
         return date.formattedString(.yyyy_M)
     }
 

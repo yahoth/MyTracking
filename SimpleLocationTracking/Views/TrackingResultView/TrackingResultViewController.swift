@@ -49,9 +49,9 @@ class TrackingResultViewController: UIViewController {
         tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
 
         func setTableViewSeparator() {
-            tableView.separatorStyle = .none
+            tableView.separatorStyle = .singleLine
             tableView.separatorColor = .brown
-//            tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+            tableView.separatorInset = .init(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view)
         }
     }
 

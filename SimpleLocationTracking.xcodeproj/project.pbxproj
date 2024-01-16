@@ -167,7 +167,6 @@
 				76849A502B18567000DD83F7 /* UnitOfSpeed.swift */,
 				76849A522B1856B600DD83F7 /* ActivityType.swift */,
 				769E4D242B480CF300058B22 /* TripType.swift */,
-				76115A272B505E25008D83CA /* Date + FormattedString.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 			children = (
 				76849A542B18602700DD83F7 /* Double + Time Notation.swift */,
 				7624E1322B28AA8700094845 /* Double + Unit.swift */,
+				76115A272B505E25008D83CA /* Date + FormattedString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

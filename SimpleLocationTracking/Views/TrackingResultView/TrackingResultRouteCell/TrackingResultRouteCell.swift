@@ -12,10 +12,14 @@ import MapKit
 import SnapKit
 
 class TrackingResultRouteCell: BaseTrackingResultCell {
+
+    deinit {
+        print("TrackingResultRouteCell deinit")
+    }
     var mapViewContainer: UIView!
     var mapView: MKMapView!
     var routeLabelView: RouteLabelView!
-    var presentMap: (() -> Void)!
+    var onMapTap: (() -> Void)?
     var subscriptions = Set<AnyCancellable>()
     var vm: TrackingResultRouteCellViewModel!
 
@@ -81,6 +85,6 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     }
 
     @objc func mapTapped(_ sender: UITapGestureRecognizer) {
-        presentMap()
+        onMapTap?()
     }
 }

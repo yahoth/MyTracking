@@ -116,7 +116,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 if bool {
                     let vc = TrackingResultViewController()
 
-                    Task { [weak self] in
+                    Task {
                         await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
                         let navigationController = UINavigationController(rootViewController: vc)
                         navigationController.modalPresentationStyle = .fullScreen

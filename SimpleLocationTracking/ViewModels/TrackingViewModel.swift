@@ -16,8 +16,8 @@ final class TrackingViewModel {
 
     deinit {
         print("TrackingViewModel deinit")
-        realmManager.notificationToken?.invalidate()
     }
+
     private let locationManager = LocationManager()
     private let settingManager = SettingManager()
     private let realmManager = RealmManager()

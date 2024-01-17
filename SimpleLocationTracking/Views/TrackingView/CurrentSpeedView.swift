@@ -40,8 +40,6 @@ class CurrentSpeedView: UIView {
         return label
     }()
 
-    var speedInfo: SpeedInfo!
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setConstraints()

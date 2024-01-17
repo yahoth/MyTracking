@@ -66,8 +66,8 @@ class RouteLabelView: UIView {
     }
 
     func setConstraints() {
-        vStackView.snp.makeConstraints { [weak self] make in
-            make.edges.equalTo(self ?? RouteLabelView())
+        vStackView.snp.makeConstraints { make in
+            make.edges.equalTo(self)
         }
         set(container: startContainer, label: startPlaceLabel, mark: startMarkLabel)
         set(container: endContainer, label: endPlaceLabel, mark: endMarkLabel)

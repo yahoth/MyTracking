@@ -43,7 +43,6 @@ class TrackingResultViewController: UIViewController {
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
-        tableView.allowsSelection = false
         tableView.dataSource = self
         setTableViewSeparator()
         tableView.delegate = self
@@ -78,24 +77,27 @@ extension TrackingResultViewController: UITableViewDataSource {
             let cellVM = TrackingResultRouteCellViewModel(path: self.vm.path)
             cell.vm = cellVM
             cell.bind()
-            cell.presentMap = presentMapDetailView
+            cell.onMapTap = { [weak self] in
 
+                    let vc = TrackingResultMapDetailViewController()
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    vc.vm = cellVM
+                    self?.present(nav, animated: true)
+            }
+
+            cell.selectionStyle = .none
+            
             Task { [weak self]  in
                 try await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()) ?? "", end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()) ?? "")
             }
 
-            func presentMapDetailView() {
-                let vc = TrackingResultMapDetailViewController()
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                vc.vm = cellVM
-                self.present(nav, animated: true)
-            }
 
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }
             cell.vm = self.vm
+            cell.selectionStyle = .none
             cell.setCollectionViewConstraints(superViewHeight: self.view.frame.height)
             return cell
         }
@@ -110,6 +112,14 @@ extension TrackingResultViewController: UITableViewDataSource {
 
 extension TrackingResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            print("첫 번째 셀이 클릭되었습니다.")
+        case 1:
+            print("두 번째 셀이 클릭되었습니다.")
+        default:
+            print("\(indexPath.row + 1)번째 셀이 클릭되었습니다.")
+        }
     }
 }
 
@@ -156,8 +166,3 @@ extension TrackingResultViewController: MKMapViewDelegate {
         print("mapViewDidFinishRenderingMap: \(fullyRendered)")
     }
 }
-
-///Fix
-///1. 모든 렌더링이 담기지 않는거
-///2. 중지 시킨 부분도 경로로 기록됌
-

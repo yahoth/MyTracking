@@ -32,7 +32,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     }
 
     func bind() {
-        vm.tempPath?
+        vm.$path
             .sink { [weak self] _ in
                 self?.drawMap()
             }.store(in: &subscriptions)

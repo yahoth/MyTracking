@@ -17,16 +17,16 @@ class TrackingResultRouteCellViewModel: NSObject {
         print("TrackingResultRouteCellViewModel deinit")
     }
 
-//    @Published var path: List<PathInfo>
-    weak var tempPath: CurrentValueSubject<List<PathInfo>, Never>?
+    @Published var path: List<PathInfo>
+//    weak var tempPath: CurrentValueSubject<List<PathInfo>, Never>?
 
-//    init(path: List<PathInfo>?) {
-////        self.path = path
+    init(path: List<PathInfo>) {
+        self.path = path
 //        self.tempPath?.send(path ?? List<PathInfo>())
-//    }
+    }
 
     var coordinates: [CLLocationCoordinate2D] {
-        tempPath?.value.map { $0.coordinate } ?? []
+        path.map { $0.coordinate }
     }
 
     func drawMap(_ mapView: MKMapView) {

@@ -75,9 +75,7 @@ extension TrackingResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
-//            let cellVM = TrackingResultRouteCellViewModel(path: self.vm.path)
-            let cellVM = TrackingResultRouteCellViewModel()
-            cellVM.tempPath?.send(self.vm.path)
+            let cellVM = TrackingResultRouteCellViewModel(path: self.vm.path)
             cell.vm = cellVM
             cell.bind()
             cell.presentMap = presentMapDetailView

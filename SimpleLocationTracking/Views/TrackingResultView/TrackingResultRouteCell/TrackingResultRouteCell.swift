@@ -12,6 +12,10 @@ import MapKit
 import SnapKit
 
 class TrackingResultRouteCell: BaseTrackingResultCell {
+
+    deinit {
+        print("TrackingResultRouteCell deinit")
+    }
     var mapViewContainer: UIView!
     var mapView: MKMapView!
     var routeLabelView: RouteLabelView!

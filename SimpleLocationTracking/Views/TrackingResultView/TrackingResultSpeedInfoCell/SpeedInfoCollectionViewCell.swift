@@ -9,6 +9,10 @@ import UIKit
 
 class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
 
+    deinit {
+        print("SpeedInfoCollectionViewCell deinit")
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLabels()

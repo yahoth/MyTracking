@@ -18,11 +18,9 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     @Published var path: List<PathInfo>
-//    weak var tempPath: CurrentValueSubject<List<PathInfo>, Never>?
 
     init(path: List<PathInfo>) {
         self.path = path
-//        self.tempPath?.send(path ?? List<PathInfo>())
     }
 
     var coordinates: [CLLocationCoordinate2D] {

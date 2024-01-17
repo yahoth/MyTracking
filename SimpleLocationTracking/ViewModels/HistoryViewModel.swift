@@ -12,10 +12,11 @@ import RealmSwift
 class HistoryViewModel {
 
     let realmManager = RealmManager()
+    
     deinit {
         print("HistoryViewModel deinit")
-        realmManager.notificationToken?.invalidate()
     }
+
     var trackingDatas: Results<TrackingData> {
         realmManager.read()
     }

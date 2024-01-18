@@ -44,6 +44,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         setFPC()
         customizeSurfaceDesign()
 
+        setupChangeUnitButton()
         bind()
     }
 
@@ -131,7 +132,24 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                     self?.currentSpeedView.speedLabel.text = "0"
                 }
             }.store(in: &subscriptions)
+
+        vm.$unitOfSpeed
+            .sink { [weak self] unit in
+                self?.currentSpeedView.unitButton.setTitle(unit?.displayedSpeedUnit, for: .normal)
+            }.store(in: &subscriptions)
     }
+
+    private func setupChangeUnitButton() {
+        let units = UnitOfSpeed.allCases.map { unit in
+            UIAction(title: unit.displayedSpeedUnit) { [weak self] _ in
+                self?.vm.updateUnit(unit)
+            }
+        }
+
+        let menu = UIMenu(title: "Select unit of speed", options: .displayInline, children: units)
+        currentSpeedView.unitButton.menu = menu
+    }
+
 
     func updateTrackingOverlay() {
         if let points = vm.points {

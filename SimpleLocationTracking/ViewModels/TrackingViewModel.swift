@@ -27,8 +27,8 @@ final class TrackingViewModel {
 
     var speedInfos: [SpeedInfo] {
         [
-            SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
-            SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
+            SpeedInfo(value: averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
             SpeedInfo(value: distance, unit: "km", title: "Distance"),
             SpeedInfo(value: currentAltitude, unit: "m", title: "Current Altitude"),
         ]

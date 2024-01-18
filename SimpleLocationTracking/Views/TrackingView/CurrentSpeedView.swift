@@ -32,12 +32,12 @@ class CurrentSpeedView: UIView {
         return label
     }()
 
-    let unitLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.textColor = .label
-        label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return label
+    let unitButton: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(.label, for: .normal)
+        button.showsMenuAsPrimaryAction = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .black)
+        return button
     }()
 
     override init(frame: CGRect) {
@@ -51,7 +51,7 @@ class CurrentSpeedView: UIView {
     }
 
     func setConstraints() {
-        [titleLabel, speedLabel, unitLabel].forEach(addSubview(_:))
+        [titleLabel, speedLabel, unitButton].forEach(addSubview(_:))
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(20)
@@ -62,11 +62,12 @@ class CurrentSpeedView: UIView {
             make.center.equalTo(self.safeAreaLayoutGuide)
         }
 
-        unitLabel.snp.makeConstraints { make in
+        unitButton.snp.makeConstraints { make in
             make.bottom.equalTo(speedLabel.snp.lastBaseline)
             make.leading.greaterThanOrEqualTo(speedLabel.snp.trailing)
             make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(20)
         }
+
     }
 
     func configure() {
@@ -74,6 +75,7 @@ class CurrentSpeedView: UIView {
 
         titleLabel.text = "Current Speed"
         speedLabel.text = "0"
-        unitLabel.text = "km/h"
     }
+
+
 }

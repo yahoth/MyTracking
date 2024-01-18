@@ -160,15 +160,6 @@ final class TrackingViewModel {
 
     func stop() {
         locationManager.stop()
-//        stopwatch.stop()
-//        locationManager.speed = 0
-//        locationManager.speeds = []
-//        locationManager.altitude = 0
-//        locationManager.distance = 0
-//        locationManager.topSpeed = 0
-//        locationManager.averageSpeed = 0
-//        locationManager.currentAltitude = 0
-//        locationManager.coordinates = []
         stopwatch.pause()
         isPaused = true
         isStopped = true

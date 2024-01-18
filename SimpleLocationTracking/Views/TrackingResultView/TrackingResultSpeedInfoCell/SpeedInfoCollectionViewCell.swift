@@ -50,7 +50,6 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
         func valueLabelText() {
             switch info.title {
             case "Time":
-//                guard let time = info.value else { return }
                 valueLabel.text = info.value.resultTime
                 valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
             case "Altitude", "Floor":

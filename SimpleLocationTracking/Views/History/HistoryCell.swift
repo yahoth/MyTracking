@@ -74,7 +74,6 @@ class HistoryCell: UITableViewCell {
         tripTypeImage.snp.makeConstraints { make in
             make.top.equalTo(startPlaceLabel.snp.bottom).offset(padding_body_body)
             make.centerX.equalTo(contentView).inset(padding_body_view)
-//            make.height.width.height.equalTo(20)
         }
 
         endPlaceLabel.snp.makeConstraints { make in
@@ -90,6 +89,5 @@ class HistoryCell: UITableViewCell {
         startPlaceLabel.text = "\(item.startLocation ?? "")"
         endPlaceLabel.text = "\(item.endLocation ?? "")"
         tripTypeImage.image = UIImage(systemName: item.tripType == .oneWay ? "arrow.down" : "arrow.up.arrow.down")
-//        print("configure: \nstart: \(startPlaceLabel.frame.height)\nimage: \(tripTypeImage.frame.height)\nend: \(endPlaceLabel.frame.height)")
     }
 }

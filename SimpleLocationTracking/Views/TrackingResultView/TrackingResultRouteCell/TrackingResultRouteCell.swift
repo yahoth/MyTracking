@@ -46,7 +46,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         vm.drawMap(mapView)
     }
 
-    func configure(start: String, end: String) {
+    func configure(start: String?, end: String?) {
         routeLabelView.startPlaceLabel.text = start
         routeLabelView.endPlaceLabel.text = end
     }

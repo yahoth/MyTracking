@@ -88,11 +88,15 @@ extension TrackingResultViewController: UITableViewDataSource {
 
             cell.selectionStyle = .none
             
-            Task { [weak self]  in
-                try await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()) ?? "", end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()) ?? "")
+            if vm.viewType == .modal {
+                Task { [weak self]  in
+                    await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()), end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()))
+                }
+            } else {
+                cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation)
             }
-
-
+            
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }

@@ -15,6 +15,8 @@ final class TrackingResultViewModel {
         print("TrackingResultViewModel deinit")
     }
 
+    let locationManager = LocationManager()
+
     var speedInfos: List<SpeedInfo> {
         trackingData.speedInfos
     }
@@ -54,17 +56,7 @@ final class TrackingResultViewModel {
         self.viewType = viewType
     }
 
-    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async throws -> String {
-        let geocoder = CLGeocoder()
-        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let placemark = try await geocoder.reverseGeocodeLocation(location).first
-        //간단한 주소
-        let result = "\(placemark?.locality ?? String()) \(placemark?.subLocality ?? String())"
-
-        if result.trimmingCharacters(in: .whitespaces).count > 0 {
-            return result
-        } else {
-            return "lat: \(coordinate.latitude), long: \(coordinate.longitude)"
-        }
+    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async -> String {
+        await locationManager.reverseGeocodeLocation(coordinate)
     }
 }

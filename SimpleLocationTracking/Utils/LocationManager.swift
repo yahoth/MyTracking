@@ -77,8 +77,7 @@ class LocationManager: NSObject {
                 if error.code == CLError.network.rawValue && currentAttempt < maxAttempts {
                     return await self.reverseGeocodeLocation(coordinate, maxAttempts: maxAttempts, currentAttempt: currentAttempt + 1)
                 } else {
-                    print(error.localizedDescription)
-                    return "title"
+                    return "lat: \(coordinate.latitude), long: \(coordinate.longitude)"
                 }
             }
         }

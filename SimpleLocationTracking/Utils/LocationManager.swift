@@ -47,6 +47,7 @@ class LocationManager: NSObject {
 
     func stop() {
         locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingHeading()
         previousLocation = nil
     }
 
@@ -117,6 +118,7 @@ extension LocationManager: CLLocationManagerDelegate {
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        print("author: \(manager.authorizationStatus)")
         authorizationStatus = manager.authorizationStatus
     }
 

@@ -110,7 +110,7 @@ final class TrackingViewModel {
     @Published var isPaused: Bool = true
     @Published var isStopped: Bool = false
     @Published var unitOfSpeed: UnitOfSpeed?
-    @Published var isLocationDisable = false
+    @Published var isPermissionDenied = false
     @Published var totalElapsedTime: Double = 0
 
     var hhmmss: String {
@@ -134,6 +134,11 @@ final class TrackingViewModel {
         settingManager.$unit
             .sink { [weak self] unit in
                 self?.unitOfSpeed = unit
+            }.store(in: &subscriptions)
+
+        locationManager.$authorizationStatus
+            .sink { [weak self] status in
+                self?.locationManagerDidChangeAuthorization(status)
             }.store(in: &subscriptions)
     }
 
@@ -166,14 +171,14 @@ final class TrackingViewModel {
 //        isStopped = true
     }
 
-    func locationManagerDidChangeAuthorization() {
-        switch locationManager.authorizationStatus {
+    func locationManagerDidChangeAuthorization(_ status: CLAuthorizationStatus) {
+        switch status {
         case .authorizedWhenInUse, .authorizedAlways:  // Location services are available.
             startAndPause()
             break
 
         case .restricted, .denied:  // Location services currently unavailable.
-            isLocationDisable = true
+            isPermissionDenied = true
             break
 
         case .notDetermined:        // Authorization not determined yet.

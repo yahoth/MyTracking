@@ -99,7 +99,7 @@ class SpeedInfoPanelViewController: UIViewController {
     }
 
     @objc func startAndPauseButtonTapped2() {
-        vm.locationManagerDidChangeAuthorization()
+        vm.startAndPause()
     }
 
     @objc func stopButtonTapped() {

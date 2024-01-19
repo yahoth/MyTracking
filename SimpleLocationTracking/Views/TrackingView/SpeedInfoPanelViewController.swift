@@ -62,6 +62,12 @@ class SpeedInfoPanelViewController: UIViewController {
                 self?.collectionView.reloadData()
                 self?.updateNavigationTitle()
             }.store(in: &subscriptions)
+
+        vm.$unitOfSpeed
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }.store(in: &subscriptions)
     }
 
     func setupLeftNavigationBarItem() {

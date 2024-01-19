@@ -29,19 +29,19 @@ final class TrackingViewModel {
         [
             SpeedInfo(value: averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
             SpeedInfo(value: topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: distance, unit: "km", title: "Distance"),
-            SpeedInfo(value: currentAltitude, unit: "m", title: "Current Altitude"),
+            SpeedInfo(value: distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
+            SpeedInfo(value: currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Current Altitude"),
         ]
     }
 
     func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [
-            SpeedInfo(value: distance, unit: "km", title: "Distance"),
+            SpeedInfo(value: distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
             SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
-            SpeedInfo(value: averageSpeed, unit: "km/h", title: "Average Speed"),
-            SpeedInfo(value: topSpeed, unit: "km/h", title: "Top Speed"),
-            SpeedInfo(value: altitude, unit: "m", title: "Altitude"),
+            SpeedInfo(value: averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
+            SpeedInfo(value: altitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
 

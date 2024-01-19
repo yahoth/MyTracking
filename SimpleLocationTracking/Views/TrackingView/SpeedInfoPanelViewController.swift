@@ -103,7 +103,8 @@ class SpeedInfoPanelViewController: UIViewController {
     }
 
     @objc func stopButtonTapped() {
-        vm.stop()
+        vm.isStopped = true
+        vm.startAndPause()
     }
 
     @objc func movePanel() {

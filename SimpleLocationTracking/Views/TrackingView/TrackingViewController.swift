@@ -115,14 +115,15 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         vm.$isStopped
             .sink { [weak self] bool in
                 if bool {
-                    let vc = TrackingResultViewController()
-
-                    Task {
-                        await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
-                        let navigationController = UINavigationController(rootViewController: vc)
-                        navigationController.modalPresentationStyle = .fullScreen
-                        self?.present(navigationController, animated: true)
-                    }
+                    self?.setAlertWhenStopButtonTapped()
+//                    let vc = TrackingResultViewController()
+//
+//                    Task {
+//                        await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
+//                        let navigationController = UINavigationController(rootViewController: vc)
+//                        navigationController.modalPresentationStyle = .fullScreen
+//                        self?.present(navigationController, animated: true)
+//                    }
                 }
             }.store(in: &subscriptions)
 
@@ -137,6 +138,34 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .sink { [weak self] unit in
                 self?.currentSpeedView.unitButton.setTitle(unit?.displayedSpeedUnit, for: .normal)
             }.store(in: &subscriptions)
+    }
+
+    func setAlertWhenStopButtonTapped() {
+        let isTimeOverTenSeconds = vm.totalElapsedTime >= 10
+        let message = isTimeOverTenSeconds ? "종료하시겠습니까?" : "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?"
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+//            print("Yes")
+            if isTimeOverTenSeconds {
+                let vc = TrackingResultViewController()
+
+                Task {
+                    await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
+                    let navigationController = UINavigationController(rootViewController: vc)
+                    navigationController.modalPresentationStyle = .fullScreen
+                    self?.present(navigationController, animated: true)
+                }
+            } else {
+                self?.dismiss(animated: true)
+            }
+        })
+
+        alert.addAction(UIAlertAction(title: "No", style: .cancel) { [weak self] _ in
+            self?.vm.startAndPause()
+        })
+
+        present(alert, animated: true)
     }
 
     private func setupChangeUnitButton() {

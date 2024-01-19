@@ -158,11 +158,12 @@ final class TrackingViewModel {
         }
     }
 
+
     func stop() {
         locationManager.stop()
         stopwatch.pause()
         isPaused = true
-        isStopped = true
+//        isStopped = true
     }
 
     func locationManagerDidChangeAuthorization() {

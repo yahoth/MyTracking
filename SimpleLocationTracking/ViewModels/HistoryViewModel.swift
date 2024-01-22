@@ -11,7 +11,7 @@ import RealmSwift
 
 class HistoryViewModel {
 
-    let realmManager = RealmManager()
+    let realmManager = RealmManager.shared
     
     deinit {
         print("HistoryViewModel deinit")

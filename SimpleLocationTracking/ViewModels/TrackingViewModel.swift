@@ -20,7 +20,6 @@ final class TrackingViewModel {
 
     private let locationManager = LocationManager()
     private let settingManager = SettingManager()
-    private let realmManager = RealmManager()
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
     var startDate: Date?
@@ -50,8 +49,8 @@ final class TrackingViewModel {
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
         let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
-        DispatchQueue.main.async { [weak self] in
-            self?.realmManager.create(object: trackingData)
+        DispatchQueue.main.async {
+            RealmManager.shared.create(object: trackingData)
         }
 
         return trackingData
@@ -110,7 +109,6 @@ final class TrackingViewModel {
     @Published var isPaused: Bool = true
     @Published var isStopped: Bool = false
     @Published var unitOfSpeed: UnitOfSpeed?
-
     @Published var totalElapsedTime: Double = 0
 
     var hhmmss: String {

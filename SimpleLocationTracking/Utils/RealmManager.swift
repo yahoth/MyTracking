@@ -13,6 +13,8 @@ class RealmManager {
     deinit {
         print("RealmManager deinit")
     }
+    static let shared = RealmManager()
+
     var realm: Realm
 
     var notificationToken: NotificationToken?

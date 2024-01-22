@@ -136,10 +136,10 @@ final class TrackingViewModel {
                 self?.unitOfSpeed = unit
             }.store(in: &subscriptions)
 
-        locationManager.$authorizationStatus
-            .sink { [weak self] status in
-                self?.locationManagerDidChangeAuthorization(status)
-            }.store(in: &subscriptions)
+//        locationManager.$authorizationStatus
+//            .sink { [weak self] status in
+//                self?.locationManagerDidChangeAuthorization(status)
+//            }.store(in: &subscriptions)
     }
 
 
@@ -171,24 +171,24 @@ final class TrackingViewModel {
 //        isStopped = true
     }
 
-    func locationManagerDidChangeAuthorization(_ status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse, .authorizedAlways:  // Location services are available.
-            startAndPause()
-            break
-
-        case .restricted, .denied:  // Location services currently unavailable.
-            isPermissionDenied = true
-            break
-
-        case .notDetermined:        // Authorization not determined yet.
-            locationManager.requestAuthorization()
-            break
-
-        default:
-            break
-        }
-    }
+//    func locationManagerDidChangeAuthorization(_ status: CLAuthorizationStatus) {
+//        switch status {
+//        case .authorizedWhenInUse, .authorizedAlways:  // Location services are available.
+//            startAndPause()
+//            break
+//
+//        case .restricted, .denied:  // Location services currently unavailable.
+//            isPermissionDenied = true
+//            break
+//
+//        case .notDetermined:        // Authorization not determined yet.
+//            locationManager.requestAuthorization()
+//            break
+//
+//        default:
+//            break
+//        }
+//    }
 
 //   func calculateDistance() -> CLLocationDistance {
 //        let totalDistance = averageSpeed * Double(stopwatch.count) / 3600

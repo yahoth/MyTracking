@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 import SnapKit
 
 class TrackingSetupViewController: UIViewController {
     var startTrackingButton: UIButton!
     var vm: TrackingSetupViewModel!
+    var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +32,27 @@ class TrackingSetupViewController: UIViewController {
             make.size.equalTo(200)
             make.centerX.centerY.equalTo(view)
         }
+        bind()
+    }
+
+    func bind() {
+        vm.$status
+            .compactMap { $0 }
+            .sink { status in
+                self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
+                print(
+                "bind: \(status)")
+            }.store(in: &subscriptions)
     }
 
     @objc func goTrackingButtonTapped() {
-
-        vm.goTrackingButtonTapped(authorized: startTracking, denied: alertWhenPermissionStatusIsRejected)
+        if vm.locationManager == nil {
+            vm.locationManager = LocationManager()
+            vm.bind()
+        } else {
+            guard let status = vm.status else { return }
+            vm.goTrackingButtonTapped(status: status, authorized: startTracking, denied: alertWhenPermissionStatusIsRejected)
+        }
     }
 
     func alertWhenPermissionStatusIsRejected() {
@@ -57,8 +75,6 @@ class TrackingSetupViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
-
-
 
     func startTracking() {
         let vc = TrackingViewController()

@@ -116,14 +116,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .sink { [weak self] bool in
                 if bool {
                     self?.alertWhenStopButtonTapped()
-//                    let vc = TrackingResultViewController()
-//
-//                    Task {
-//                        await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
-//                        let navigationController = UINavigationController(rootViewController: vc)
-//                        navigationController.modalPresentationStyle = .fullScreen
-//                        self?.present(navigationController, animated: true)
-//                    }
                 }
             }.store(in: &subscriptions)
 
@@ -146,7 +138,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
-//            print("Yes")
             if isTimeOverTenSeconds {
                 let vc = TrackingResultViewController()
 

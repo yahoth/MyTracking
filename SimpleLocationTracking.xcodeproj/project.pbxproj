@@ -165,11 +165,11 @@
 		7624E1312B28AA4800094845 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */,
 				7666F2CA2B17268800F5826F /* TrackingViewModel.swift */,
 				761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */,
 				762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */,
 				7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */,
-				76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

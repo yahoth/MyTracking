@@ -38,7 +38,8 @@ class TrackingSetupViewController: UIViewController {
     func bind() {
         vm.$status
             .compactMap { $0 }
-            .sink { status in
+            .sink { [weak self] status in
+                guard let self else { return }
                 self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
                 print(
                 "bind: \(status)")

@@ -135,7 +135,6 @@
 				7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */,
 				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
 				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
-				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
 			);
 			path = TrackingResultView;
 			sourceTree = "<group>";
@@ -148,6 +147,7 @@
 				761A76F92B2AE2F800FABC7D /* TrackingView */,
 				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 				767BC5CC2B3D7314004C8765 /* History */,
+				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";

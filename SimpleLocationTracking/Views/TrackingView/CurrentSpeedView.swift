@@ -51,7 +51,7 @@ class CurrentSpeedView: UIView {
     }
 
     func setConstraints() {
-        [titleLabel, speedLabel, unitButton].forEach(addSubview(_:))
+        [titleLabel, speedLabel, unitButton].forEach(self.addSubview(_:))
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(20)

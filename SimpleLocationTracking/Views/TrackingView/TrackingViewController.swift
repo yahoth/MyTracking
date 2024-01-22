@@ -46,7 +46,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
         setupChangeUnitButton()
         bind()
-//        vm.startAndPause()
     }
 
 

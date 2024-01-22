@@ -46,6 +46,45 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
         setupChangeUnitButton()
         bind()
+//        vm.startAndPause()
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear: \(Date())")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear: \(Date())")
+        vm.startAndPause()
+
+    }
+    override func viewIsAppearing(_ animated: Bool) {
+        print("viewIsAppearing: \(Date())")
+
+    }
+
+    override func viewWillLayoutSubviews() {
+        print("viewWillLayoutSubviews: \(Date())")
+
+    }
+    override func viewDidLayoutSubviews() {
+        print("viewDidLayoutSubviews: \(Date())")
+
+    }
+
+    override func viewLayoutMarginsDidChange() {
+        print("viewLayoutMarginsDidChange: \(Date())")
+
+    }
+
+    override func viewSafeAreaInsetsDidChange() {
+        print("viewSafeAreaInsetsDidChange: \(Date())")
+
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("viewWillTransition: \(Date())")
+
     }
 
     func setConstraints() {
@@ -152,9 +191,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             }
         })
 
-        alert.addAction(UIAlertAction(title: "No", style: .cancel) { [weak self] _ in
-            self?.vm.startAndPause()
-        })
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
 
         present(alert, animated: true)
     }

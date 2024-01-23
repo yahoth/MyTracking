@@ -8,12 +8,20 @@
 import Foundation
 
 extension Double {
+    var hours: Int {
+        Int(self) / 3600
+    }
+
+    var minutes: Int {
+        (Int(self) % 3600) / 60
+    }
+
+    var seconds: Int {
+        (Int(self) % 3600) % 60
+    }
+
     /// hh:mm:ss
     var hhmmss: String {
-        let hours = Int(self) / 3600
-        let minutes = (Int(self) % 3600) / 60
-        let seconds = (Int(self) % 3600) % 60
-
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
@@ -23,10 +31,6 @@ extension Double {
     /// 1분
     /// 48초
     var resultTime: String {
-        let hours = Int(self) / 3600
-        let minutes = (Int(self) % 3600) / 60
-        let seconds = (Int(self) % 3600) % 60
-
         if hours > 0 && minutes > 0 {
             return "\(hours)시간 \(minutes)분"
         } else if hours > 0 {
@@ -38,6 +42,10 @@ extension Double {
         } else {
             return "\(seconds)초"
         }
+    }
+
+    var hhmm: String {
+        return String(format: "%02d:%02d", hours, minutes)
     }
 
 }

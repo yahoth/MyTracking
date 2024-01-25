@@ -21,9 +21,9 @@ class RealmManager {
 
     init() {
         let config = Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 1) {
+                if (oldSchemaVersion < 2) {
                     // 마이그레이션 코드를 작성합니다.
                 }
             })
@@ -51,7 +51,7 @@ class RealmManager {
     //Delete All Objects in a Realm
     func deleteAll() {
         do {
-            try realm.write(withoutNotifying: [notificationToken!]) {
+            try realm.write/*(withoutNotifying: [notificationToken!])*/ {
                 realm.deleteAll()
             }
         } catch let error as NSError {

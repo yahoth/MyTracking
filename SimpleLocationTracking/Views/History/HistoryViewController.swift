@@ -35,11 +35,14 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.backgroundColor = .systemBackground
+//        tabBarController?.tabBar.isTranslucent = false
+
         vm = HistoryViewModel()
         createCollectionView()
         createDatasource()
         updateCollectionView()
-//        print("viewDidLoad")
     }
 
     func createCollectionView() {
@@ -49,14 +52,27 @@ class HistoryViewController: UIViewController {
             make.edges.equalTo(view)
         }
         collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: "HistoryCell")
+        collectionView.register(HistoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HistoryHeaderView.identifier)
         collectionView.delegate = self
     }
 
     func createDatasource() {
-        datasource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item in
+        datasource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as? HistoryCell else { return nil }
-            cell.configure(item: item)
+            let item = self?.vm.sortedGroups[indexPath.section].value[indexPath.row]
+            cell.configure(item: item ?? TrackingData())
             return cell
+        }
+
+        datasource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView? in
+            guard let self else { return nil }
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HistoryHeaderView", for: indexPath) as? HistoryHeaderView else { return nil }
+            var yearAndMonth = self.vm.sortedGroups[indexPath.section].key
+            yearAndMonth.timeZone = TimeZone.current
+            let date = Calendar.current.date(from: yearAndMonth)!
+
+            headerView.configure(with: date.formattedString(.mmmyyyy))
+            return headerView
         }
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
@@ -69,14 +85,8 @@ class HistoryViewController: UIViewController {
         vm.addChangeListener { [weak self] changes in
             guard let self else { return }
             switch changes {
-            case .initial(_):
+            case .initial, .update:
                 self.applySnapshot(item: self.vm.trackingDatas)
-            case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-//                self.collectionView.performBatchUpdates {
-//                    self.collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
-//                }
-                self.applySnapshot(item: self.vm.trackingDatas)
-
             case .error(let error):
                 print("collection view update error: \(error)")
             }
@@ -92,15 +102,35 @@ class HistoryViewController: UIViewController {
     }
 
     func layout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        let layout = UICollectionViewCompositionalLayout(section: section)
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 10
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            header.pinToVisibleBounds = true
+            section.boundarySupplementaryItems = [header]
+
+            return section
+        }
+//
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+//        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.interGroupSpacing = 10
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+//        let layout = UICollectionViewCompositionalLayout(section: section)
+
         return layout
     }
 }

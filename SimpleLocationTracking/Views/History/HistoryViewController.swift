@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 import SnapKit
+import RealmSwift
 //
 //  HistoryViewController.swift
 //  TestProject
@@ -37,7 +38,8 @@ class HistoryViewController: UIViewController {
         vm = HistoryViewModel()
         createCollectionView()
         createDatasource()
-        print("viewDidLoad")
+        updateCollectionView()
+//        print("viewDidLoad")
     }
 
     func createCollectionView() {
@@ -47,7 +49,7 @@ class HistoryViewController: UIViewController {
             make.edges.equalTo(view)
         }
         collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: "HistoryCell")
-
+        collectionView.delegate = self
     }
 
     func createDatasource() {
@@ -63,6 +65,32 @@ class HistoryViewController: UIViewController {
         datasource.apply(snapshot)
     }
 
+    func updateCollectionView() {
+        vm.addChangeListener { [weak self] changes in
+            guard let self else { return }
+            switch changes {
+            case .initial(_):
+                self.applySnapshot(item: self.vm.trackingDatas)
+            case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+//                self.collectionView.performBatchUpdates {
+//                    self.collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0) }))
+//                }
+                self.applySnapshot(item: self.vm.trackingDatas)
+
+            case .error(let error):
+                print("collection view update error: \(error)")
+            }
+        }
+    }
+
+    func applySnapshot(item: Results<TrackingData>) {
+        var snapshot = datasource.snapshot()
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(Array(item))
+        datasource.apply(snapshot)
+    }
+
     func layout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -75,6 +103,10 @@ class HistoryViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+}
+
+extension HistoryViewController: UICollectionViewDelegate {
+
 }
 
 //

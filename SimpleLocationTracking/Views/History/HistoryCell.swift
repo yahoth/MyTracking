@@ -135,7 +135,8 @@ class HistoryCell: UICollectionViewCell {
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
         bodyContainer.time.text = item.speedInfos.first { $0.title == "Time" }?.value.hhmm
-        bodyContainer.distance.text = item.speedInfos.first { $0.title == "Distance" }?.value
+        let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
+        bodyContainer.distance.text = "\(distanceInfo?.value ?? 0) \(distanceInfo?.unit ?? "")"
     }
 
     required init?(coder: NSCoder) {

@@ -142,7 +142,6 @@ class HistoryCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
 }
 
 //

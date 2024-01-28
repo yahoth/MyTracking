@@ -118,7 +118,6 @@ extension LocationManager: CLLocationManagerDelegate {
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print("author: \(manager.authorizationStatus)")
         authorizationStatus = manager.authorizationStatus
     }
 

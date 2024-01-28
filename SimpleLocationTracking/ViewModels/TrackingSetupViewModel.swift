@@ -29,13 +29,11 @@ class TrackingSetupViewModel {
         case .notDetermined:
             locationManager?.requestAuthorization()
         case .restricted, .denied:
-            print("denied")
             denied()
         case .authorizedAlways, .authorizedWhenInUse:
-            print("authorized")
             authorized()
         default:
-            print("hello")
+            break
         }
     }
 }

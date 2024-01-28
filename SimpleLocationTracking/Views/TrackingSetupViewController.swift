@@ -41,8 +41,6 @@ class TrackingSetupViewController: UIViewController {
             .sink { [weak self] status in
                 guard let self else { return }
                 self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
-                print(
-                "bind: \(status)")
             }.store(in: &subscriptions)
     }
 

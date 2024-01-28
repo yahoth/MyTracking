@@ -33,6 +33,7 @@ class MainTabBarController: UITabBarController {
         case is TrackingSetupViewController:
             navigationController?.navigationBar.prefersLargeTitles = true
             title = "Go Tracking"
+            navigationItem.rightBarButtonItems = []
         case is HistoryViewController:
             navigationController?.navigationBar.prefersLargeTitles = false
             title = "Tracking History"

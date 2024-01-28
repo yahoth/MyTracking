@@ -48,43 +48,37 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         bind()
     }
 
-
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear: \(Date())")
-    }
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear: \(Date())")
         vm.startAndPause()
-
     }
-    override func viewIsAppearing(_ animated: Bool) {
-        print("viewIsAppearing: \(Date())")
-
-    }
-
-    override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews: \(Date())")
-
-    }
-    override func viewDidLayoutSubviews() {
-        print("viewDidLayoutSubviews: \(Date())")
-
-    }
-
-    override func viewLayoutMarginsDidChange() {
-        print("viewLayoutMarginsDidChange: \(Date())")
-
-    }
-
-    override func viewSafeAreaInsetsDidChange() {
-        print("viewSafeAreaInsetsDidChange: \(Date())")
-
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("viewWillTransition: \(Date())")
-
-    }
+//    override func viewIsAppearing(_ animated: Bool) {
+//        print("viewIsAppearing: \(Date())")
+//
+//    }
+//
+//    override func viewWillLayoutSubviews() {
+//        print("viewWillLayoutSubviews: \(Date())")
+//
+//    }
+//    override func viewDidLayoutSubviews() {
+//        print("viewDidLayoutSubviews: \(Date())")
+//
+//    }
+//
+//    override func viewLayoutMarginsDidChange() {
+//        print("viewLayoutMarginsDidChange: \(Date())")
+//
+//    }
+//
+//    override func viewSafeAreaInsetsDidChange() {
+//        print("viewSafeAreaInsetsDidChange: \(Date())")
+//
+//    }
+//
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        print("viewWillTransition: \(Date())")
+//
+//    }
 
     func setConstraints() {
         currentSpeedView.snp.makeConstraints { make in

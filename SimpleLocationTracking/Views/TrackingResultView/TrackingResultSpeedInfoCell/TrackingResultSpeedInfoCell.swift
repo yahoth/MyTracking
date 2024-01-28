@@ -60,7 +60,7 @@ extension TrackingResultSpeedInfoCell: UICollectionViewDataSource {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpeedInfoCollectionViewCell", for: indexPath) as? SpeedInfoCollectionViewCell else {
             return UICollectionViewCell() }
-        cell.configure(vm.speedInfos[indexPath.item])
+        cell.configure(vm.speedInfos[indexPath.item], unit: SettingManager.shared.unit)
         return cell
     }
 }

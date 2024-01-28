@@ -130,13 +130,13 @@ class HistoryCell: UICollectionViewCell {
         }
     }
 
-    func configure(item: TrackingData) {
+    func configure(item: TrackingData, unit: UnitOfSpeed) {
         dateLabel.text = item.startDate.formattedString(.m_d_h_m)
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
         bodyContainer.time.text = item.speedInfos.first { $0.title == "Time" }?.value.hhmmss
         let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
-        bodyContainer.distance.text = "\(distanceInfo?.value ?? 0) \(distanceInfo?.unit ?? "")"
+        bodyContainer.distance.text = "\(String(format: "%.1f", distanceInfo?.value.distanceToSelectedUnit(unit) ?? 0)) \(unit.correspondingDistanceUnit)"
     }
 
     required init?(coder: NSCoder) {

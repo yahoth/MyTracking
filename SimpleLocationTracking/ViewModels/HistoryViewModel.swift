@@ -12,13 +12,18 @@ import RealmSwift
 class HistoryViewModel {
 
     let realmManager = RealmManager.shared
-    
+    let settingManager = SettingManager.shared
+
     deinit {
         print("HistoryViewModel deinit")
     }
 
     var trackingDatas: Results<TrackingData> {
         realmManager.read()
+    }
+
+    var unitOfSpeed: UnitOfSpeed {
+        settingManager.unit
     }
 
     func addChangeListener(_  handler: @escaping (RealmCollectionChange<Results<TrackingData>>) -> ()) {

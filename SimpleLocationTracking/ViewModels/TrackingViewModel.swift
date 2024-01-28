@@ -19,7 +19,7 @@ final class TrackingViewModel {
     }
 
     private let locationManager = LocationManager()
-    private let settingManager = SettingManager()
+    private let settingManager = SettingManager.shared
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
     var startDate: Date?
@@ -40,7 +40,7 @@ final class TrackingViewModel {
             SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
             SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
             SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: locationManager.currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
+            SpeedInfo(value: locationManager.altitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
 

@@ -16,7 +16,7 @@ class HistoryViewController: UIViewController {
     var datasource: UICollectionViewDiffableDataSource<Section, Item>!
     var collectionView: UICollectionView!
     var vm: HistoryViewModel!
-
+    var subscriptions = Set<AnyCancellable>()
     typealias Item = TrackingData
     enum Section {
         case main
@@ -29,6 +29,17 @@ class HistoryViewController: UIViewController {
         createCollectionView()
         createDatasource()
         updateCollectionView()
+        bind()
+    }
+
+    func bind() {
+        vm.settingManager.$unit
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] unit in
+                guard let self else { return }
+                self.applySnapshot(item: self.vm.trackingDatas)
+                print("bind: \(unit)")
+            }.store(in: &subscriptions)
     }
 
     func createCollectionView() {
@@ -43,11 +54,9 @@ class HistoryViewController: UIViewController {
     }
 
     func createDatasource() {
-        datasource = UICollectionViewDiffableDataSource(collectionView: collectionView) { /*[weak self]*/ collectionView, indexPath, item in
+        datasource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HistoryCell", for: indexPath) as? HistoryCell else { return nil }
-//            let item = self?.vm.sortedGroups[indexPath.section].value[indexPath.row]
-//            cell.configure(item: item ?? TrackingData())
-            cell.configure(item: item)
+            cell.configure(item: item, unit: self?.vm.unitOfSpeed ?? .kmh)
             return cell
         }
         

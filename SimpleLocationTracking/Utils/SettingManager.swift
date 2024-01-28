@@ -11,6 +11,9 @@ class SettingManager {
     deinit {
         print("SettingManager deinit")
     }
+
+    static let shared = SettingManager()
+
     private let defaults = UserDefaults.standard
 
     @Published var unit: UnitOfSpeed

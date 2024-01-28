@@ -40,23 +40,48 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
         contentView.backgroundColor = .clear
     }
 
-    func configure(_ info: SpeedInfo) {
+    func configure(_ info: SpeedInfo, unit: UnitOfSpeed) {
+//        titleLabel.text = info.title
+//
+//        valueLabelText()
+//
+//        unitLabel.text = info.unit
+//
+//        func valueLabelText() {
+//            switch info.title {
+//            case "Time":
+//                valueLabel.text = info.value.resultTime
+//                valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
+//            case "Altitude", "Floor":
+//                valueLabel.text = String(format: "%.0f", info.value)
+//            default:
+//                valueLabel.text = String(format: "%.1f", info.value)
+//            }
+//        }
+
         titleLabel.text = info.title
 
-        valueLabelText()
+        switch info.title {
+        case "Distance":
+            unitLabel.text = unit.correspondingDistanceUnit
+            valueLabel.text = String(format: "%.1f", info.value.distanceToSelectedUnit(unit))
 
-        unitLabel.text = info.unit
+        case "Time":
+            valueLabel.text = info.value.hhmmss
+//            valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        case "Average Speed", "Top Speed":
+            unitLabel.text = unit.displayedSpeedUnit
+            valueLabel.text = String(format: "%.0f", info.value.speedToSelectedUnit(unit))
 
-        func valueLabelText() {
-            switch info.title {
-            case "Time":
-                valueLabel.text = info.value.resultTime
-                valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
-            case "Altitude", "Floor":
-                valueLabel.text = String(format: "%.0f", info.value)
-            default:
-                valueLabel.text = String(format: "%.1f", info.value)
-            }
+        case "Altitude":
+            unitLabel.text = unit.correspondingAltitudeUnit
+            valueLabel.text = String(format: "%.0f", info.value.altitudeToSelectedUnit(unit))
+
+        case "Floor":
+            unitLabel.text = "floor"
+            valueLabel.text = String(format: "%.0f", info.value)
+        default:
+            break
         }
     }
 }

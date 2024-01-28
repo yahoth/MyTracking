@@ -39,10 +39,25 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
         contentView.backgroundColor = .accent
     }
 
-    func configure(_ info: SpeedInfo) {
+    func configure(_ info: SpeedInfo, unit: UnitOfSpeed) {
+
         titleLabel.text = info.title
-        let isDistance = info.title == "Distance"
-        valueLabel.text = String(format: isDistance ? "%.1f" : "%.0f", info.value)
-        unitLabel.text = info.unit
+
+        switch info.title {
+        case "Average Speed", "Top Speed":
+            unitLabel.text = unit.displayedSpeedUnit
+            valueLabel.text = String(format: "%.0f", info.value.speedToSelectedUnit(unit))
+
+        case "Distance":
+            unitLabel.text = unit.correspondingDistanceUnit
+            valueLabel.text = String(format: "%.1f", info.value.distanceToSelectedUnit(unit))
+
+        case "Current Altitude":
+            unitLabel.text = unit.correspondingAltitudeUnit
+            valueLabel.text = String(format: "%.0f", info.value.altitudeToSelectedUnit(unit))
+
+        default:
+            break
+        }
     }
 }

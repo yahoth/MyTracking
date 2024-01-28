@@ -140,7 +140,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .subscribe(on: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.currentSpeedView.speedLabel.text = String(format: "%.0f", self?.vm.speed ?? 0)
+                self?.currentSpeedView.speedLabel.text = String(format: "%.0f", self?.vm.convertedSpeed ?? 0)
                 self?.updateTrackingOverlay()
             }.store(in: &subscriptions)
 

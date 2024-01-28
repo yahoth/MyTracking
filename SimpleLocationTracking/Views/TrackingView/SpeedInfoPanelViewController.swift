@@ -163,7 +163,7 @@ extension SpeedInfoPanelViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpeedInfoPanelViewCell", for: indexPath) as? SpeedInfoPanelViewCell else { return UICollectionViewCell() }
-        cell.configure(vm.speedInfos[indexPath.item])
+        cell.configure(vm.speedInfos[indexPath.item], unit: vm.unitOfSpeed ?? .kmh)
         return cell
     }
 }

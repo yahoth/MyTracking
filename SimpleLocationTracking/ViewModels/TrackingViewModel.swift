@@ -26,21 +26,21 @@ final class TrackingViewModel {
 
     var speedInfos: [SpeedInfo] {
         [
-            SpeedInfo(value: averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
-            SpeedInfo(value: topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
-            SpeedInfo(value: currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Current Altitude"),
+            SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
+            SpeedInfo(value: locationManager.distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
+            SpeedInfo(value: locationManager.currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Current Altitude"),
         ]
     }
 
     func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [
-            SpeedInfo(value: distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
+            SpeedInfo(value: locationManager.distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
             SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
-            SpeedInfo(value: averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
-            SpeedInfo(value: topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: altitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
+            SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
+            SpeedInfo(value: locationManager.currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
 
@@ -70,27 +70,27 @@ final class TrackingViewModel {
         Double(locationManager.floor)
     }
 
-    var speed: Double {
+    var convertedSpeed: Double {
         locationManager.speed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var distance: Double {
+    var convertedDistance: Double {
         locationManager.distance.distanceToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var topSpeed: Double {
+    var convertedTopSpeed: Double {
         locationManager.topSpeed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var averageSpeed: Double {
+    var convertedAverageSpeed: Double {
         locationManager.averageSpeed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var currentAltitude: Double {
+    var convertedCurrentAltitude: Double {
         locationManager.currentAltitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 
-    var altitude: Double {
+    var convertedAltitude: Double {
         locationManager.altitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
     }
 

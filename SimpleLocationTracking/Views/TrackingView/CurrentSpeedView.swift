@@ -76,6 +76,4 @@ class CurrentSpeedView: UIView {
         titleLabel.text = "Current Speed"
         speedLabel.text = "0"
     }
-
-
 }

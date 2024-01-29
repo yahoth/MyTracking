@@ -1,5 +1,5 @@
 //
-//  BodyContainer.swift
+//  BodyContainerView.swift
 //  SimpleLocationTracking
 //
 //  Created by TAEHYOUNG KIM on 1/24/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BodyContainer: UIView {
+class BodyContainerView: UIView {
 
     /// Labels
     let fromLabel = UILabel()

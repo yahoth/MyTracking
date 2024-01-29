@@ -23,7 +23,7 @@ class HistoryCell: UICollectionViewCell {
     /// 상단 컨테이너 및 UI
     var topContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .accent
         return view
     }()
 
@@ -35,7 +35,7 @@ class HistoryCell: UICollectionViewCell {
 
     var typeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .red
+        imageView.tintColor = .accent
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: "figure.outdoor.cycle")
         return imageView
@@ -73,7 +73,7 @@ class HistoryCell: UICollectionViewCell {
     }
 
     /// 중간부 컨테이너
-    var bodyContainer = BodyContainer()
+    var bodyContainer = BodyContainerView()
 
     func setMidContainer() {
         topStackView.addArrangedSubview(bodyContainer)
@@ -98,7 +98,7 @@ class HistoryCell: UICollectionViewCell {
     /// 하단 컨테이너
     var bottomContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .accent
         return view
     }()
 
@@ -120,8 +120,6 @@ class HistoryCell: UICollectionViewCell {
         setMidContainerConstraints()
         setBottmContainer()
         setBottomContainerConstraints()
-
-        print("init: \(typeImageContainer.frame.width)")
     }
 
     func setConstraints() {

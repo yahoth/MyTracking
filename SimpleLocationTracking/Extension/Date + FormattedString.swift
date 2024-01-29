@@ -9,18 +9,24 @@ import Foundation
 
 extension Date {
     enum DateFormat: String {
-        case yyyy_M = "yyyy년 M월"
-        case yyyy_M_d = "yyyy년 M월 d일"
-        case full = "yyyy년 M월 d일 h시 m분"
-        case m_d_h_m = "M월 d일 h시 m분"
-        case mmmyyyy = "MMM YYYY"
+        case full = "yMMMdhm"
+        case medium = "MMMdhm"
+        case timeOnly = "hm"
     }
 
     func formattedString(_ format: DateFormat) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format.rawValue
-        dateFormatter.timeZone = TimeZone.current
+        let localeID = Locale.preferredLanguages.first
 
+        if #available(iOS 16, *) {
+            let deviceLocale = Locale(identifier: localeID ?? "en_US").language.languageCode?.identifier
+            dateFormatter.locale = Locale(identifier: deviceLocale ?? "en_US")
+        } else {
+            let deviceLocale = Locale(identifier: localeID ?? "en_US").languageCode
+            dateFormatter.locale = Locale(identifier: deviceLocale ?? "en_US")
+        }
+
+        dateFormatter.setLocalizedDateFormatFromTemplate(format.rawValue)
         return dateFormatter.string(from: self)
     }
 }

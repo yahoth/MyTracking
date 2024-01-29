@@ -165,7 +165,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     func alertWhenStopButtonTapped() {
-        let isTimeOverTenSeconds = vm.totalElapsedTime >= 10
+        let isTimeOverTenSeconds = vm.totalElapsedTime >= 1
         let message = isTimeOverTenSeconds ? "종료하시겠습니까?" : "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?"
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 

@@ -129,7 +129,7 @@ class HistoryCell: UICollectionViewCell {
     }
 
     func configure(item: TrackingData, unit: UnitOfSpeed) {
-        dateLabel.text = item.startDate.formattedString(.m_d_h_m)
+        dateLabel.text = item.startDate.formattedString(.medium)
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
         bodyContainer.time.text = item.speedInfos.first { $0.title == "Time" }?.value.hhmmss

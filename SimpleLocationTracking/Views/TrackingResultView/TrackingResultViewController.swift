@@ -109,7 +109,11 @@ extension TrackingResultViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return vm.trackingData.startDate.formattedString(.full) + " ~ " + vm.trackingData.endDate.formattedString(.full)
+        let start = vm.trackingData.startDate
+        let end = vm.trackingData.endDate
+        let isSameDay = Calendar.current.isDate(start, inSameDayAs: end)
+
+        return "\(start.formattedString(.full)) ~ \(isSameDay ? end.formattedString(.timeOnly) : end.formattedString(.full))"
     }
 
 }

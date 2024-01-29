@@ -52,7 +52,7 @@ class LocationManager: NSObject {
     }
 
     func requestAuthorization() {
-//        locationManager.requestAlwaysAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
     }
 

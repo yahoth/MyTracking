@@ -54,22 +54,15 @@ class MainTabBarController: UITabBarController {
     @objc func addItem() {
         var components = DateComponents()
         let calendar = Calendar.current
+        let years = 2020...2025
+        let months = 1...12
+        let day = 1...31
+        components.year = years.randomElement()
+        components.month = months.randomElement()
+        components.day = day.randomElement()
+        let date = calendar.date(from: components)!
 
-        components.year = 2023
-        components.month = 4
-        let april2023 = calendar.date(from: components)
-//
-//        components.month = 1
-//        let january2023 = calendar.date(from: components)
-//
-//        components.year = 2024
-//        components.month = 2
-//        let february2024 = calendar.date(from: components)
-//
-//        components.month = 3
-//        let march2024 = calendar.date(from: components)
-
-        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfos: [PathInfo()].toRealmList(), startDate: april2023!, endDate: Date(), startLocation: "2023 - 4", endLocation: "hello")
+        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfos: [PathInfo()].toRealmList(), startDate: date, endDate: Date(), startLocation: "\(components.year!)-\(components.month!)-\(components.day!)", endLocation: "hello")
 
         RealmManager.shared.create(object: item)
     }

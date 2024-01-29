@@ -29,4 +29,15 @@ class TrackingData: Object {
         self.startLocation = startLocation
         self.endLocation = endLocation
         self.tripType = tripType
-    }}
+    }
+}
+
+extension TrackingData {
+    private var dateComponent: DateComponents {
+        Calendar(identifier: .gregorian).dateComponents([.year, .month], from: startDate)
+    }
+
+    var monthlyIdentifier: String {
+        return "\(dateComponent.year!)-\(dateComponent.month!)"
+    }
+}

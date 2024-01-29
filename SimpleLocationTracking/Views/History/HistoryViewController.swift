@@ -18,28 +18,17 @@ class HistoryViewController: UIViewController {
     var vm: HistoryViewModel!
     var subscriptions = Set<AnyCancellable>()
     typealias Item = TrackingData
-    enum Section {
-        case main
+    struct Section: Hashable {
+        let keys: String
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground        
+        view.backgroundColor = .systemBackground
         vm = HistoryViewModel()
         createCollectionView()
         createDatasource()
         updateCollectionView()
-        bind()
-    }
-
-    func bind() {
-        vm.settingManager.$unit
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] unit in
-                guard let self else { return }
-                self.applySnapshot(item: self.vm.trackingDatas)
-                print("bind: \(unit)")
-            }.store(in: &subscriptions)
     }
 
     func createCollectionView() {
@@ -59,10 +48,21 @@ class HistoryViewController: UIViewController {
             cell.configure(item: item, unit: self?.vm.unitOfSpeed ?? .kmh)
             return cell
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems([])
+
+        let headerRegistration = UICollectionView.SupplementaryRegistration
+        <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) {
+            (supplementaryView, elementKind, indexPath) in
+            let section = self.datasource.snapshot().sectionIdentifiers[indexPath.section]
+            var content = supplementaryView.defaultContentConfiguration()
+            content.text = section.keys
+            supplementaryView.contentConfiguration = content
+        }
+
+        datasource.supplementaryViewProvider = { (_, _, index) in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: index)
+        }
+
+        let snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         datasource.apply(snapshot)
     }
 
@@ -71,36 +71,73 @@ class HistoryViewController: UIViewController {
             guard let self else { return }
             switch changes {
             case .initial, .update:
-                self.applySnapshot(item: self.vm.trackingDatas)
+                self.applySnapshot()
             case .error(let error):
                 print("collection view update error: \(error)")
             }
         }
     }
 
-    func applySnapshot(item: Results<TrackingData>) {
+    func applySnapshot() {
         var snapshot = datasource.snapshot()
         snapshot.deleteAllItems()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(Array(item))
+        let sections = vm.keys.map { Section(keys: $0) }
+        snapshot.appendSections(sections.reversed())
+        sections.forEach { snapshot.appendItems(vm.dic[$0.keys] ?? [], toSection: $0) }
         datasource.apply(snapshot)
     }
 
+    func delete(item: TrackingData) {
+        var snapshot = datasource.snapshot()
+        let section = snapshot.sectionIdentifier(containingItem: item)!
+        snapshot.deleteItems([item])
+
+        if snapshot.itemIdentifiers(inSection: section).isEmpty {
+            snapshot.deleteSections([section])
+        }
+
+        datasource.apply(snapshot) { [weak self] in
+            self?.vm.realmManager.deleteObjectsOf(type: item)
+        }
+    }
+
     func layout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+            listConfiguration.showsSeparators = false
+            listConfiguration.backgroundColor = .clear
+            listConfiguration.trailingSwipeActionsConfigurationProvider = self?.makeSwipeActions
+//            listConfiguration.headerMode = sectionIndex == 0 ? .supplementary : .none
+            let section = NSCollectionLayoutSection.list(using: listConfiguration,
+                                                         layoutEnvironment: layoutEnvironment)
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(22))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+            section.boundarySupplementaryItems = [sectionHeader]
 
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 10
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
             return section
         }
+
         return layout
+
+    }
+
+    private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+        guard let indexPath, let item = datasource.itemIdentifier(for: indexPath) else { return nil }
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+            self?.delete(item: item)
+            completion(false)
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+
+    private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIAction {
+        return UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+            guard let self, let item = self.datasource.itemIdentifier(for: indexPath) else { return }
+            self.delete(item: item)
+        }
     }
 }
 
@@ -111,84 +148,12 @@ extension HistoryViewController: UICollectionViewDelegate {
         vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-}
 
-//
-//class HistoryViewController: UIViewController {
-//    deinit {
-//        print("HistoryViewController deinit")
-//    }
-//
-//    var tableView: UITableView!
-//    var vm: HistoryViewModel!
-//    var subscriptions = Set<AnyCancellable>()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemBackground
-//        navigationItem.title = "Tracking History"
-//        vm = HistoryViewModel()
-//        setTableView()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        vm.addChangeListener(tableView)
-//    }
-//
-//
-//    func setTableView() {
-//        tableView = UITableView(frame: .zero, style: .plain)
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        setTableViewSeparator()
-//        tableView.register(HistoryCell.self, forCellReuseIdentifier: "HistoryCell")
-//        view.addSubview(tableView)
-//        setTableViewConstraints()
-//
-//        func setTableViewSeparator() {
-//            tableView.separatorStyle = .singleLine
-//            tableView.separatorColor = .brown
-//            tableView.separatorInset = .init(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view)
-//        }
-//
-//        func setTableViewConstraints() {
-//            tableView.snp.makeConstraints { make in
-//                make.edges.equalTo(view)
-//            }
-//        }
-//    }
-//}
-//
-//extension HistoryViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
-//        let vc = TrackingResultViewController()
-//        vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-//}
-//
-//extension HistoryViewController: UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return vm.sortedGroups.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return vm.sortedGroups[section].value.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        var dateComponents = vm.sortedGroups[section].key
-//        dateComponents.timeZone = TimeZone.current
-//        let date = Calendar.current.date(from: dateComponents)!
-//        return date.formattedString(.yyyy_M)
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as? HistoryCell else { return UITableViewCell() }
-//        let item = vm.sortedGroups[indexPath.section].value[indexPath.row]
-//        cell.configure(item: item)
-//        cell.selectionStyle = .none
-//        return cell
-//    }
-//}
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let deleteAction = self.makeDeleteContextualAction(forRowAt: indexPath)
+            return UIMenu(title: "", children: [deleteAction])
+        }
+        return configuration
+    }
+}

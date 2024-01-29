@@ -52,7 +52,7 @@
 		7695135C2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7695135B2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift */; };
 		7695135E2B56D51400B5B18E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7695135D2B56D51400B5B18E /* RealmManager.swift */; };
 		769E4D252B480CF300058B22 /* TripType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769E4D242B480CF300058B22 /* TripType.swift */; };
-		76A582662B6040ED00329EE2 /* BodyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A582652B6040ED00329EE2 /* BodyContainer.swift */; };
+		76A582662B6040ED00329EE2 /* BodyContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A582652B6040ED00329EE2 /* BodyContainerView.swift */; };
 		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
 		76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -101,7 +101,7 @@
 		7695135B2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D + persistedValue.swift"; sourceTree = "<group>"; };
 		7695135D2B56D51400B5B18E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		769E4D242B480CF300058B22 /* TripType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripType.swift; sourceTree = "<group>"; };
-		76A582652B6040ED00329EE2 /* BodyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContainer.swift; sourceTree = "<group>"; };
+		76A582652B6040ED00329EE2 /* BodyContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContainerView.swift; sourceTree = "<group>"; };
 		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
 		76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,7 +250,7 @@
 				767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */,
 				768346312B62B5E80053EF9B /* HistoryHeaderView.swift */,
 				767D41C02B3EB2D500C66905 /* HistoryCell.swift */,
-				76A582652B6040ED00329EE2 /* BodyContainer.swift */,
+				76A582652B6040ED00329EE2 /* BodyContainerView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -376,7 +376,7 @@
 				763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */,
 				76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */,
 				767D41C32B3EB67A00C66905 /* TrackingData.swift in Sources */,
-				76A582662B6040ED00329EE2 /* BodyContainer.swift in Sources */,
+				76A582662B6040ED00329EE2 /* BodyContainerView.swift in Sources */,
 				761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */,
 				76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */,
 				761A76FC2B2AE3C900FABC7D /* TrackingResultViewModel.swift in Sources */,

@@ -47,6 +47,7 @@ class TrackingResultViewController: UIViewController {
         setTableViewSeparator()
         tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
+        tableView.register(TrackingResultPeriodCell.self, forCellReuseIdentifier: "TrackingResultPeriodCell")
         tableView.register(TrackingResultRouteCell.self, forCellReuseIdentifier: "TrackingResultRouteCell")
         tableView.register(TrackingResultSpeedInfoCell.self, forCellReuseIdentifier: "TrackingResultSpeedInfoCell")
 
@@ -68,11 +69,17 @@ class TrackingResultViewController: UIViewController {
 
 extension TrackingResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultPeriodCell", for: indexPath) as? TrackingResultPeriodCell else { return UITableViewCell() }
+            cell.configure(start: self.vm.trackingData.startDate, end: self.vm.trackingData.endDate)
+            cell.selectionStyle = .none
+            return cell
+
+        } else if indexPath.row  == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultRouteCell", for: indexPath) as? TrackingResultRouteCell else { return UITableViewCell() }
             let cellVM = TrackingResultRouteCellViewModel(path: self.vm.path)
             cell.vm = cellVM
@@ -95,9 +102,8 @@ extension TrackingResultViewController: UITableViewDataSource {
             } else {
                 cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation)
             }
-            
-            
             return cell
+
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }
             cell.vm = self.vm
@@ -105,16 +111,15 @@ extension TrackingResultViewController: UITableViewDataSource {
             cell.setCollectionViewConstraints(superViewHeight: self.view.frame.height)
             return cell
         }
-
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let start = vm.trackingData.startDate
-        let end = vm.trackingData.endDate
-        let isSameDay = Calendar.current.isDate(start, inSameDayAs: end)
-
-        return "\(start.formattedString(.full)) ~ \(isSameDay ? end.formattedString(.timeOnly) : end.formattedString(.full))"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let start = vm.trackingData.startDate
+//        let end = vm.trackingData.endDate
+//        let isSameDay = Calendar.current.isDate(start, inSameDayAs: end)
+//
+//        return "\(start.formattedString(.full)) ~ \(isSameDay ? end.formattedString(.timeOnly) : end.formattedString(.full))"
+//    }
 
 }
 

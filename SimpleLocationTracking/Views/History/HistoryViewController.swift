@@ -55,6 +55,7 @@ class HistoryViewController: UIViewController {
             let section = self.datasource.snapshot().sectionIdentifiers[indexPath.section]
             var content = supplementaryView.defaultContentConfiguration()
             content.text = section.keys
+//            content.directionalLayoutMargins = .init(top: 20, leading: 20, bottom: 20, trailing: 20)
             supplementaryView.contentConfiguration = content
         }
 
@@ -103,20 +104,21 @@ class HistoryViewController: UIViewController {
 
     func layout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+            var listConfiguration = UICollectionLayoutListConfiguration(appearance: .plain)
             listConfiguration.showsSeparators = false
             listConfiguration.backgroundColor = .clear
             listConfiguration.trailingSwipeActionsConfigurationProvider = self?.makeSwipeActions
 //            listConfiguration.headerMode = sectionIndex == 0 ? .supplementary : .none
             let section = NSCollectionLayoutSection.list(using: listConfiguration,
                                                          layoutEnvironment: layoutEnvironment)
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(22))
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: headerSize,
                 elementKind: UICollectionView.elementKindSectionHeader,
                 alignment: .top)
             section.boundarySupplementaryItems = [sectionHeader]
-
+            section.interGroupSpacing = padding_body_body
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding_body_view, bottom: padding_body_view, trailing: padding_body_view)
             return section
         }
 

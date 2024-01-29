@@ -52,8 +52,8 @@ class LocationManager: NSObject {
     }
 
     func requestAuthorization() {
+//        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
     }
 
     func speed(_ speed: Double) -> Double {

@@ -41,24 +41,6 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
     }
 
     func configure(_ info: SpeedInfo, unit: UnitOfSpeed) {
-//        titleLabel.text = info.title
-//
-//        valueLabelText()
-//
-//        unitLabel.text = info.unit
-//
-//        func valueLabelText() {
-//            switch info.title {
-//            case "Time":
-//                valueLabel.text = info.value.resultTime
-//                valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
-//            case "Altitude", "Floor":
-//                valueLabel.text = String(format: "%.0f", info.value)
-//            default:
-//                valueLabel.text = String(format: "%.1f", info.value)
-//            }
-//        }
-
         titleLabel.text = info.title
 
         switch info.title {

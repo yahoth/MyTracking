@@ -52,4 +52,10 @@ class HistoryViewModel {
             return key1 < key2
         }
     }
+
+    func selectedItem(at indexPath: IndexPath) -> TrackingData? {
+        let key = keys.reversed()[indexPath.section]
+        guard let items = dic[key], items.indices.contains(indexPath.item) else { return nil }
+        return items[indexPath.item]
+    }
 }

@@ -145,14 +145,14 @@ class HistoryViewController: UIViewController {
 
 extension HistoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = vm.trackingDatas[indexPath.section]
         let vc = TrackingResultViewController()
-        vc.vm = TrackingResultViewModel(trackingData: item, viewType: .navigation)
+        vc.vm = TrackingResultViewModel(trackingData: vm.selectedItem(at: indexPath) ?? TrackingData(), viewType: .navigation)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+            guard let self else { return UIMenu() }
             let deleteAction = self.makeDeleteContextualAction(forRowAt: indexPath)
             return UIMenu(title: "", children: [deleteAction])
         }

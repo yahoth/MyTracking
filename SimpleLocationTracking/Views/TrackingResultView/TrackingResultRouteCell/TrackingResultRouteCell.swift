@@ -21,6 +21,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     var routeLabelView: RouteLabelView!
     var onMapTap: (() -> Void)?
     var subscriptions = Set<AnyCancellable>()
+    var vStack: UIStackView!
     var vm: TrackingResultRouteCellViewModel!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -57,7 +58,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         mapViewContainer.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
-            make.height.equalTo(contentView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(mapViewContainer.snp.width)
         }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(mapTapped(_:)))
         mapViewContainer.addGestureRecognizer(tapGesture)

@@ -30,7 +30,7 @@ class BodyContainerView: UIView {
         stackView.spacing = 4
         self.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.edges.equalTo(self).inset(16)
+            make.edges.equalTo(self).inset(padding_body_view)
         }
     }
 
@@ -63,7 +63,8 @@ class BodyContainerView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         [fromLabel, toLabel, timeLabel, distanceLabel].forEach(setLabels(_:))
-        [startLocation, endLocation, time, distance].forEach(setDataLabels(_:))
+        [startLocation, endLocation, distance].forEach(setDataLabels(_:))
+        setTimeLabel()
         setStackView()
         setLabelContainer(leftLabel: fromLabel, rightLabel: timeLabel)
         setLabelContainer(leftLabel: startLocation, rightLabel: time)
@@ -79,10 +80,17 @@ class BodyContainerView: UIView {
     }
 
     func setDataLabels(_ label: UILabel) {
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 0
+    }
 
+    func setTimeLabel() {
+        time.font = .boldSystemFont(ofSize: 20)
+        time.textColor = .black
+        time.numberOfLines = 1
+        time.adjustsFontSizeToFitWidth = true
+        time.minimumScaleFactor = 0.5
     }
 
     func configureLabels() {

@@ -18,6 +18,7 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setTitle(to: "Speed Info")
         configureCollectionView()
+        setCollectionViewConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -25,30 +26,44 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
     }
 
     func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+//        let flowLayout = UICollectionViewFlowLayout()
+//        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.register(SpeedInfoCollectionViewCell.self, forCellWithReuseIdentifier: "SpeedInfoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
     }
 
-    func setCollectionViewConstraints(superViewHeight: CGFloat?) {
+    func setCollectionViewConstraints(/*superViewHeight: CGFloat?*/) {
         contentView.addSubview(collectionView)
+//        collectionView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
+//            make.horizontalEdges.bottom.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view))
+//            make.height.equalTo((superViewHeight ?? 0) / 3.5)
+//        }
+
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
-            make.horizontalEdges.bottom.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view))
-            make.height.equalTo((superViewHeight ?? 0) / 3.5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(padding_body_view)
+            make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
+            make.bottom.equalTo(contentView).inset(padding_body_view)
+            make.height.equalTo(400)
         }
+    }
+    func layout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                              heightDimension: .estimated(100))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(100))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 }
 
 extension TrackingResultSpeedInfoCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 10) / 2 , height: (collectionView.frame.height - 20) / 3)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        10
-    }
 }
 
 extension TrackingResultSpeedInfoCell: UICollectionViewDataSource {

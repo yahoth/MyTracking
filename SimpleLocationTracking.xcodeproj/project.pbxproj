@@ -26,6 +26,7 @@
 		764B46E92AED197D00B0B9B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764B46E72AED197D00B0B9B5 /* LaunchScreen.storyboard */; };
 		764B46F22AED1A3C00B0B9B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 764B46F12AED1A3C00B0B9B5 /* SnapKit */; };
 		764B928E2AFA43E000EC8854 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 764B928D2AFA43E000EC8854 /* FloatingPanel */; };
+		7653E1972B68347A005B1950 /* TrackingResultPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7653E1962B68347A005B1950 /* TrackingResultPeriodCell.swift */; };
 		7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CA2B17268800F5826F /* TrackingViewModel.swift */; };
 		7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */; };
 		7669B6EF2B3FDBFB00DDEDE7 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */; };
@@ -77,6 +78,7 @@
 		764B46E52AED197D00B0B9B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		764B46E82AED197D00B0B9B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		764B46EA2AED197D00B0B9B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7653E1962B68347A005B1950 /* TrackingResultPeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultPeriodCell.swift; sourceTree = "<group>"; };
 		7666F2CA2B17268800F5826F /* TrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewModel.swift; sourceTree = "<group>"; };
 		7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSpeedInfoCell.swift; sourceTree = "<group>"; };
 		7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
 				7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */,
+				7653E1962B68347A005B1950 /* TrackingResultPeriodCell.swift */,
 				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
 				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
 			);
@@ -398,6 +401,7 @@
 				7695135E2B56D51400B5B18E /* RealmManager.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
+				7653E1972B68347A005B1950 /* TrackingResultPeriodCell.swift in Sources */,
 				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,
 				761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */,
 				76849A552B18602700DD83F7 /* Double + Time Notation.swift in Sources */,

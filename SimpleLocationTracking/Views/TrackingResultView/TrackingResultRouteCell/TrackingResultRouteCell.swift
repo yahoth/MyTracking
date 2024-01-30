@@ -79,8 +79,8 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         routeLabelView.snp.makeConstraints { make in
             make.top.equalTo(mapView.snp.bottom).offset(padding_body_body)
             make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
-            make.bottom.equalTo(contentView).inset(padding_body_body)
-            make.height.equalTo(60) // label 개당 높이 25, 스택뷰 스페이싱 10
+            make.bottom.equalTo(contentView).inset(padding_body_view)
+//            make.height.equalTo(60)  label 개당 높이 25, 스택뷰 스페이싱 10
         }
     }
 

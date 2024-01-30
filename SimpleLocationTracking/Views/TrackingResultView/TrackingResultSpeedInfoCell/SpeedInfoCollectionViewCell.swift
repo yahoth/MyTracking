@@ -7,7 +7,24 @@
 
 import UIKit
 
-class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
+class SpeedInfoCollectionViewCell: UICollectionViewCell {
+
+
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    let valueLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
+    let unitLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
 
     deinit {
         print("SpeedInfoCollectionViewCell deinit")
@@ -15,7 +32,10 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setLabels()
+        setConstraints()
+        setTitle()
+        setValue()
+        setUnit()
         setContentView()
     }
 
@@ -23,16 +43,49 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setLabels() {
-        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+    func setTitle() {
+        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         titleLabel.textColor = .gray
         titleLabel.textAlignment = .left
-        valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
+
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+    }
+    func setValue() {
+        valueLabel.font = .systemFont(ofSize: 20, weight: .bold)
         valueLabel.textColor = .label
         valueLabel.textAlignment = .left
 
-        unitLabel.font = .systemFont(ofSize: 15)
+        valueLabel.adjustsFontSizeToFitWidth = true
+        valueLabel.numberOfLines = 1
+        valueLabel.allowsDefaultTighteningForTruncation = true
+        valueLabel.minimumScaleFactor = 0.25
+        valueLabel.setContentHuggingPriority(.required, for: .horizontal)
+    }
+    func setUnit() {
+        unitLabel.font = .systemFont(ofSize: 20)
         unitLabel.textColor = .label
+        unitLabel.textAlignment = .left
+        unitLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+    }
+
+    func setConstraints() {
+        [titleLabel, valueLabel, unitLabel].forEach(contentView.addSubview(_:))
+
+        titleLabel.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(contentView)
+        }
+
+        valueLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(padding_body_body)
+            make.leading.equalTo(contentView)
+            make.bottom.equalTo(contentView)/*.inset(padding_body_body)*/
+        }
+
+        unitLabel.snp.makeConstraints { make in
+            make.leading.equalTo(valueLabel.snp.trailing)
+            make.centerY.equalTo(valueLabel)
+            make.trailing.equalTo(contentView)
+        }
     }
 
     func setContentView() {
@@ -50,7 +103,7 @@ class SpeedInfoCollectionViewCell: SpeedInfoItemCell {
 
         case "Time":
             valueLabel.text = info.value.hhmmss
-//            valueLabel.font = .systemFont(ofSize: 15, weight: .bold)
+
         case "Average Speed", "Top Speed":
             unitLabel.text = unit.displayedSpeedUnit
             valueLabel.text = String(format: "%.0f", info.value.speedToSelectedUnit(unit))

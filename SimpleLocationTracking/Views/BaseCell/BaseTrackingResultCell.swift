@@ -21,7 +21,7 @@ class BaseTrackingResultCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         contentView.addSubview(titleLabel)
 
         titleLabel.snp.makeConstraints { make in
@@ -32,6 +32,4 @@ class BaseTrackingResultCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
 }

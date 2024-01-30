@@ -16,9 +16,9 @@ var padding_subTitle_body: CGFloat {
 }
 
 var padding_body_view: CGFloat {
-    16
+    20
 }
 
 var padding_body_body: CGFloat {
-    10
+    16
 }

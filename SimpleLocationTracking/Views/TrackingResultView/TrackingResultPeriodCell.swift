@@ -46,12 +46,12 @@ class TrackingResultPeriodCell: UITableViewCell {
             make.top.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
         periodImage.snp.makeConstraints { make in
-            make.top.equalTo(startDate.snp.bottom)/*.offset(padding_body_body)*/
-            make.horizontalEdges.equalTo(contentView).inset(padding_body_view)
+            make.top.equalTo(startDate.snp.bottom).offset(padding_body_body)
+            make.centerX.equalTo(contentView)
             make.size.equalTo(20)
         }
         endDate.snp.makeConstraints { make in
-            make.top.equalTo(periodImage.snp.bottom)/*.offset(padding_body_body)*/
+            make.top.equalTo(periodImage.snp.bottom).offset(padding_body_body)
             make.bottom.horizontalEdges.equalTo(contentView).inset(padding_body_view)
         }
     }

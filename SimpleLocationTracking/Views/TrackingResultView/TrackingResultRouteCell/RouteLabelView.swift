@@ -37,11 +37,11 @@ class RouteLabelView: UIView {
         startPlaceLabel = UILabel()
         endPlaceLabel = UILabel()
         [startPlaceLabel, endPlaceLabel].forEach { label in
-            label.font = .systemFont(ofSize: 15, weight: .semibold)
+            label.font = .systemFont(ofSize: 18, weight: .semibold)
             label.adjustsFontSizeToFitWidth = true
-            label.numberOfLines = 1
+            label.numberOfLines = 0
             label.allowsDefaultTighteningForTruncation = true
-            label.minimumScaleFactor = 0.25
+            label.minimumScaleFactor = 0.8
         }
     }
 
@@ -51,7 +51,7 @@ class RouteLabelView: UIView {
         endMarkLabel = UILabel()
         endMarkLabel.text = "⛳️"
         [startMarkLabel, endMarkLabel].forEach {
-            $0.font = .systemFont(ofSize: 15)
+            $0.font = .systemFont(ofSize: 18)
             $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         }
     }
@@ -62,7 +62,7 @@ class RouteLabelView: UIView {
         vStackView.axis = .vertical
         vStackView.spacing = padding_body_body
         vStackView.alignment = .fill
-        vStackView.distribution = .fillEqually
+        vStackView.distribution = .fill
     }
 
     func setConstraints() {
@@ -83,9 +83,10 @@ class RouteLabelView: UIView {
 
         label.snp.makeConstraints { make in
             make.centerX.equalTo(container)
-            make.top.bottom.equalTo(container)
+            make.top.equalTo(container)
             make.leading.equalTo(mark.snp.trailing).offset(10)
+            make.trailing.lessThanOrEqualTo(container)
+            make.bottom.equalTo(container)
         }
     }
 }
-

@@ -32,7 +32,7 @@ class LocationManager: NSObject {
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 0.7
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
@@ -52,7 +52,6 @@ class LocationManager: NSObject {
     }
 
     func requestAuthorization() {
-        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
     }
 

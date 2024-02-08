@@ -23,7 +23,6 @@ class LocationManager: NSObject {
     @Published var distance: CLLocationDistance = 0
     @Published var topSpeed: CLLocationSpeed = 0
     @Published var averageSpeed: CLLocationSpeed = 0
-    @Published var rotation: Double = 0
     @Published var coordinates: [CLLocationCoordinate2D] = []
     @Published var points: [CLLocationCoordinate2D]?
     var path: [PathInfo] = []
@@ -32,8 +31,8 @@ class LocationManager: NSObject {
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.distanceFilter = 0.7
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
@@ -49,12 +48,10 @@ class LocationManager: NSObject {
     /// speedAccuracy
     func start() {
         locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
     }
 
     func stop() {
         locationManager.stopUpdatingLocation()
-        locationManager.stopUpdatingHeading()
         previousLocation = nil
     }
 
@@ -120,11 +117,6 @@ extension LocationManager: CLLocationManagerDelegate {
 
         previousLocation = location
 
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        let rotation = -newHeading.trueHeading * Double.pi / 180
-        self.rotation = rotation
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

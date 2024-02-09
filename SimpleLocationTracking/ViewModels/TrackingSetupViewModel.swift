@@ -14,9 +14,6 @@ class TrackingSetupViewModel {
     var subscriptions = Set<AnyCancellable>()
     @Published var status: CLAuthorizationStatus?
 
-    init() {
-    }
-
     func bind() {
         locationManager?.$authorizationStatus
             .sink { [weak self] status in

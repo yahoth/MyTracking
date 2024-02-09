@@ -15,8 +15,6 @@ final class TrackingResultViewModel {
         print("TrackingResultViewModel deinit")
     }
 
-    let locationManager = LocationManager()
-
     var speedInfos: List<SpeedInfo> {
         trackingData.speedInfos
     }
@@ -57,6 +55,6 @@ final class TrackingResultViewModel {
     }
 
     func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async -> String {
-        await locationManager.reverseGeocodeLocation(coordinate)
+        await LocationManager.shared.reverseGeocodeLocation(coordinate)
     }
 }

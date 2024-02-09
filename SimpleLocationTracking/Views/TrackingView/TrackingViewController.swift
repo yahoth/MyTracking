@@ -49,36 +49,9 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         vm.startAndPause()
     }
-//    override func viewIsAppearing(_ animated: Bool) {
-//        print("viewIsAppearing: \(Date())")
-//
-//    }
-//
-//    override func viewWillLayoutSubviews() {
-//        print("viewWillLayoutSubviews: \(Date())")
-//
-//    }
-//    override func viewDidLayoutSubviews() {
-//        print("viewDidLayoutSubviews: \(Date())")
-//
-//    }
-//
-//    override func viewLayoutMarginsDidChange() {
-//        print("viewLayoutMarginsDidChange: \(Date())")
-//
-//    }
-//
-//    override func viewSafeAreaInsetsDidChange() {
-//        print("viewSafeAreaInsetsDidChange: \(Date())")
-//
-//    }
-//
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        print("viewWillTransition: \(Date())")
-//
-//    }
 
     func setConstraints() {
         currentSpeedView.snp.makeConstraints { make in

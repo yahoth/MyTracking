@@ -12,7 +12,8 @@ class LocationManager: NSObject {
     deinit {
         print("LocationManager deinit")
     }
-
+    
+    static let shared = LocationManager()
     private let locationManager = CLLocationManager()
 
     @Published var speed: CLLocationSpeed = 0
@@ -23,12 +24,12 @@ class LocationManager: NSObject {
     @Published var distance: CLLocationDistance = 0
     @Published var topSpeed: CLLocationSpeed = 0
     @Published var averageSpeed: CLLocationSpeed = 0
-    @Published var rotation: Double = 0
     @Published var coordinates: [CLLocationCoordinate2D] = []
     @Published var points: [CLLocationCoordinate2D]?
     var path: [PathInfo] = []
     var previousLocation: CLLocation?
     var floor: Int = 0
+
     override init() {
         super.init()
         locationManager.delegate = self
@@ -37,17 +38,15 @@ class LocationManager: NSObject {
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
-        locationManager.activityType = .otherNavigation
+        locationManager.activityType = .fitness
     }
 
     func start() {
         locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
     }
 
     func stop() {
         locationManager.stopUpdatingLocation()
-        locationManager.stopUpdatingHeading()
         previousLocation = nil
     }
 
@@ -82,17 +81,19 @@ class LocationManager: NSObject {
             }
         }
     }
-
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        guard location.speedAccuracy >= 0, location.horizontalAccuracy >= 0 else { return }
         self.floor += (location.floor?.level ?? 0)
         self.speed = speed(location.speed)
         self.speeds.append(speed(location.speed))
         self.averageSpeed = self.speeds.reduce(0, +) / Double(self.speeds.count)
         self.topSpeed = self.speeds.max() ?? 0
+
+
         self.currentAltitude = location.altitude
         self.coordinates.append(location.coordinate)
 
@@ -106,14 +107,7 @@ extension LocationManager: CLLocationManagerDelegate {
             let points = [previousLocation.coordinate, location.coordinate]
             self.points = points
         }
-
         previousLocation = location
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        let rotation = -newHeading.trueHeading * Double.pi / 180
-        self.rotation = rotation
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

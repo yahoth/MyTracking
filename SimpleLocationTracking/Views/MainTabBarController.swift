@@ -25,6 +25,7 @@ class MainTabBarController: UITabBarController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateNavigationItem(vc: self.selectedViewController!)
     }
 

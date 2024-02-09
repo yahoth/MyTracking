@@ -12,7 +12,8 @@ class LocationManager: NSObject {
     deinit {
         print("LocationManager deinit")
     }
-
+    
+    static let shared = LocationManager()
     private let locationManager = CLLocationManager()
 
     @Published var speed: CLLocationSpeed = 0

@@ -18,7 +18,7 @@ final class TrackingViewModel {
         print("TrackingViewModel deinit")
     }
 
-    private let locationManager = LocationManager()
+    private let locationManager = LocationManager.shared
     private let settingManager = SettingManager.shared
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()

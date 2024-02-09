@@ -156,8 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */,
-				767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */,
-				762ED1822B76AA8800734720 /* StartButtonView.swift */,
+				762ED1882B76BFBD00734720 /* TrackingSetupView */,
 				761A76F92B2AE2F800FABC7D /* TrackingView */,
 				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 				767BC5CC2B3D7314004C8765 /* History */,
@@ -217,6 +216,15 @@
 				762ED1862B76BBBD00734720 /* MenuButton.swift */,
 			);
 			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		762ED1882B76BFBD00734720 /* TrackingSetupView */ = {
+			isa = PBXGroup;
+			children = (
+				767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */,
+				762ED1822B76AA8800734720 /* StartButtonView.swift */,
+			);
+			path = TrackingSetupView;
 			sourceTree = "<group>";
 		};
 		764B46D02AED197C00B0B9B5 = {

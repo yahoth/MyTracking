@@ -11,29 +11,68 @@ import Combine
 import SnapKit
 
 class TrackingSetupViewController: UIViewController {
-    var startTrackingButton: UIButton!
     var vm: TrackingSetupViewModel!
     var subscriptions = Set<AnyCancellable>()
+
+    var startTrackingButton: AnimatedRoundedButton!
+
+    let unitMenuButton: MenuButton = {
+        let button = MenuButton(frame: .zero, cornerRadius: .rounded)
+        button.configure(name: "Speed Unit")
+        button.update(image: "gauge.with.dots.needle.67percent", count: "4 units", selectedItem: "KM/H")
+        return button
+    }()
+
+    let modeMenuButton: MenuButton = {
+        let button = MenuButton(frame: .zero, cornerRadius: .rounded)
+        button.configure(name: "Travel Mode")
+        button.update(image: "car", count: "6 modes", selectedItem: "Car")
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         vm = TrackingSetupViewModel()
-        startTrackingButton = UIButton()
-        startTrackingButton.setTitle("Go Tracking", for: .normal)
-        startTrackingButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        startTrackingButton.setTitleColor(.accent, for: .normal)
-        startTrackingButton.addTarget(self, action: #selector(goTrackingButtonTapped), for: .touchUpInside)
-        startTrackingButton.layer.borderWidth = 10
-        startTrackingButton.layer.borderColor = UIColor.accent.cgColor
-        startTrackingButton.layer.cornerRadius = 50
-        view.addSubview(startTrackingButton)
-        startTrackingButton.snp.makeConstraints { make in
-            make.size.equalTo(200)
-            make.centerX.centerY.equalTo(view)
-        }
+
+        setStartButton()
+        setConstraints()
+
         bind()
     }
+
+    func setStartButton() {
+        startTrackingButton = AnimatedRoundedButton(frame: .zero, cornerRadius: .rounded)
+        let view = StartButtonView()
+        startTrackingButton.addSubview(view)
+        startTrackingButton.backgroundColor = .secondarySystemBackground
+        startTrackingButton.addTarget(self, action: #selector(goTrackingButtonTapped), for: .touchUpInside)
+        view.snp.makeConstraints { make in
+            make.edges.equalTo(startTrackingButton).inset(UIEdgeInsets(top: 10, left: 26, bottom: 10, right: 26))
+        }
+    }
+
+    func setConstraints() {
+        view.addSubview(startTrackingButton)
+        startTrackingButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(view.snp.height).multipliedBy(0.15)
+        }
+
+        let stackView = UIStackView(arrangedSubviews: [modeMenuButton, unitMenuButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.bottom.equalTo(startTrackingButton.snp.top).inset(-16)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(view.snp.height).multipliedBy(0.25)
+        }
+    }
+
 
     func bind() {
         vm.$status
@@ -43,6 +82,7 @@ class TrackingSetupViewController: UIViewController {
                 self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
             }.store(in: &subscriptions)
     }
+
 
     @objc func goTrackingButtonTapped() {
         if vm.locationManager == nil {

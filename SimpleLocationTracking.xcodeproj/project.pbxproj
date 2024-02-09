@@ -15,6 +15,9 @@
 		761A76FC2B2AE3C900FABC7D /* TrackingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */; };
 		762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */; };
 		7624E1332B28AA8700094845 /* Double + UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624E1322B28AA8700094845 /* Double + UnitOfSpeed.swift */; };
+		762ED1812B76AA6500734720 /* AnimatedRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1802B76AA6500734720 /* AnimatedRoundedButton.swift */; };
+		762ED1832B76AA8800734720 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1822B76AA8800734720 /* StartButtonView.swift */; };
+		762ED1872B76BBBD00734720 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1862B76BBBD00734720 /* MenuButton.swift */; };
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
 		763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */; };
 		76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */; };
@@ -67,6 +70,9 @@
 		761A76FB2B2AE3C800FABC7D /* TrackingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultViewModel.swift; sourceTree = "<group>"; };
 		762195E22B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultRouteCellViewModel.swift; sourceTree = "<group>"; };
 		7624E1322B28AA8700094845 /* Double + UnitOfSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + UnitOfSpeed.swift"; sourceTree = "<group>"; };
+		762ED1802B76AA6500734720 /* AnimatedRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedRoundedButton.swift; sourceTree = "<group>"; };
+		762ED1822B76AA8800734720 /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
+		762ED1862B76BBBD00734720 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
 		763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSpeedView.swift; sourceTree = "<group>"; };
 		76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			children = (
 				767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */,
 				767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */,
+				762ED1822B76AA8800734720 /* StartButtonView.swift */,
 				761A76F92B2AE2F800FABC7D /* TrackingView */,
 				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 				767BC5CC2B3D7314004C8765 /* History */,
@@ -203,6 +210,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		762ED17F2B76AA5800734720 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				762ED1802B76AA6500734720 /* AnimatedRoundedButton.swift */,
+				762ED1862B76BBBD00734720 /* MenuButton.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
 		764B46D02AED197C00B0B9B5 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +246,7 @@
 				7624E1352B28AAC200094845 /* Utils */,
 				7624E1342B28AAA500094845 /* Enums */,
 				76802AE02B21F69900B2B9E5 /* Extension */,
+				762ED17F2B76AA5800734720 /* CustomUI */,
 				764B46E52AED197D00B0B9B5 /* Assets.xcassets */,
 				764B46E72AED197D00B0B9B5 /* LaunchScreen.storyboard */,
 				764B46EA2AED197D00B0B9B5 /* Info.plist */,
@@ -369,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762ED1872B76BBBD00734720 /* MenuButton.swift in Sources */,
 				768346322B62B5E80053EF9B /* HistoryHeaderView.swift in Sources */,
 				7624E1332B28AA8700094845 /* Double + UnitOfSpeed.swift in Sources */,
 				767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */,
@@ -379,6 +397,7 @@
 				763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */,
 				76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */,
 				767D41C32B3EB67A00C66905 /* TrackingData.swift in Sources */,
+				762ED1812B76AA6500734720 /* AnimatedRoundedButton.swift in Sources */,
 				76A582662B6040ED00329EE2 /* BodyContainerView.swift in Sources */,
 				761A76EF2B2AAEC000FABC7D /* TrackingResultViewController.swift in Sources */,
 				76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */,
@@ -393,6 +412,7 @@
 				7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */,
 				7695135A2B56D4D600B5B18E /* Array + toRealmList.swift in Sources */,
 				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,
+				762ED1832B76AA8800734720 /* StartButtonView.swift in Sources */,
 				767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */,
 				7669B6EF2B3FDBFB00DDEDE7 /* HistoryViewModel.swift in Sources */,
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,

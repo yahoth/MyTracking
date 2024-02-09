@@ -28,24 +28,18 @@ class LocationManager: NSObject {
     var path: [PathInfo] = []
     var previousLocation: CLLocation?
     var floor: Int = 0
+
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 0.7
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
         locationManager.activityType = .fitness
     }
-    /// 목표(내일 테스트-> 산책, 뛰기)
-    /// 최대한 정확한 정보를 출력할 수 있도록 설정하기
-    /// distanceFilter
-    /// desiredAccuracy
-    ///
-    /// horizontalAccuracy
-    /// vertialAccuracy
-    /// speedAccuracy
+
     func start() {
         locationManager.startUpdatingLocation()
     }
@@ -86,7 +80,6 @@ class LocationManager: NSObject {
             }
         }
     }
-
 }
 
 extension LocationManager: CLLocationManagerDelegate {
@@ -94,7 +87,6 @@ extension LocationManager: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         guard location.speedAccuracy >= 0, location.horizontalAccuracy >= 0 else { return }
         self.floor += (location.floor?.level ?? 0)
-
         self.speed = speed(location.speed)
         self.speeds.append(speed(location.speed))
         self.averageSpeed = self.speeds.reduce(0, +) / Double(self.speeds.count)
@@ -114,9 +106,7 @@ extension LocationManager: CLLocationManagerDelegate {
             let points = [previousLocation.coordinate, location.coordinate]
             self.points = points
         }
-
         previousLocation = location
-
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

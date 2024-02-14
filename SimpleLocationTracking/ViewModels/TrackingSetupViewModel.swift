@@ -11,6 +11,7 @@ import Combine
 
 class TrackingSetupViewModel {
     var locationManager: LocationManager?
+    let settingManager = SettingManager.shared
     var subscriptions = Set<AnyCancellable>()
     @Published var status: CLAuthorizationStatus?
 

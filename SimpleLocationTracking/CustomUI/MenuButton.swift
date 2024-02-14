@@ -98,13 +98,13 @@ class MenuButton: AnimatedRoundedButton {
         }
     }
 
-    func configure(name: String) {
+    func configure(name: String, count: String) {
         self.name.text = name
+        self.count.text = count
     }
 
-    func update(image: String, count: String, selectedItem: String) {
+    func update(image: String, selectedItem: String) {
         self.thumbnailImageView.image = UIImage(systemName: image)
-        self.count.text = count
         self.selectedItem.text = selectedItem
     }
 }

@@ -138,28 +138,35 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     func alertWhenStopButtonTapped() {
-        let isTimeOverTenSeconds = vm.totalElapsedTime >= 1
-        let message = isTimeOverTenSeconds ? "종료하시겠습니까?" : "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?"
+        let canSave = vm.totalElapsedTime >= 1
+        let message = canSave ? "종료하시겠습니까?" : "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?"
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
-            if isTimeOverTenSeconds {
-                let vc = TrackingResultViewController()
-
-                Task {
-                    await vc.vm = TrackingResultViewModel(trackingData: self?.vm.createTrackingResult() ?? TrackingData(), viewType: .modal)
-                    let navigationController = UINavigationController(rootViewController: vc)
-                    navigationController.modalPresentationStyle = .fullScreen
-                    self?.present(navigationController, animated: true)
-                }
-            } else {
-                self?.dismiss(animated: true)
-            }
+            self?.finishTracking(canSave: canSave)
         })
 
         alert.addAction(UIAlertAction(title: "No", style: .cancel))
 
         present(alert, animated: true)
+    }
+
+    func finishTracking(canSave: Bool) {
+        if canSave {
+            let vc = TrackingResultViewController()
+
+            Task {
+                await vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResult(), viewType: .modal)
+                let navigationController = UINavigationController(rootViewController: vc)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true)
+                LocationManager.shared.reset()
+            }
+        } else {
+            self.dismiss(animated: true)
+            LocationManager.shared.reset()
+        }
+
     }
 
     private func setupChangeUnitButton() {

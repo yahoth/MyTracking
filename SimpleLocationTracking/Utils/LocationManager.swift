@@ -47,7 +47,20 @@ class LocationManager: NSObject {
 
     func stop() {
         locationManager.stopUpdatingLocation()
+    }
+
+    func reset() {
+        speed = 0
+        speeds = []
+        altitude = 0
+        currentAltitude = 0
+        distance = 0
+        topSpeed = 0
+        averageSpeed = 0
+        coordinates = []
+        points = nil
         previousLocation = nil
+        floor = 0
     }
 
     func requestAuthorization() {

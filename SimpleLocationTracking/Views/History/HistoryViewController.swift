@@ -29,6 +29,7 @@ class HistoryViewController: UIViewController {
         createCollectionView()
         createDatasource()
         updateCollectionView()
+        bind()
     }
 
     func createCollectionView() {
@@ -100,6 +101,14 @@ class HistoryViewController: UIViewController {
         datasource.apply(snapshot) { [weak self] in
             self?.vm.realmManager.deleteObjectsOf(type: item)
         }
+    }
+
+    func bind() {
+        vm.settingManager.$unit
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }.store(in: &subscriptions)
     }
 
     func layout() -> UICollectionViewCompositionalLayout {

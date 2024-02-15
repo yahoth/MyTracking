@@ -49,7 +49,7 @@ final class TrackingViewModel {
 
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
-        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
+        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation, activityType: settingManager.activityType)
         DispatchQueue.main.async {
             RealmManager.shared.create(object: trackingData)
         }

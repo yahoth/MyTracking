@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum ActivicyType: String, CaseIterable {
+import RealmSwift
+
+enum ActivicyType: String, CaseIterable, PersistableEnum {
     case automobile // automotiveNavigation
     case running // fitness
     case walking // fitness

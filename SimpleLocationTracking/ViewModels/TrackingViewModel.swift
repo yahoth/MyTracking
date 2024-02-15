@@ -33,6 +33,7 @@ final class TrackingViewModel {
         ]
     }
 
+    @MainActor
     func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [

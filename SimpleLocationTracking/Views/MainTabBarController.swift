@@ -63,7 +63,7 @@ class MainTabBarController: UITabBarController {
         components.day = day.randomElement()
         let date = calendar.date(from: components)!
 
-        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfos: [PathInfo()].toRealmList(), startDate: date, endDate: Date(), startLocation: "\(components.year!)-\(components.month!)-\(components.day!)", endLocation: "hello")
+        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfos: [PathInfo()].toRealmList(), startDate: date, endDate: Date(), startLocation: "\(components.year!)-\(components.month!)-\(components.day!)", endLocation: "hello", activityType: .airplane)
 
         RealmManager.shared.create(object: item)
     }

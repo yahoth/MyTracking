@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 class LocationManager: NSObject {
     deinit {
@@ -15,6 +16,7 @@ class LocationManager: NSObject {
     
     static let shared = LocationManager()
     private let locationManager = CLLocationManager()
+    private var subscriptions = Set<AnyCancellable>()
 
     @Published var speed: CLLocationSpeed = 0
     var speeds: [CLLocationSpeed] = []
@@ -33,12 +35,40 @@ class LocationManager: NSObject {
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 0.7
-        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
-        locationManager.activityType = .fitness
+        bind()
+    }
+
+    func bind() {
+        SettingManager.shared.$activityType
+            .sink { [weak self] type in
+                guard let self else { return }
+                self.update(type: type)
+                print("accuracy: \(self.locationManager.desiredAccuracy), filter: \(self.locationManager.distanceFilter), type: \(self.locationManager.activityType)")
+            }.store(in: &subscriptions)
+    }
+
+    func update(type: ActivicyType) {
+        switch type {
+        case .automobile:
+            setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .automotiveNavigation)
+        case .train, .offroad_vehicle:
+            setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .otherNavigation)
+        case .airplane:
+            setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .airborne)
+        case .running, .walking, .hiking, .cycling:
+            setup(accuracy: kCLLocationAccuracyBest, type: .otherNavigation)
+        }
+
+        func setup(accuracy: CLLocationAccuracy, type: CLActivityType) {
+            locationManager.desiredAccuracy = accuracy
+            locationManager.distanceFilter = 0.7
+            locationManager.activityType = type
+        }
     }
 
     func start() {
@@ -47,7 +77,21 @@ class LocationManager: NSObject {
 
     func stop() {
         locationManager.stopUpdatingLocation()
+    }
+
+    func reset() {
+        speed = 0
+        speeds = []
+        altitude = 0
+        currentAltitude = 0
+        distance = 0
+        topSpeed = 0
+        averageSpeed = 0
+        coordinates = []
+        points = nil
         previousLocation = nil
+        floor = 0
+        path = []
     }
 
     func requestAuthorization() {
@@ -85,8 +129,13 @@ class LocationManager: NSObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
         guard let location = locations.last else { return }
+        guard Date().timeIntervalSince(location.timestamp) < 1 else { return }
+
+        print("speed: \(location.speed), HAccuracy: \(location.horizontalAccuracy), VAccuracy: \(location.verticalAccuracy)")
         guard location.speedAccuracy >= 0, location.horizontalAccuracy >= 0 else { return }
+
         self.floor += (location.floor?.level ?? 0)
         self.speed = speed(location.speed)
         self.speeds.append(speed(location.speed))
@@ -128,5 +177,15 @@ extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
         print("*****didFinishDeferredUpdatesWithError, \(String(describing: error?.localizedDescription))*****")
+    }
+
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        print("*****DidPauseLocationUpdates*****")
+        print("time: \(Date())")
+    }
+
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+        print("*****DidResumeLocationUpdates*****")
+        print("time: \(Date())")
     }
 }

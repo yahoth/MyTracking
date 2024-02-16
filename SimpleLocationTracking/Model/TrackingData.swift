@@ -18,8 +18,9 @@ class TrackingData: Object {
     @Persisted var startLocation: String?
     @Persisted var endLocation: String?
     @Persisted var tripType: TripType = .oneWay
+    @Persisted var activityType: ActivicyType
 
-    convenience init(speedInfos: List<SpeedInfo>, pathInfos: List<PathInfo>, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay
+    convenience init(speedInfos: List<SpeedInfo>, pathInfos: List<PathInfo>, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay, activityType: ActivicyType
     ) {
         self.init()
         self.speedInfos = speedInfos
@@ -29,6 +30,7 @@ class TrackingData: Object {
         self.startLocation = startLocation
         self.endLocation = endLocation
         self.tripType = tripType
+        self.activityType = activityType
     }
 }
 

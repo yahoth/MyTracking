@@ -18,11 +18,12 @@ final class TrackingViewModel {
         print("TrackingViewModel deinit")
     }
 
-    private let locationManager = LocationManager.shared
+    let locationManager = LocationManager.shared
     private let settingManager = SettingManager.shared
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
     var startDate: Date?
+    var endDate: Date?
 
     var speedInfos: [SpeedInfo] {
         [
@@ -33,11 +34,12 @@ final class TrackingViewModel {
         ]
     }
 
+    @MainActor
     func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [
             SpeedInfo(value: locationManager.distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
-            SpeedInfo(value: totalElapsedTime, unit: nil, title: "Time"),
+            SpeedInfo(value: endDate?.timeIntervalSince(startDate ?? Date()) ?? totalElapsedTime, unit: nil, title: "Time"),
             SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
             SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
             SpeedInfo(value: locationManager.altitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
@@ -48,7 +50,7 @@ final class TrackingViewModel {
 
         let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
 
-        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: Date(), startLocation: startLocation, endLocation: endLocation)
+        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: endDate ?? Date(), startLocation: startLocation, endLocation: endLocation, activityType: settingManager.activityType)
         DispatchQueue.main.async {
             RealmManager.shared.create(object: trackingData)
         }

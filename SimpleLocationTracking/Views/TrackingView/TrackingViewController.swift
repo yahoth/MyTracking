@@ -160,11 +160,11 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true)
-                LocationManager.shared.reset()
+                vm.locationManager.reset()
             }
         } else {
             self.dismiss(animated: true)
-            LocationManager.shared.reset()
+            vm.locationManager.reset()
         }
 
     }

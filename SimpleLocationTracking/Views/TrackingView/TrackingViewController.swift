@@ -121,6 +121,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             .sink { [weak self] bool in
                 if bool {
                     self?.alertWhenStopButtonTapped()
+                    self?.vm.endDate = Date()
                 }
             }.store(in: &subscriptions)
 

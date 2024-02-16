@@ -10,28 +10,31 @@ import Foundation
 import RealmSwift
 
 enum ActivicyType: String, CaseIterable, PersistableEnum {
-    case automobile // automotiveNavigation
-    case running // fitness
-    case walking // fitness
-    case hiking // fitness
-    case cycling // otherNavigation
-    case train // otherNavigation
-    case airplane // airborne
+    case automobile
+    case offroad_vehicle = "Off-road Vehicle"
+    case running
+    case walking
+    case hiking
+    case cycling
+    case train
+    case airplane
 
     var image: String {
         switch self {
         case .automobile:
             return "car"
+        case .offroad_vehicle:
+            return "jeep"
         case .running:
-            return "figure.run"
+            return "running"
         case .walking:
-            return "figure.walk"
+            return "walking"
         case .hiking:
-            return "figure.hiking"
+            return "hiking"
         case .cycling:
-            return "figure.outdoor.cycle"
+            return "cycling"
         case .train:
-            return "train.side.front.car"
+            return "train"
         case .airplane:
             return "airplane"
         }

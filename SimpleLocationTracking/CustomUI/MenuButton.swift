@@ -104,7 +104,7 @@ class MenuButton: AnimatedRoundedButton {
     }
 
     func update(image: String, selectedItem: String) {
-        self.thumbnailImageView.image = UIImage(systemName: image)
+        self.thumbnailImageView.image = UIImage(named: image)
         self.selectedItem.text = selectedItem
     }
 }

@@ -26,7 +26,7 @@ class TrackingSetupViewController: UIViewController {
     let unitMenuButton: MenuButton = {
         let button = MenuButton(frame: .zero, cornerRadius: .rounded)
         button.configure(name: "Speed Unit", count: "\(UnitOfSpeed.allCases.count) units")
-        button.update(image: "gauge.with.dots.needle.67percent", selectedItem: "KM/H")
+        button.update(image: "speed", selectedItem: "KM/H")
         return button
     }()
 
@@ -54,7 +54,7 @@ class TrackingSetupViewController: UIViewController {
         vm.settingManager.$unit
             .receive(on: DispatchQueue.main)
             .sink { [weak self] unit in
-                self?.unitMenuButton.update(image: "gauge.with.dots.needle.67percent", selectedItem: unit.displayedSpeedUnit)
+                self?.unitMenuButton.update(image: "speed", selectedItem: unit.displayedSpeedUnit)
             }.store(in: &subscriptions)
 
         vm.settingManager.$activityType
@@ -76,7 +76,7 @@ class TrackingSetupViewController: UIViewController {
 
     func setModeMenu() {
         let menu = ActivicyType.allCases.map { [weak self] mode in
-            UIAction(title: mode.rawValue, image: UIImage(systemName: mode.image)) { _ in
+            UIAction(title: mode.rawValue.capitalized, image: UIImage(named: mode.image)) { _ in
                 self?.vm.settingManager.updateActivityType(mode)
             }
         }

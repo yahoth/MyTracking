@@ -29,7 +29,7 @@ class HistoryCell: UICollectionViewCell {
 
     var typeImageContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         return view
     }()
 
@@ -37,7 +37,6 @@ class HistoryCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.tintColor = .accent
         imageView.contentMode = .scaleAspectFit
-//        imageView.image = UIImage(systemName: "figure.outdoor.cycle")
         return imageView
     }()
 
@@ -130,7 +129,7 @@ class HistoryCell: UICollectionViewCell {
 
     func configure(item: TrackingData, unit: UnitOfSpeed) {
         dateLabel.text = item.startDate.formattedString(.medium)
-        typeImageView.image = UIImage(systemName: item.activityType.image)
+        typeImageView.image = UIImage(named: item.activityType.image)
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
 

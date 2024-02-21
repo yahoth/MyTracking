@@ -52,7 +52,6 @@ class HistoryCell: UICollectionViewCell {
         typeImageContainer.addSubview(typeImageView)
     }
 
-    // height: 약 82
     func setTopContainerConstraints() {
         typeImageView.snp.makeConstraints { make in
             make.size.equalTo(30)
@@ -60,16 +59,16 @@ class HistoryCell: UICollectionViewCell {
         }
 
         typeImageContainer.snp.makeConstraints { make in
-            make.centerY.equalTo(topContainer)
-            make.leading.top.equalTo(topContainer).inset(padding_body_view)
+            make.leading.verticalEdges.equalTo(topContainer).inset(padding_body_view)
         }
 
         dateLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(topContainer)
-            make.top.trailing.equalTo(topContainer).inset(padding_body_view)
             make.leading.equalTo(typeImageContainer.snp.trailing).offset(padding_body_body)
+            make.centerY.equalTo(typeImageContainer)
+            make.trailing.lessThanOrEqualTo(topContainer)
         }
     }
+
 
     /// 중간부 컨테이너
     var bodyContainer = BodyContainerView()
@@ -92,8 +91,6 @@ class HistoryCell: UICollectionViewCell {
         }
     }
 
-
-
     /// 하단 컨테이너
     var bottomContainer: UIView = {
         let view = UIView()
@@ -108,7 +105,7 @@ class HistoryCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.layer.cornerRadius = 12 // 원하는 radius 값을 설정하세요.
+        contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
 
         contentView.addSubview(topStackView)
@@ -119,6 +116,7 @@ class HistoryCell: UICollectionViewCell {
         setMidContainerConstraints()
         setBottmContainer()
         setBottomContainerConstraints()
+        typeImageContainer.layer.masksToBounds = true
     }
 
     func setConstraints() {
@@ -130,11 +128,11 @@ class HistoryCell: UICollectionViewCell {
     func configure(item: TrackingData, unit: UnitOfSpeed) {
         dateLabel.text = item.startDate.formattedString(.medium)
         typeImageView.image = UIImage(named: item.activityType.image)
+
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
-
         bodyContainer.time.text = timeFormatter(Int(item.speedInfos.first { $0.title == "Time" }?.value ?? 0))
-        let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
+                let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
         bodyContainer.distance.text = "\(String(format: "%.1f", distanceInfo?.value.distanceToSelectedUnit(unit) ?? 0)) \(unit.correspondingDistanceUnit)"
     }
 

@@ -40,12 +40,14 @@ class BodyContainerView: UIView {
         [leftLabel, rightLabel].forEach(container.addSubview(_:))
         leftLabel.snp.makeConstraints { make in
             make.width.equalTo(container).multipliedBy(0.7)
-            make.leading.top.centerY.equalTo(container)
+            make.leading.top.equalTo(container)
+            make.bottom.lessThanOrEqualTo(container)
         }
         rightLabel.snp.makeConstraints { make in
             make.width.equalTo(container).multipliedBy(0.25)
             make.trailing.equalTo(container)
             make.top.equalTo(leftLabel.snp.top)
+            make.bottom.lessThanOrEqualTo(container)
             make.leading.greaterThanOrEqualTo(leftLabel.snp.trailing)
         }
     }
@@ -77,12 +79,17 @@ class BodyContainerView: UIView {
 
     func setLabels(_ label: UILabel) {
         label.textColor = .gray
+        time.adjustsFontSizeToFitWidth = true
+        time.minimumScaleFactor = 0.5
+        time.numberOfLines = 1
+
     }
 
     func setDataLabels(_ label: UILabel) {
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 0
+
     }
 
     func setTimeLabel() {

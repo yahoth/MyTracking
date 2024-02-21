@@ -39,7 +39,7 @@ class HistoryViewController: UIViewController {
             make.edges.equalTo(view)
         }
         collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: "HistoryCell")
-        collectionView.register(HistoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HistoryHeaderView.identifier)
+//        collectionView.register(HistoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HistoryHeaderView.identifier)
         collectionView.delegate = self
     }
 
@@ -112,37 +112,33 @@ class HistoryViewController: UIViewController {
     }
 
     func layout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            var listConfiguration = UICollectionLayoutListConfiguration(appearance: .plain)
-            listConfiguration.showsSeparators = false
-            listConfiguration.backgroundColor = .clear
-            listConfiguration.trailingSwipeActionsConfigurationProvider = self?.makeSwipeActions
-//            listConfiguration.headerMode = sectionIndex == 0 ? .supplementary : .none
-            let section = NSCollectionLayoutSection.list(using: listConfiguration,
-                                                         layoutEnvironment: layoutEnvironment)
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top)
-            section.boundarySupplementaryItems = [sectionHeader]
-            section.interGroupSpacing = padding_body_body
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding_body_view, bottom: padding_body_view, trailing: padding_body_view)
-            return section
-        }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.interGroupSpacing = padding_body_body
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding_body_view, bottom: padding_body_view, trailing: padding_body_view)
+        let layout = UICollectionViewCompositionalLayout(section: section)
 
         return layout
-
     }
 
-    private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
-        guard let indexPath, let item = datasource.itemIdentifier(for: indexPath) else { return nil }
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
-            self?.delete(item: item)
-            completion(false)
-        }
-        return UISwipeActionsConfiguration(actions: [deleteAction])
-    }
+//    private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+//        guard let indexPath, let item = datasource.itemIdentifier(for: indexPath) else { return nil }
+//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+//            self?.delete(item: item)
+//            completion(false)
+//        }
+//        return UISwipeActionsConfiguration(actions: [deleteAction])
+//    }
 
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIAction {
         return UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in

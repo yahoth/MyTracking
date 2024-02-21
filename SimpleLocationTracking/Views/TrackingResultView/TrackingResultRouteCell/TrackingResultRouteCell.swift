@@ -67,7 +67,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     func setMapView() {
         mapView = MKMapView()
         mapView.isUserInteractionEnabled = false
-
+        
         mapViewContainer.addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.edges.equalTo(mapViewContainer)

@@ -40,16 +40,11 @@ class MainTabBarController: UITabBarController {
             title = "Tracking History"
 
             let addItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .done, target: self, action: #selector(addItem))
-            let resetItem = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(resetItem))
-            navigationItem.rightBarButtonItems = [addItem, resetItem]
+            navigationItem.rightBarButtonItems = [addItem]
 
         default:
             break
         }
-    }
-
-    @objc func resetItem() {
-        RealmManager.shared.deleteAll()
     }
 
     @objc func addItem() {

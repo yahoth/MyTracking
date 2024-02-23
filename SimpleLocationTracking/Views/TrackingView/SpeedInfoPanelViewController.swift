@@ -85,7 +85,7 @@ class SpeedInfoPanelViewController: UIViewController {
     }
 
     func updateNavigationTitle() {
-        navigationItem.title = vm.hhmmss
+        navigationItem.title = vm.totalElapsedTime.hhmmss
     }
 
     func updateMovePanelButton(state: FloatingPanelState) {

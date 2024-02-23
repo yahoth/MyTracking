@@ -48,19 +48,19 @@ class MainTabBarController: UITabBarController {
     }
 
     @objc func addItem() {
-        var components = DateComponents()
-        let calendar = Calendar.current
-        let years = 2020...2025
-        let months = 1...12
-        let day = 1...31
-        components.year = years.randomElement()
-        components.month = months.randomElement()
-        components.day = day.randomElement()
-        let date = calendar.date(from: components)!
-
-        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfos: [PathInfo()].toRealmList(), startDate: date, endDate: Date(), startLocation: "\(components.year!)-\(components.month!)-\(components.day!)", endLocation: "hello", activityType: .airplane)
-
-        RealmManager.shared.create(object: item)
+//        var components = DateComponents()
+//        let calendar = Calendar.current
+//        let years = 2020...2025
+//        let months = 1...12
+//        let day = 1...31
+//        components.year = years.randomElement()
+//        components.month = months.randomElement()
+//        components.day = day.randomElement()
+//        let date = calendar.date(from: components)!
+//
+//        let item = TrackingData(speedInfos: [SpeedInfo()].toRealmList(), pathInfo: PathInfo(), startDate: date, endDate: Date(), startLocation: "\(components.year!)-\(components.month!)-\(components.day!)", endLocation: "hello", activityType: .airplane)
+//
+//        RealmManager.shared.create(object: item)
     }
 }
 

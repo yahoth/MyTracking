@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SnapKit
+
 class BodyContainerView: UIView {
 
     /// Labels

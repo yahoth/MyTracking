@@ -12,7 +12,7 @@ import RealmSwift
 class TrackingData: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var speedInfos: List<SpeedInfo>
-    @Persisted var pathInfos: List<PathInfo>
+    @Persisted var pathInfo: PathInfo?
     @Persisted var startDate: Date
     @Persisted var endDate: Date
     @Persisted var startLocation: String?
@@ -20,11 +20,11 @@ class TrackingData: Object {
     @Persisted var tripType: TripType = .oneWay
     @Persisted var activityType: ActivicyType
 
-    convenience init(speedInfos: List<SpeedInfo>, pathInfos: List<PathInfo>, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay, activityType: ActivicyType
+    convenience init(speedInfos: List<SpeedInfo>, pathInfo: PathInfo, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay, activityType: ActivicyType
     ) {
         self.init()
         self.speedInfos = speedInfos
-        self.pathInfos = pathInfos
+        self.pathInfo = pathInfo
         self.startDate = startDate
         self.endDate = endDate
         self.startLocation = startLocation

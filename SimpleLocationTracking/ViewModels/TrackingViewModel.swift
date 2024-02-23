@@ -46,11 +46,17 @@ final class TrackingViewModel {
             SpeedInfo(value: floor, unit: "floor", title: "Floor")
         ]
 
-        let startLocation = await locationManager.reverseGeocodeLocation(startCoordinate)
+        let coordinates = locationManager.locationInfo?.timedLocationDatas ?? []
 
-        let endLocation = await locationManager.reverseGeocodeLocation(endCoordinate)
+        let startLocation = await locationManager.reverseGeocodeLocation(coordinates.first?.coordinate ?? CLLocationCoordinate2D())
 
-        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfos: locationManager.path.toRealmList(), startDate: startDate ?? Date(), endDate: endDate ?? Date(), startLocation: startLocation, endLocation: endLocation, activityType: settingManager.activityType)
+        let endLocation = await locationManager.reverseGeocodeLocation(coordinates.last?.coordinate ?? CLLocationCoordinate2D())
+        let speeds = locationManager.locationInfo?.speeds ?? []
+        let altitudes = locationManager.locationInfo?.locations.map { $0.altitude } ?? []
+        let pathInfo = PathInfo(coordinates: coordinates, speeds: speeds)
+
+        let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfo: pathInfo, startDate: startDate ?? Date(), endDate: endDate ?? Date(), startLocation: startLocation, endLocation: endLocation, activityType: settingManager.activityType)
+
         DispatchQueue.main.async {
             RealmManager.shared.create(object: trackingData)
         }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class SpeedInfoCollectionViewCell: UICollectionViewCell {
 
 
@@ -111,10 +113,6 @@ class SpeedInfoCollectionViewCell: UICollectionViewCell {
         case "Altitude":
             unitLabel.text = unit.correspondingAltitudeUnit
             valueLabel.text = String(format: "%.0f", info.value.altitudeToSelectedUnit(unit))
-
-        case "Floor":
-            unitLabel.text = "floor"
-            valueLabel.text = String(format: "%.0f", info.value)
         default:
             break
         }

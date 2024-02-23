@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 
+
 class LocationManager: NSObject {
     deinit {
         print("LocationManager deinit")
@@ -17,27 +18,13 @@ class LocationManager: NSObject {
     static let shared = LocationManager()
     private let locationManager = CLLocationManager()
     private var subscriptions = Set<AnyCancellable>()
-
-    @Published var speed: CLLocationSpeed = 0
-    var speeds: [CLLocationSpeed] = []
-    @Published var altitude: Double = 0
-    @Published var currentAltitude: Double = 0
     @Published var authorizationStatus: CLAuthorizationStatus  = .notDetermined
-    @Published var distance: CLLocationDistance = 0
-    @Published var topSpeed: CLLocationSpeed = 0
-    @Published var averageSpeed: CLLocationSpeed = 0
-    @Published var coordinates: [CLLocationCoordinate2D] = []
-    @Published var points: [CLLocationCoordinate2D]?
-    var path: [PathInfo] = []
-    var previousLocation: CLLocation?
-    var floor: Int = 0
+    var locationInfo: TrackingManager?
 
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
         bind()
@@ -48,7 +35,6 @@ class LocationManager: NSObject {
             .sink { [weak self] type in
                 guard let self else { return }
                 self.update(type: type)
-                print("accuracy: \(self.locationManager.desiredAccuracy), filter: \(self.locationManager.distanceFilter), type: \(self.locationManager.activityType)")
             }.store(in: &subscriptions)
     }
 
@@ -66,7 +52,7 @@ class LocationManager: NSObject {
 
         func setup(accuracy: CLLocationAccuracy, type: CLActivityType) {
             locationManager.desiredAccuracy = accuracy
-            locationManager.distanceFilter = 0.7
+//            locationManager.distanceFilter = kCLDistanceFilterNone
             locationManager.activityType = type
         }
     }
@@ -79,29 +65,10 @@ class LocationManager: NSObject {
         locationManager.stopUpdatingLocation()
     }
 
-    func reset() {
-        speed = 0
-        speeds = []
-        altitude = 0
-        currentAltitude = 0
-        distance = 0
-        topSpeed = 0
-        averageSpeed = 0
-        coordinates = []
-        points = nil
-        previousLocation = nil
-        floor = 0
-        path = []
-    }
-
     func requestAuthorization() {
         locationManager.requestWhenInUseAuthorization()
     }
-
-    func speed(_ speed: Double) -> Double {
-        return max(speed, 0)
-    }
-
+    
     func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D, maxAttempts: Int = 3, currentAttempt: Int = 0) async -> String {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -125,38 +92,16 @@ class LocationManager: NSObject {
             }
         }
     }
+
+
+
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        guard let location = locations.last else { return }
-        guard Date().timeIntervalSince(location.timestamp) < 1 else { return }
-
-        print("speed: \(location.speed), HAccuracy: \(location.horizontalAccuracy), VAccuracy: \(location.verticalAccuracy)")
-        guard location.speedAccuracy >= 0, location.horizontalAccuracy >= 0 else { return }
-
-        self.floor += (location.floor?.level ?? 0)
-        self.speed = speed(location.speed)
-        self.speeds.append(speed(location.speed))
-        self.averageSpeed = self.speeds.reduce(0, +) / Double(self.speeds.count)
-        self.topSpeed = self.speeds.max() ?? 0
-
-
-        self.currentAltitude = location.altitude
-        self.coordinates.append(location.coordinate)
-
-        self.path.append(PathInfo(coordinate: location.coordinate, speed: speed(location.speed)))
-
-        if let previousLocation {
-            self.distance += location.distance(from: previousLocation)
-            if previousLocation.altitude < self.currentAltitude {
-                altitude += currentAltitude - previousLocation.altitude
-            }
-            let points = [previousLocation.coordinate, location.coordinate]
-            self.points = points
+        for location in locations {
+            locationInfo?.addLocationAndSpeed(location)
         }
-        previousLocation = location
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

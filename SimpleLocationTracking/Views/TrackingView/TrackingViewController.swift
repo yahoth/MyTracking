@@ -51,6 +51,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         vm.startAndPause()
+        print("viewDidAppear")
     }
 
     func setConstraints() {
@@ -161,11 +162,11 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true)
-                vm.locationManager.reset()
+//                vm.locationManager.reset()
             }
         } else {
             self.dismiss(animated: true)
-            vm.locationManager.reset()
+//            vm.locationManager.reset()
         }
 
     }

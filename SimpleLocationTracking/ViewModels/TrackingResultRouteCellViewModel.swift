@@ -6,25 +6,21 @@
 //
 
 import Foundation
-import CoreLocation
 import MapKit
-import Combine
-
-import RealmSwift
 
 class TrackingResultRouteCellViewModel: NSObject {
     deinit {
         print("TrackingResultRouteCellViewModel deinit")
     }
 
-    @Published var path: List<PathInfo>
+    @Published var path: PathInfo
 
-    init(path: List<PathInfo>) {
+    init(path: PathInfo) {
         self.path = path
     }
 
-    var coordinates: [CLLocationCoordinate2D] {
-        path.map { $0.coordinate }
+    var timedCoordinates: [TimedLocationData] {
+        Array(path.coordinates)
     }
 
     func drawMap(_ mapView: MKMapView) {
@@ -36,12 +32,32 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     func addOverlay(_ mapView: MKMapView) {
-        let lineDraw = MKPolyline(coordinates: coordinates, count: coordinates.count)
-        mapView.addOverlay(lineDraw)
+        var lastTimestamp: Date?
+        var segment: [CLLocationCoordinate2D] = []
+
+        for timedCoordinate in timedCoordinates {
+            if let lastTimestamp = lastTimestamp, timedCoordinate.date.timeIntervalSince(lastTimestamp) > 60 {
+                // 시간 차이가 1분을 넘으면, 지금까지 수집한 세그먼트를 오버레이로 추가
+                if !segment.isEmpty {
+                    let lineDraw = MKPolyline(coordinates: segment, count: segment.count)
+                    mapView.addOverlay(lineDraw)
+                    segment.removeAll()
+                }
+            }
+
+            segment.append(timedCoordinate.coordinate)
+            lastTimestamp = timedCoordinate.date
+        }
+
+        // 마지막 세그먼트 추가
+        if !segment.isEmpty {
+            let lineDraw = MKPolyline(coordinates: segment, count: segment.count)
+            mapView.addOverlay(lineDraw)
+        }
     }
 
     func setRegion(_ mapView: MKMapView) {
-        let coordinate: [CLLocationCoordinate2D] = coordinates
+        let coordinate: [CLLocationCoordinate2D] = timedCoordinates.map { $0.coordinate }
         let latitudes = coordinate.map { $0.latitude }
         let longitudes = coordinate.map { $0.longitude }
 
@@ -62,10 +78,10 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     func addAnnotations(_ mapView: MKMapView, place: AnnotationPlace) {
-        guard let coordinate = (place == .start) ? coordinates.first : coordinates.last else { return }
+        guard let coordinate = (place == .start) ? timedCoordinates.first : timedCoordinates.last else { return }
 
         let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
+        annotation.coordinate = coordinate.coordinate
         annotation.title = place.rawValue
         mapView.addAnnotation(annotation)
     }

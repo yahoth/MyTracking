@@ -19,26 +19,26 @@ final class TrackingResultViewModel {
         trackingData.speedInfos
     }
 
-    var path: List<PathInfo> {
-        trackingData.pathInfos
+    var path: PathInfo {
+        trackingData.pathInfo ?? PathInfo()
     }
 
     var start: CLLocationCoordinate2D {
-        guard let start = coordinates.first else { return CLLocationCoordinate2D() }
+        guard let start = coordinates.first?.coordinate else { return CLLocationCoordinate2D() }
         return start
     }
 
     var end: CLLocationCoordinate2D {
-        guard let start = coordinates.last else { return CLLocationCoordinate2D() }
+        guard let start = coordinates.last?.coordinate else { return CLLocationCoordinate2D() }
         return start
     }
 
-    var coordinates: [CLLocationCoordinate2D] {
-        path.map { $0.coordinate }
+    var coordinates: [TimedLocationData] {
+        Array(path.coordinates)
     }
 
     var speeds: [CLLocationSpeed] {
-        path.map { $0.speed }
+        Array(path.speeds)
     }
 
     var trackingData: TrackingData

@@ -50,7 +50,7 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
 
         case "Distance":
             unitLabel.text = unit.correspondingDistanceUnit
-            valueLabel.text = String(format: "%.1f", info.value.distanceToSelectedUnit(unit))
+            valueLabel.text = String(format: "%.2f", info.value.distanceToSelectedUnit(unit))
 
         case "Current Altitude":
             unitLabel.text = unit.correspondingAltitudeUnit

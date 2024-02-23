@@ -26,8 +26,6 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
     }
 
     func configureCollectionView() {
-//        let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.register(SpeedInfoCollectionViewCell.self, forCellWithReuseIdentifier: "SpeedInfoCollectionViewCell")
@@ -37,11 +35,6 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
 
     func setCollectionViewConstraints(/*superViewHeight: CGFloat?*/) {
         contentView.addSubview(collectionView)
-//        collectionView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(padding_title_body)
-//            make.horizontalEdges.bottom.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view))
-//            make.height.equalTo((superViewHeight ?? 0) / 3.5)
-//        }
 
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding_body_view)

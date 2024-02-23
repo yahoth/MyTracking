@@ -16,21 +16,22 @@ final class TrackingViewModel {
 
     deinit {
         print("TrackingViewModel deinit")
+        locationManager.locationInfo = nil
     }
 
     let locationManager = LocationManager.shared
     private let settingManager = SettingManager.shared
     private let stopwatch = Stopwatch()
     private var subscriptions = Set<AnyCancellable>()
-    var startDate: Date?
+    private var startDate: Date?
     var endDate: Date?
 
     var speedInfos: [SpeedInfo] {
         [
-            SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
-            SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: locationManager.distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
-            SpeedInfo(value: locationManager.currentAltitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Current Altitude"),
+            SpeedInfo(value: locationManager.locationInfo?.averageSpeed ?? 0, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: locationManager.locationInfo?.topSpeed ?? 0, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
+            SpeedInfo(value: locationManager.locationInfo?.distance ?? 0, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
+            SpeedInfo(value: locationManager.locationInfo?.currentAltitude ?? 0, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Current Altitude"),
         ]
     }
 
@@ -38,12 +39,11 @@ final class TrackingViewModel {
     func createTrackingResult() async -> TrackingData {
 
         let speedInfos = [
-            SpeedInfo(value: locationManager.distance, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
+            SpeedInfo(value: locationManager.locationInfo?.distance ?? 0, unit: unitOfSpeed?.correspondingDistanceUnit, title: "Distance"),
             SpeedInfo(value: endDate?.timeIntervalSince(startDate ?? Date()) ?? totalElapsedTime, unit: nil, title: "Time"),
-            SpeedInfo(value: locationManager.averageSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
-            SpeedInfo(value: locationManager.topSpeed, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
-            SpeedInfo(value: locationManager.altitude, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
-            SpeedInfo(value: floor, unit: "floor", title: "Floor")
+            SpeedInfo(value: locationManager.locationInfo?.averageSpeed ?? 0, unit: unitOfSpeed?.displayedSpeedUnit, title: "Average Speed"),
+            SpeedInfo(value: locationManager.locationInfo?.topSpeed ?? 0, unit: unitOfSpeed?.displayedSpeedUnit, title: "Top Speed"),
+            SpeedInfo(value: locationManager.locationInfo?.altitude ?? 0, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
         ]
 
         let coordinates = locationManager.locationInfo?.timedLocationDatas ?? []
@@ -71,6 +71,7 @@ final class TrackingViewModel {
     init(fpc: FloatingPanelController) {
         self.state = fpc.state
         self.fpc = fpc
+        locationManager.locationInfo = TrackingManager()
         bind()
     }
 
@@ -84,7 +85,7 @@ final class TrackingViewModel {
     @Published var totalElapsedTime: Double = 0
 
     var points: [CLLocationCoordinate2D]? {
-        locationManager.points
+        locationManager.locationInfo?.points
     }
 
     private func bind() {

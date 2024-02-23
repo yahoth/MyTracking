@@ -74,58 +74,14 @@ final class TrackingViewModel {
         bind()
     }
 
-    var floor: Double {
-        Double(locationManager.floor)
-    }
-
     var convertedSpeed: Double {
-        locationManager.speed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var convertedDistance: Double {
-        locationManager.distance.distanceToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var convertedTopSpeed: Double {
-        locationManager.topSpeed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var convertedAverageSpeed: Double {
-        locationManager.averageSpeed.speedToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var convertedCurrentAltitude: Double {
-        locationManager.currentAltitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var convertedAltitude: Double {
-        locationManager.altitude.altitudeToSelectedUnit(unitOfSpeed ?? .kmh)
-    }
-
-    var coordinates: [CLLocationCoordinate2D] {
-        locationManager.path.map { $0.coordinate }
-    }
-
-    var startCoordinate: CLLocationCoordinate2D {
-        coordinates.first ?? CLLocationCoordinate2D()
-    }
-
-    var endCoordinate: CLLocationCoordinate2D {
-        coordinates.last ?? CLLocationCoordinate2D()
+        locationManager.locationInfo?.speed.speedToSelectedUnit(unitOfSpeed ?? .kmh) ?? 0
     }
 
     @Published var isPaused: Bool = true
     @Published var isStopped: Bool = false
     @Published var unitOfSpeed: UnitOfSpeed?
     @Published var totalElapsedTime: Double = 0
-
-    var hhmmss: String {
-        totalElapsedTime.hhmmss
-    }
-
-    var resultTime: String {
-        totalElapsedTime.resultTime
-    }
 
     var points: [CLLocationCoordinate2D]? {
         locationManager.points

@@ -46,14 +46,13 @@ final class TrackingViewModel {
             SpeedInfo(value: locationManager.locationInfo?.altitude ?? 0, unit: unitOfSpeed?.correspondingAltitudeUnit, title: "Altitude"),
         ]
 
-        let coordinates = locationManager.locationInfo?.timedLocationDatas ?? []
+        let locationDatas = locationManager.locationInfo?.timedLocationDatas ?? []
 
-        let startLocation = await locationManager.reverseGeocodeLocation(coordinates.first?.coordinate ?? CLLocationCoordinate2D())
+        let startLocation = await locationManager.reverseGeocodeLocation(locationDatas.first?.coordinate ?? CLLocationCoordinate2D())
 
-        let endLocation = await locationManager.reverseGeocodeLocation(coordinates.last?.coordinate ?? CLLocationCoordinate2D())
+        let endLocation = await locationManager.reverseGeocodeLocation(locationDatas.last?.coordinate ?? CLLocationCoordinate2D())
         let speeds = locationManager.locationInfo?.speeds ?? []
-        let altitudes = locationManager.locationInfo?.locations.map { $0.altitude } ?? []
-        let pathInfo = PathInfo(coordinates: coordinates, speeds: speeds)
+        let pathInfo = PathInfo(locationDatas: locationDatas, speeds: speeds)
 
         let trackingData = TrackingData(speedInfos: speedInfos.toRealmList(), pathInfo: pathInfo, startDate: startDate ?? Date(), endDate: endDate ?? Date(), startLocation: startLocation, endLocation: endLocation, activityType: settingManager.activityType)
 

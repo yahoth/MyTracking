@@ -19,8 +19,8 @@ class TrackingResultRouteCellViewModel: NSObject {
         self.path = path
     }
 
-    var timedCoordinates: [TimedLocationData] {
-        Array(path.coordinates)
+    var locationDatas: [TimedLocationData] {
+        Array(path.locationDatas)
     }
 
     func drawMap(_ mapView: MKMapView) {
@@ -35,7 +35,7 @@ class TrackingResultRouteCellViewModel: NSObject {
         var lastTimestamp: Date?
         var segment: [CLLocationCoordinate2D] = []
 
-        for timedCoordinate in timedCoordinates {
+        for timedCoordinate in locationDatas {
             if let lastTimestamp = lastTimestamp, timedCoordinate.date.timeIntervalSince(lastTimestamp) > 60 {
                 // 시간 차이가 1분을 넘으면, 지금까지 수집한 세그먼트를 오버레이로 추가
                 if !segment.isEmpty {
@@ -57,7 +57,7 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     func setRegion(_ mapView: MKMapView) {
-        let coordinate: [CLLocationCoordinate2D] = timedCoordinates.map { $0.coordinate }
+        let coordinate: [CLLocationCoordinate2D] = locationDatas.map { $0.coordinate }
         let latitudes = coordinate.map { $0.latitude }
         let longitudes = coordinate.map { $0.longitude }
 
@@ -78,7 +78,7 @@ class TrackingResultRouteCellViewModel: NSObject {
     }
 
     func addAnnotations(_ mapView: MKMapView, place: AnnotationPlace) {
-        guard let coordinate = (place == .start) ? timedCoordinates.first : timedCoordinates.last else { return }
+        guard let coordinate = (place == .start) ? locationDatas.first : locationDatas.last else { return }
 
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate.coordinate

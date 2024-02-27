@@ -11,8 +11,8 @@ import CoreLocation
 class TrackingManager {
     private struct Hello {
         var locations: [CLLocation]
-        var speeds: [Double]
-        init(locations: [CLLocation] = [], speeds: [Double] = []) {
+        var speeds: [TimedSpeedData]
+        init(locations: [CLLocation] = [], speeds: [TimedSpeedData] = []) {
             self.locations = locations
             self.speeds = speeds
         }
@@ -40,20 +40,20 @@ class TrackingManager {
     var points: [CLLocationCoordinate2D]?
 
     // Speed Data
-    var speeds: [Double] {
+    var speeds: [TimedSpeedData] {
         hello.speeds
     }
 
     var speed: Double {
-        hello.speeds.last ?? 0
+        hello.speeds.last?.speed ?? 0
     }
 
     var topSpeed: Double {
-        hello.speeds.max() ?? 0
+        hello.speeds.map{ $0.speed }.max() ?? 0
     }
 
     var averageSpeed: Double {
-        hello.speeds.reduce(0, +) / Double(hello.speeds.count)
+        hello.speeds.map{ $0.speed }.reduce(0, +) / Double(hello.speeds.count)
     }
 
     func addLocationAndSpeed(_ newLocation: CLLocation) {
@@ -78,7 +78,7 @@ class TrackingManager {
         }
 
         if isNewSpeedUsable(newLocation) {
-            hello.speeds.append(newLocation.speed)
+            hello.speeds.append(TimedSpeedData(speed: newLocation.speed, date: newLocation.timestamp))
         }
     }
 

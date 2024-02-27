@@ -11,6 +11,7 @@ extension Date {
     enum DateFormat: String {
         case full = "yMMMdhms"
         case medium = "MMMdhm"
+        case hhMM = "hhmm"
     }
 
     func formattedString(_ format: DateFormat) -> String {

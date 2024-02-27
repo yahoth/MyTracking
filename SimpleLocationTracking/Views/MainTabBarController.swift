@@ -21,7 +21,10 @@ class MainTabBarController: UITabBarController {
         let historyVC = HistoryViewController()
         historyVC.tabBarItem = UITabBarItem(title: "History", image: UIImage(systemName: "filemenu.and.selection"), tag: 1)
 
-        self.viewControllers = [mainVC, historyVC]
+        let chartVC = ChartTestViewController()
+        chartVC.tabBarItem = UITabBarItem(title: "Chart ", image: UIImage(systemName: "chart.bar"), tag: 2)
+
+        self.viewControllers = [mainVC, historyVC, chartVC]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +44,11 @@ class MainTabBarController: UITabBarController {
 
             let addItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .done, target: self, action: #selector(addItem))
             navigationItem.rightBarButtonItems = [addItem]
+        case is ChartTestViewController:
+            navigationController?.navigationBar.prefersLargeTitles = false
+            title = "Charts"
 
+            navigationItem.rightBarButtonItems = []
         default:
             break
         }

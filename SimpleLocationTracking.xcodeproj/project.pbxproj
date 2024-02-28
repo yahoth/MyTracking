@@ -177,13 +177,12 @@
 			isa = PBXGroup;
 			children = (
 				767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */,
-				76853D552B89A82500DA8C79 /* ChartTestViewController.swift */,
-				76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */,
 				762ED1882B76BFBD00734720 /* TrackingSetupView */,
 				761A76F92B2AE2F800FABC7D /* TrackingView */,
 				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 				767BC5CC2B3D7314004C8765 /* History */,
 				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
+				76ED130E2B8F63600093E3AD /* TempChartView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +334,15 @@
 				767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */,
 			);
 			path = TrackingResultSpeedInfoCell;
+			sourceTree = "<group>";
+		};
+		76ED130E2B8F63600093E3AD /* TempChartView */ = {
+			isa = PBXGroup;
+			children = (
+				76853D552B89A82500DA8C79 /* ChartTestViewController.swift */,
+				76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */,
+			);
+			path = TempChartView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -19,7 +19,7 @@ class LocationManager: NSObject {
     private let locationManager = CLLocationManager()
     private var subscriptions = Set<AnyCancellable>()
     @Published var authorizationStatus: CLAuthorizationStatus  = .notDetermined
-    var locationInfo: TrackingManager?
+    var trackingManager: TrackingManager?
 
     override init() {
         super.init()
@@ -100,7 +100,7 @@ class LocationManager: NSObject {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
-            locationInfo?.addLocationAndSpeed(location)
+            trackingManager?.addLocationAndSpeed(location)
         }
     }
 

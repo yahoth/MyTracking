@@ -51,7 +51,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         vm.startAndPause()
-        print("viewDidAppear")
     }
 
     func setConstraints() {

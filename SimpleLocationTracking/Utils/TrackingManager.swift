@@ -9,51 +9,50 @@ import Foundation
 import CoreLocation
 
 class TrackingManager {
-    private struct Hello {
+    private struct LocationInfo {
         var locations: [CLLocation]
-        var speeds: [TimedSpeedData]
-        init(locations: [CLLocation] = [], speeds: [TimedSpeedData] = []) {
+        var speedsAndAltitudes: [SpeedAndAltitudePerSeconds]
+        init(locations: [CLLocation] = [], speedsAndAltitudes: [SpeedAndAltitudePerSeconds] = []) {
             self.locations = locations
-            self.speeds = speeds
+            self.speedsAndAltitudes = speedsAndAltitudes
         }
     }
 
-    private var hello = Hello()
-
+    private var locationInfo = LocationInfo()
 
     // Location Data
-    var currentAltitude: Double {
-        hello.locations.last?.altitude ?? 0
-    }
-
     var locations: [CLLocation] {
-        hello.locations
+        locationInfo.locations
     }
 
-    var timedLocationDatas: [TimedLocationData] {
-        hello.locations.map { TimedLocationData(coordinate: $0.coordinate, date: $0.timestamp, altitude: $0.altitude) }
+    var locationData: [LocationDataPerTenMeters] {
+        locationInfo.locations.map { LocationDataPerTenMeters(coordinate: $0.coordinate, date: $0.timestamp) }
     }
 
-    var distance = 0.0
-    var altitude = 0.0
+    var totalDistance = 0.0
+    var totalAltitude = 0.0
 
     var points: [CLLocationCoordinate2D]?
 
     // Speed Data
-    var speeds: [TimedSpeedData] {
-        hello.speeds
+    var speeds: [SpeedAndAltitudePerSeconds] {
+        locationInfo.speedsAndAltitudes
     }
 
     var speed: Double {
-        hello.speeds.last?.speed ?? 0
+        locationInfo.speedsAndAltitudes.last?.speed ?? 0
     }
 
     var topSpeed: Double {
-        hello.speeds.map{ $0.speed }.max() ?? 0
+        locationInfo.speedsAndAltitudes.map{ $0.speed }.max() ?? 0
     }
 
     var averageSpeed: Double {
-        hello.speeds.map{ $0.speed }.reduce(0, +) / Double(hello.speeds.count)
+        locationInfo.speedsAndAltitudes.map{ $0.speed }.reduce(0, +) / Double(locationInfo.speedsAndAltitudes.count)
+    }
+
+    var altitude: Double {
+        locationInfo.speedsAndAltitudes.map{ $0.altitude }.last ?? 0
     }
 
     func addLocationAndSpeed(_ newLocation: CLLocation) {
@@ -62,38 +61,34 @@ class TrackingManager {
         guard locationAge < 60 else { return }
 
         if isNewLocationUsable(newLocation) {
-            let previousLocation = hello.locations.last
+            let previousLocation = locationInfo.locations.last
 
             if let previousLocation {
                 if Date().timeIntervalSince(previousLocation.timestamp) < 60 {
                     points = [ previousLocation.coordinate, newLocation.coordinate ]
-                    distance += newLocation.distance(from: previousLocation)
-                    altitude += newLocation.altitude - previousLocation.altitude > 0  ? newLocation.altitude - previousLocation.altitude : 0
+                    totalDistance += newLocation.distance(from: previousLocation)
+                    totalAltitude += newLocation.altitude - previousLocation.altitude > 0  ? newLocation.altitude - previousLocation.altitude : 0
                 }
             }
-
-            print("good work")
-            hello.locations.append(newLocation)
-
+            locationInfo.locations.append(newLocation)
         }
 
         if isNewSpeedUsable(newLocation) {
-            hello.speeds.append(TimedSpeedData(speed: newLocation.speed, date: newLocation.timestamp))
+            locationInfo.speedsAndAltitudes.append(SpeedAndAltitudePerSeconds(speed: newLocation.speed, altitude: newLocation.altitude, date: newLocation.timestamp))
         }
     }
 
     private func isNewLocationUsable(_ newLocation: CLLocation) -> Bool {
-        guard hello.locations.count > 5 else { return true }
+        guard locationInfo.locations.count > 5 else { return true }
         let minimumDistanceBetweenLocationsInMeters = 10.0
-        let previousLocation = hello.locations.last!
+        let previousLocation = locationInfo.locations.last!
         let metersApart = newLocation.distance(from: previousLocation)
         return metersApart > minimumDistanceBetweenLocationsInMeters
     }
 
     private func isNewSpeedUsable(_ newLocation: CLLocation) -> Bool {
         guard newLocation.speedAccuracy >= 0 else { return false }
-        guard hello.speeds.count > 10 else { return true }
+        guard locationInfo.speedsAndAltitudes.count > 10 else { return true }
         return true
     }
-
 }

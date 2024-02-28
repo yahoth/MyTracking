@@ -19,7 +19,7 @@ class TrackingResultRouteCellViewModel: NSObject {
         self.path = path
     }
 
-    var locationDatas: [TimedLocationData] {
+    var locationDatas: [LocationDataPerTenMeters] {
         Array(path.locationDatas)
     }
 

@@ -33,12 +33,12 @@ final class TrackingResultViewModel {
         return start
     }
 
-    var locationDatas: [TimedLocationData] {
+    var locationDatas: [LocationDataPerTenMeters] {
         Array(path.locationDatas)
     }
 
     var speeds: [CLLocationSpeed] {
-        Array(path.speeds.map { $0.speed })
+        Array(path.speedsAndAltitudes.map { $0.speed })
     }
 
     var trackingData: TrackingData

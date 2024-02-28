@@ -7,12 +7,32 @@
 
 import UIKit
 import Combine
+import MapKit
 
 import SnapKit
 
 class TrackingSetupViewController: UIViewController {
     var vm: TrackingSetupViewModel!
     var subscriptions = Set<AnyCancellable>()
+
+    let appTitle: UILabel = {
+        let title = UILabel()
+        title.text = "MyTracking"
+        title.numberOfLines = 1
+        title.textAlignment = .left
+        title.textColor = .label
+        title.font = .systemFont(ofSize: 30, weight: .black)
+        title.setContentCompressionResistancePriority(.required, for: .vertical)
+        return title
+    }()
+
+    let mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+        mapView.layer.cornerRadius = 20
+        return mapView
+    }()
 
     var startTrackingButton: AnimatedRoundedButton!
 
@@ -29,6 +49,16 @@ class TrackingSetupViewController: UIViewController {
         button.update(image: "speed", selectedItem: "KM/H")
         return button
     }()
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        mapView.userTrackingMode = .follow
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +119,7 @@ class TrackingSetupViewController: UIViewController {
         startTrackingButton = AnimatedRoundedButton(frame: .zero, cornerRadius: .rounded)
         let view = StartButtonView()
         startTrackingButton.addSubview(view)
-        startTrackingButton.backgroundColor = .secondarySystemBackground
+        startTrackingButton.backgroundColor = .accent
         startTrackingButton.addTarget(self, action: #selector(goTrackingButtonTapped), for: .touchUpInside)
         view.snp.makeConstraints { make in
             make.edges.equalTo(startTrackingButton).inset(UIEdgeInsets(top: 10, left: 26, bottom: 10, right: 26))
@@ -114,6 +144,18 @@ class TrackingSetupViewController: UIViewController {
             make.bottom.equalTo(startTrackingButton.snp.top).inset(-16)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(view.snp.height).multipliedBy(0.25)
+        }
+
+        view.addSubview(mapView)
+        mapView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(stackView.snp.top).inset(-20)
+        }
+
+        view.addSubview(appTitle)
+        appTitle.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(mapView.snp.top).inset(-20)
         }
     }
 

@@ -52,14 +52,14 @@ class StartButtonView: UIStackView {
 
     func setTitle() {
         title.font = .systemFont(ofSize: 50, weight: .medium)
-        title.textColor = .label
+        title.textColor = .white
         title.adjustsFontSizeToFitWidth = true
         title.text = "Start Travel"
     }
 
     func setSubTitle() {
         subTitle.font = .systemFont(ofSize: 50)
-        subTitle.textColor = .secondaryLabel
+        subTitle.textColor = .systemGray6
         subTitle.adjustsFontSizeToFitWidth = true
         subTitle.text = "Track Your Route"
     }

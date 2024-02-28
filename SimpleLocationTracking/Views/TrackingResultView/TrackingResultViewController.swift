@@ -23,7 +23,7 @@ class TrackingResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Tracking Data"
+        navigationItem.title = vm.trackingData.startDate.formattedString(.mmmdEEE)
 
         setTableView()
         setConstrains()

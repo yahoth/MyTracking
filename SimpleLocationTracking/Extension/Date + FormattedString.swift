@@ -10,8 +10,9 @@ import Foundation
 extension Date {
     enum DateFormat: String {
         case full = "yMMMdhms"
-        case medium = "MMMdhm"
-        case hhMM = "hhmm"
+        case feb28at6_59pm = "MMMdhm"
+        case hhmm = "hhmm"
+        case mmmdEEE = "MMMdEEE"
     }
 
     func formattedString(_ format: DateFormat) -> String {

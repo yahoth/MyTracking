@@ -22,7 +22,6 @@ class TrackingResultMapDetailViewController: UIViewController {
         super.viewDidLoad()
         setMapView()
         vm.drawMap(mapView)
-        navigationItem.title = "Route"
         view.backgroundColor = .systemBackground
         setDismissButton()
     }

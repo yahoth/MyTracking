@@ -5,5 +5,31 @@
   Created by TAEHYOUNG KIM on 2/29/24.
   
 */
-//"hello" = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다"
-//"LocationWhenInUseUsageDescription" = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다"
+"quit?" = "종료하시겠습니까?";
+"tooShortToRecord" = "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?";
+"startButtonSubTitle" = "여행을 기록하세요";
+
+"Distance" = "이동 거리";
+"Time" = "시간";
+"Average Speed" = "평균 속도";
+"Top Speed" = "최고 속도";
+"Altitude" = "고도";
+"Current Altitude" = "현재 고도";
+"Speed Info" = "속도 정보";
+"Route" = "경로";
+"Done" = "완료";
+
+"Tracking Mode" = "이동 모드";
+"Speed Unit" = "속도 단위";
+"Select mode" = "이동 모드를 선택하세요";
+"Select unit of speed" = "속도 단위를 선택하세요";
+"No" = "아니요";
+"Yes" = "예";
+
+"alertWhenDeniedPermissionTitle" = "위치 정보 권한 요청";
+"alertWhenDeniedPermissionMessage" = "이 서비스는 위치 정보가 필요합니다. '확인'을 눌러 위치 정보 권한을 변경해주세요";
+"OK" = "확인";
+"Close" = "닫기";
+
+"%d modes" = "%d개 모드";
+"%d units" = "%d개 단위";

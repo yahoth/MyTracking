@@ -26,7 +26,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setTitle(to: "Route")
+        setTitle(to: "Route".localized())
         setMapViewContainer()
         setMapView()
         setRouteLabel()

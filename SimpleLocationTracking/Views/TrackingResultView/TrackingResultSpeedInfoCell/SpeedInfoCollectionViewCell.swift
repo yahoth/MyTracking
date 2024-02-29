@@ -96,7 +96,7 @@ class SpeedInfoCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ info: SpeedInfo, unit: UnitOfSpeed) {
-        titleLabel.text = info.title
+        titleLabel.text = info.title.localized()
 
         switch info.title {
         case "Distance":

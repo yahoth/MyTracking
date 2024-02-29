@@ -16,7 +16,7 @@ class TrackingResultSpeedInfoCell: BaseTrackingResultCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setTitle(to: "Speed Info")
+        setTitle(to: "Speed Info".localized())
         configureCollectionView()
         setCollectionViewConstraints()
     }

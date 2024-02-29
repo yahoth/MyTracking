@@ -64,6 +64,7 @@
 		76DBA61B2B907D0B00AC754E /* AppTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DBA61A2B907D0B00AC754E /* AppTitleLabel.swift */; };
 		76DBA61E2B9099AE00AC754E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76DBA6202B9099AE00AC754E /* Localizable.strings */; };
 		76DBA6242B909CE000AC754E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76DBA6262B909CE000AC754E /* InfoPlist.strings */; };
+		76DBA62A2B90A04C00AC754E /* String + localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DBA6292B90A04C00AC754E /* String + localized.swift */; };
 		76F67A7F2B8C68C000760C30 /* ChartTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */; };
 		76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,7 @@
 		76DBA6212B9099C900AC754E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76DBA6252B909CE000AC754E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		76DBA6272B909CE400AC754E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		76DBA6292B90A04C00AC754E /* String + localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + localized.swift"; sourceTree = "<group>"; };
 		76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTestViewModel.swift; sourceTree = "<group>"; };
 		76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -324,6 +326,7 @@
 				76115A272B505E25008D83CA /* Date + FormattedString.swift */,
 				769513592B56D4D600B5B18E /* Array + toRealmList.swift */,
 				7695135B2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift */,
+				76DBA6292B90A04C00AC754E /* String + localized.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				761A76F52B2ACE0E00FABC7D /* TrackingResultSpeedInfoCell.swift in Sources */,
 				76849A552B18602700DD83F7 /* Double + Time Notation.swift in Sources */,
 				76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */,
+				76DBA62A2B90A04C00AC754E /* String + localized.swift in Sources */,
 				767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */,
 				767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */,
 				76115A282B505E25008D83CA /* Date + FormattedString.swift in Sources */,

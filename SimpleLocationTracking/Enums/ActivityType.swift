@@ -11,7 +11,7 @@ import RealmSwift
 
 enum ActivicyType: String, CaseIterable, PersistableEnum {
     case automobile
-    case offroad_vehicle = "Off-road Vehicle"
+    case offroad_vehicle = "off-road vehicle"
     case running
     case walking
     case hiking

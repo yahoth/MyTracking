@@ -147,14 +147,14 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
     func alertWhenStopButtonTapped() {
         let canSave = vm.totalElapsedTime >= 1
-        let message = canSave ? "종료하시겠습니까?" : "추적 시간이 짧아 기록할 수 없습니다. 종료하시겠습니까?"
+        let message = canSave ? "quit?".localized() : "tooShortToRecord".localized()
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Yes".localized(), style: .destructive) { [weak self] _ in
             self?.finishTracking(canSave: canSave)
         })
 
-        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+        alert.addAction(UIAlertAction(title: "No".localized(), style: .cancel))
 
         present(alert, animated: true)
     }
@@ -182,7 +182,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
             }
         }
 
-        let menu = UIMenu(title: "Select unit of speed", options: .displayInline, children: units)
+        let menu = UIMenu(title: "Select unit of speed".localized(), options: .displayInline, children: units)
         currentSpeedView.unitButton.menu = menu
     }
 

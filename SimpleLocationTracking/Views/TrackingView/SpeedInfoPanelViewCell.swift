@@ -41,7 +41,7 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
 
     func configure(_ info: SpeedInfo, unit: UnitOfSpeed) {
 
-        titleLabel.text = info.title
+        titleLabel.text = info.title.localized()
 
         switch info.title {
         case "Average Speed", "Top Speed":

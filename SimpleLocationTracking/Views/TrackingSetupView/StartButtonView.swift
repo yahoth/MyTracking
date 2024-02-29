@@ -62,7 +62,7 @@ class StartButtonView: UIStackView {
         subTitle.font = .systemFont(ofSize: 50)
         subTitle.textColor = .systemGray6
         subTitle.adjustsFontSizeToFitWidth = true
-        subTitle.text = "Record Your Journey"
+        subTitle.text = "startButtonSubTitle".localized()
     }
 
     func layout() {

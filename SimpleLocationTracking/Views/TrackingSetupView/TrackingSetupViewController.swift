@@ -28,14 +28,16 @@ class TrackingSetupViewController: UIViewController {
 
     let modeMenuButton: MenuButton = {
         let button = MenuButton(frame: .zero, cornerRadius: .rounded)
-        button.configure(name: "Tracking Mode", count: "\(ActivicyType.allCases.count) modes")
+        let modes = "%d modes".localized(with: ActivicyType.allCases.count)
+        button.configure(name: "Tracking Mode".localized(), count: modes)
         button.update(image: "car", selectedItem: "Car")
         return button
     }()
 
     let unitMenuButton: MenuButton = {
         let button = MenuButton(frame: .zero, cornerRadius: .rounded)
-        button.configure(name: "Speed Unit", count: "\(UnitOfSpeed.allCases.count) units")
+        let units = "%d units".localized(with: UnitOfSpeed.allCases.count)
+        button.configure(name: "Speed Unit".localized(), count: units)
         button.update(image: "speed", selectedItem: "KM/H")
         return button
     }()
@@ -96,7 +98,7 @@ class TrackingSetupViewController: UIViewController {
                 self?.vm.settingManager.updateUnit(unit)
             }
         }
-        unitMenuButton.menu = UIMenu(title: "Select unit of speed", children: menu)
+        unitMenuButton.menu = UIMenu(title: "Select unit of speed".localized(), children: menu)
         unitMenuButton.showsMenuAsPrimaryAction = true
     }
 
@@ -106,7 +108,7 @@ class TrackingSetupViewController: UIViewController {
                 self?.vm.settingManager.updateActivityType(mode)
             }
         }
-        modeMenuButton.menu = UIMenu(title: "Select mode", children: menu)
+        modeMenuButton.menu = UIMenu(title: "Select mode".localized(), children: menu)
         modeMenuButton.showsMenuAsPrimaryAction = true
     }
 
@@ -167,11 +169,11 @@ class TrackingSetupViewController: UIViewController {
 
 
     func alertWhenPermissionStatusIsRejected() {
-        let title = "위치 정보 권한 요청"
-        let message = "이 서비스는 위치 정보가 필요합니다. '확인'을 눌러 위치 정보 권한을 변경해주세요."
+        let title = "alertWhenDeniedPermissionTitle".localized()
+        let message = "alertWhenDeniedPermissionMessage".localized()
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let settingsAction = UIAlertAction(title: "확인", style: .default) { (_) -> Void in
+        let settingsAction = UIAlertAction(title: "OK".localized(), style: .default) { (_) -> Void in
             guard let appSettings = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
@@ -182,7 +184,7 @@ class TrackingSetupViewController: UIViewController {
         }
 
         alert.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Close".localized(), style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }

@@ -11,21 +11,13 @@ import MapKit
 
 import SnapKit
 
+
 class TrackingSetupViewController: UIViewController {
     var vm: TrackingSetupViewModel!
     var subscriptions = Set<AnyCancellable>()
 
-    let appTitle: UILabel = {
-        let title = UILabel()
-        title.text = "MyTracking"
-        title.numberOfLines = 1
-        title.textAlignment = .left
-        title.textColor = .label
-        title.font = .systemFont(ofSize: 30, weight: .black)
-        title.setContentCompressionResistancePriority(.required, for: .vertical)
-        return title
-    }()
-
+    let appTitle: AppTitleLabel = AppTitleLabel(frame: .zero, title: "MyTracking")
+    
     let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.layer.cornerRadius = 20

@@ -23,6 +23,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     var trackingButton: UIButton!
     var currentSpeedView: CurrentSpeedView!
     var fpc: FloatingPanelController!
+    let appTitle = AppTitleLabel(frame: .zero, title: "My\(SettingManager.shared.activityType.rawValue.capitalized)")
 
     //Model
     var vm: TrackingViewModel!
@@ -38,8 +39,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         setLocationTrackingButton()
         setMapView()
 
-        [mapView, currentSpeedView, trackingButton].forEach { view.addSubview($0) }
-        setConstraints()
+        [appTitle, mapView, currentSpeedView, trackingButton].forEach { view.addSubview($0) }
 
         setFPC()
         customizeSurfaceDesign()
@@ -54,6 +54,11 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     func setConstraints() {
+        appTitle.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.bottom.equalTo(currentSpeedView.snp.top).inset(-padding_body_body)
+        }
+
         currentSpeedView.snp.makeConstraints { make in
             make.top.equalTo(view)
             make.horizontalEdges.equalTo(view)

@@ -61,6 +61,7 @@
 		769E4D252B480CF300058B22 /* TripType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769E4D242B480CF300058B22 /* TripType.swift */; };
 		76A582662B6040ED00329EE2 /* BodyContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A582652B6040ED00329EE2 /* BodyContainerView.swift */; };
 		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
+		76DBA61B2B907D0B00AC754E /* AppTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DBA61A2B907D0B00AC754E /* AppTitleLabel.swift */; };
 		76F67A7F2B8C68C000760C30 /* ChartTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */; };
 		76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		769E4D242B480CF300058B22 /* TripType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripType.swift; sourceTree = "<group>"; };
 		76A582652B6040ED00329EE2 /* BodyContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContainerView.swift; sourceTree = "<group>"; };
 		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
+		76DBA61A2B907D0B00AC754E /* AppTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitleLabel.swift; sourceTree = "<group>"; };
 		76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTestViewModel.swift; sourceTree = "<group>"; };
 		76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +248,7 @@
 			children = (
 				767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */,
 				762ED1822B76AA8800734720 /* StartButtonView.swift */,
+				76DBA61A2B907D0B00AC754E /* AppTitleLabel.swift */,
 			);
 			path = TrackingSetupView;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */,
 				76115A282B505E25008D83CA /* Date + FormattedString.swift in Sources */,
 				764B46DF2AED197C00B0B9B5 /* SceneDelegate.swift in Sources */,
+				76DBA61B2B907D0B00AC754E /* AppTitleLabel.swift in Sources */,
 				7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */,
 				7695135C2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift in Sources */,
 			);

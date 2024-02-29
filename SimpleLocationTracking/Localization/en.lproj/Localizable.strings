@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+//"hello" = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다"
+//"LocationWhenInUseUsageDescription" = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다"

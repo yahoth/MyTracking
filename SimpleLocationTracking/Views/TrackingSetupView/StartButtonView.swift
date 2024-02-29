@@ -21,6 +21,7 @@ class StartButtonView: UIStackView {
         self.axis = .horizontal
         self.distribution = .fill
         self.alignment = .center
+        self.spacing = 30
         self.isUserInteractionEnabled = false
 
         // Set Component
@@ -54,14 +55,14 @@ class StartButtonView: UIStackView {
         title.font = .systemFont(ofSize: 50, weight: .medium)
         title.textColor = .white
         title.adjustsFontSizeToFitWidth = true
-        title.text = "Start Travel"
+        title.text = "Start Tracking"
     }
 
     func setSubTitle() {
         subTitle.font = .systemFont(ofSize: 50)
         subTitle.textColor = .systemGray6
         subTitle.adjustsFontSizeToFitWidth = true
-        subTitle.text = "Track Your Route"
+        subTitle.text = "Record Your Journey"
     }
 
     func layout() {

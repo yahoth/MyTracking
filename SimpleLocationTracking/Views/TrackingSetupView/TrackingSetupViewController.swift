@@ -38,7 +38,7 @@ class TrackingSetupViewController: UIViewController {
 
     let modeMenuButton: MenuButton = {
         let button = MenuButton(frame: .zero, cornerRadius: .rounded)
-        button.configure(name: "Travel Mode", count: "\(ActivicyType.allCases.count) modes")
+        button.configure(name: "Tracking Mode", count: "\(ActivicyType.allCases.count) modes")
         button.update(image: "car", selectedItem: "Car")
         return button
     }()

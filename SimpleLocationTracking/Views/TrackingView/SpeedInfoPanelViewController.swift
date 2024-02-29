@@ -113,7 +113,7 @@ class SpeedInfoPanelViewController: UIViewController {
     func setConstraints() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(view).inset(bottomSafeArea)
+            make.verticalEdges.equalTo(view).inset(vm.bottomSafeArea)
             make.horizontalEdges.equalTo(view)
         }
     }
@@ -126,15 +126,8 @@ class SpeedInfoPanelViewController: UIViewController {
 
 extension SpeedInfoPanelViewController: UICollectionViewDelegateFlowLayout {
 
-    var bottomSafeArea: CGFloat {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0}
-        guard let window = windowScene.windows.first else { return 0}
-        guard let root = window.rootViewController else { return 0}
-        return root.view.safeAreaInsets.bottom
-    }
-
     var bottomPadding: CGFloat {
-        bottomSafeArea == 0 ? 10 : 0
+        vm.bottomSafeArea == 0 ? 10 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -144,7 +137,7 @@ extension SpeedInfoPanelViewController: UICollectionViewDelegateFlowLayout {
         ///이유: 패널이 .tip버전일 때, bottomSafeArea만큼 컬렉션뷰가 노출되기 때문에 보이지 않게 constraints 설정.
         return CGSize(
             width: (collectionView.frame.width - (2 * padding_body_view) - padding_body_body) / 2,
-            height: (view.frame.height - 10 - bottomPadding - (2 * bottomSafeArea)) / 2)
+            height: (view.frame.height - 10 - bottomPadding - (2 * vm.bottomSafeArea)) / 2)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

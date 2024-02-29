@@ -5,33 +5,24 @@
 //  Created by TAEHYOUNG KIM on 1/20/24.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 import Combine
 
 class TrackingSetupViewModel {
-    var locationManager: LocationManager?
+    let locationManager = LocationManager.shared
     let settingManager = SettingManager.shared
     var subscriptions = Set<AnyCancellable>()
     @Published var status: CLAuthorizationStatus?
 
+    init() {
+        bind()
+    }
+
     func bind() {
-        locationManager?.$authorizationStatus
+        locationManager.$authorizationStatus
             .sink { [weak self] status in
                 self?.status = status
             }.store(in: &subscriptions)
-    }
-
-    func goTrackingButtonTapped(status: CLAuthorizationStatus, authorized: () -> Void, denied: () -> Void) {
-        switch status {
-        case .notDetermined:
-            locationManager?.requestAuthorization()
-        case .restricted, .denied:
-            denied()
-        case .authorizedAlways, .authorizedWhenInUse:
-            authorized()
-        default:
-            break
-        }
     }
 }

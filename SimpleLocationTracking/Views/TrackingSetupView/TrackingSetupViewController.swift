@@ -28,8 +28,6 @@ class TrackingSetupViewController: UIViewController {
 
     let mapView: MKMapView = {
         let mapView = MKMapView()
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
         mapView.layer.cornerRadius = 20
         return mapView
     }()
@@ -50,14 +48,10 @@ class TrackingSetupViewController: UIViewController {
         return button
     }()
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDidDisappear")
-    }
-
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-        mapView.userTrackingMode = .follow
+        if vm.status == .authorizedAlways || vm.status == .authorizedWhenInUse {
+            mapView.userTrackingMode = .follow
+        }
     }
 
     override func viewDidLoad() {
@@ -69,8 +63,12 @@ class TrackingSetupViewController: UIViewController {
         setUnitMenu()
         setModeMenu()
         setConstraints()
+        vm.locationManager.showAlert = { [weak self] in
+            self?.alertWhenPermissionStatusIsRejected()
+        }
 
         bind()
+
     }
 
     func bind() {
@@ -78,7 +76,13 @@ class TrackingSetupViewController: UIViewController {
             .compactMap { $0 }
             .sink { [weak self] status in
                 guard let self else { return }
-                self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
+                switch status {
+                case .authorizedAlways, .authorizedWhenInUse:
+                    mapView.userTrackingMode = .follow
+                    mapView.showsUserLocation = true
+                default:
+                    break
+                }
             }.store(in: &subscriptions)
 
         vm.settingManager.$unit
@@ -162,14 +166,13 @@ class TrackingSetupViewController: UIViewController {
 
 
     @objc func goTrackingButtonTapped() {
-        if vm.locationManager == nil {
-            vm.locationManager = LocationManager()
-            vm.bind()
-        } else {
-            guard let status = vm.status else { return }
-            vm.goTrackingButtonTapped(status: status, authorized: startTracking, denied: alertWhenPermissionStatusIsRejected)
+        vm.locationManager.requestAuthorization { [weak self] in
+            self?.startTracking()
+        } denied: { [weak self] in
+            self?.alertWhenPermissionStatusIsRejected()
         }
     }
+
 
     func alertWhenPermissionStatusIsRejected() {
         let title = "위치 정보 권한 요청"

@@ -5,7 +5,7 @@
 //  Created by TAEHYOUNG KIM on 11/29/23.
 //
 
-import Foundation
+import UIKit
 import Combine
 import CoreLocation
 
@@ -25,6 +25,19 @@ final class TrackingViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var startDate: Date?
     var endDate: Date?
+
+    var bottomSafeArea: CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0}
+        guard let window = windowScene.windows.first else { return 0}
+        guard let root = window.rootViewController else { return 0}
+        return root.view.safeAreaInsets.bottom
+    }
+
+    var navigationBarHeight: CGFloat = 0
+
+    var mapViewBottomPadding: CGFloat {
+        navigationBarHeight + bottomSafeArea
+    }
 
     var speedInfos: [SpeedInfo] {
         [

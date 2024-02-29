@@ -42,6 +42,8 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         [appTitle, mapView, currentSpeedView, trackingButton].forEach { view.addSubview($0) }
 
         setFPC()
+        setConstraints()
+
         customizeSurfaceDesign()
 
         setupChangeUnitButton()
@@ -60,15 +62,14 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         }
 
         currentSpeedView.snp.makeConstraints { make in
-            make.top.equalTo(view)
             make.horizontalEdges.equalTo(view)
-            make.height.equalTo(view.snp.height).multipliedBy(0.4)
+            make.bottom.equalTo(mapView.snp.top).inset(-padding_body_body)
         }
 
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(currentSpeedView.snp.bottom)
+            make.top.equalTo(view).inset(view.frame.height * 0.4)
             make.horizontalEdges.equalTo(view)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(navigationController?.navigationBar.frame.height ?? 0)
+            make.bottom.equalTo(view).inset(vm.mapViewBottomPadding)
         }
 
         trackingButton.snp.makeConstraints { make in
@@ -84,6 +85,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         mapView.userTrackingMode = .followWithHeading
         mapView.showsUserLocation = true
         mapView.delegate = self
+        mapView.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
     func setLocationTrackingButton() {
@@ -108,8 +110,8 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
 
         fpc.track(scrollView: vc.collectionView)
         fpc.isRemovalInteractionEnabled = false
-
-        fpc.layout = MyFloatingPanelLayout(tipInset: vc.navigationController?.navigationBar.frame.size.height ?? 0)
+        vm.navigationBarHeight = vc.navigationController?.navigationBar.frame.size.height ?? 0
+        fpc.layout = MyFloatingPanelLayout(tipInset: vm.navigationBarHeight)
         fpc.addPanel(toParent: self)
     }
 
@@ -166,11 +168,9 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true)
-//                vm.locationManager.reset()
             }
         } else {
             self.dismiss(animated: true)
-//            vm.locationManager.reset()
         }
 
     }
@@ -226,11 +226,13 @@ class MyFloatingPanelLayout: FloatingPanelLayout {
 
     init(tipInset: CGFloat) {
         self.tipInset = tipInset
+        print("tip \(tipInset)")
     }
 
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] { [
         .half: FloatingPanelLayoutAnchor(fractionalInset: 0.6, edge: .bottom, referenceGuide: .superview),
         .tip: FloatingPanelLayoutAnchor(absoluteInset: tipInset, edge: .bottom, referenceGuide: .safeArea),
+        // view가 safeArea + tipInset 만큼 빼꼼해있음
     ] }
 }
 

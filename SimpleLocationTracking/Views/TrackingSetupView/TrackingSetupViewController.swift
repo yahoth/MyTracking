@@ -129,33 +129,33 @@ class TrackingSetupViewController: UIViewController {
     func setConstraints() {
         view.addSubview(startTrackingButton)
         startTrackingButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(padding_body_body)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
             make.height.equalTo(view.snp.height).multipliedBy(0.15)
         }
 
         let stackView = UIStackView(arrangedSubviews: [modeMenuButton, unitMenuButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 16
+        stackView.spacing = padding_body_body
 
         view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.bottom.equalTo(startTrackingButton.snp.top).inset(-16)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(startTrackingButton.snp.top).inset(-padding_body_body)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
             make.height.equalTo(view.snp.height).multipliedBy(0.25)
         }
 
         view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.bottom.equalTo(stackView.snp.top).inset(-20)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.bottom.equalTo(stackView.snp.top).inset(-padding_body_body)
         }
 
         view.addSubview(appTitle)
         appTitle.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.bottom.equalTo(mapView.snp.top).inset(-20)
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.bottom.equalTo(mapView.snp.top).inset(-padding_body_view)
         }
     }
 

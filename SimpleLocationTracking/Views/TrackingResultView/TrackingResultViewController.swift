@@ -23,7 +23,7 @@ class TrackingResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Tracking Data"
+        navigationItem.title = vm.trackingData.startDate.formattedString(.mmmdEEE)
 
         setTableView()
         setConstrains()
@@ -53,7 +53,7 @@ class TrackingResultViewController: UIViewController {
 
         func setTableViewSeparator() {
             tableView.separatorStyle = .singleLine
-            tableView.separatorColor = .brown
+            tableView.separatorColor = .label
             tableView.separatorInset = .init(top: 0, left: padding_body_view, bottom: 0, right: padding_body_view)
         }
     }

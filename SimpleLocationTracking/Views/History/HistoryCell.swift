@@ -126,7 +126,7 @@ class HistoryCell: UICollectionViewCell {
     }
 
     func configure(item: TrackingData, unit: UnitOfSpeed) {
-        dateLabel.text = item.startDate.formattedString(.medium)
+        dateLabel.text = item.startDate.formattedString(.feb28at6_59pm)
         typeImageView.image = UIImage(named: item.activityType.image)
 
         bodyContainer.startLocation.text = item.startLocation

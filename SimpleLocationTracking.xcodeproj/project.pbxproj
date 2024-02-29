@@ -31,6 +31,7 @@
 		764B928E2AFA43E000EC8854 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 764B928D2AFA43E000EC8854 /* FloatingPanel */; };
 		7652152E2B889B7E001954AE /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7652152D2B889B7E001954AE /* TrackingManager.swift */; };
 		7653E1972B68347A005B1950 /* TrackingResultPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7653E1962B68347A005B1950 /* TrackingResultPeriodCell.swift */; };
+		765423D72B8E0CBB00C937E5 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 765423D62B8E0CBB00C937E5 /* DGCharts */; };
 		7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CA2B17268800F5826F /* TrackingViewModel.swift */; };
 		7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7666F2CC2B17316500F5826F /* BaseSpeedInfoCell.swift */; };
 		7669B6EF2B3FDBFB00DDEDE7 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7669B6EE2B3FDBFB00DDEDE7 /* HistoryViewModel.swift */; };
@@ -51,6 +52,7 @@
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
 		76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A522B1856B600DD83F7 /* ActivityType.swift */; };
 		76849A552B18602700DD83F7 /* Double + Time Notation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A542B18602700DD83F7 /* Double + Time Notation.swift */; };
+		76853D562B89A82500DA8C79 /* ChartTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76853D552B89A82500DA8C79 /* ChartTestViewController.swift */; };
 		769513562B56D44E00B5B18E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 769513552B56D44E00B5B18E /* Realm */; };
 		769513582B56D44E00B5B18E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 769513572B56D44E00B5B18E /* RealmSwift */; };
 		7695135A2B56D4D600B5B18E /* Array + toRealmList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769513592B56D4D600B5B18E /* Array + toRealmList.swift */; };
@@ -59,8 +61,22 @@
 		769E4D252B480CF300058B22 /* TripType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769E4D242B480CF300058B22 /* TripType.swift */; };
 		76A582662B6040ED00329EE2 /* BodyContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A582652B6040ED00329EE2 /* BodyContainerView.swift */; };
 		76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C05D942B32B8A5003F4357 /* PathInfo.swift */; };
+		76F67A7F2B8C68C000760C30 /* ChartTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */; };
 		76FBCD302B5B156500F93F5C /* TrackingSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		765A4ED52B8B921B00E20F70 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		76115A272B505E25008D83CA /* Date + FormattedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + FormattedString.swift"; sourceTree = "<group>"; };
@@ -107,12 +123,14 @@
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
 		76849A522B1856B600DD83F7 /* ActivityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		76849A542B18602700DD83F7 /* Double + Time Notation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Time Notation.swift"; sourceTree = "<group>"; };
+		76853D552B89A82500DA8C79 /* ChartTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTestViewController.swift; sourceTree = "<group>"; };
 		769513592B56D4D600B5B18E /* Array + toRealmList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + toRealmList.swift"; sourceTree = "<group>"; };
 		7695135B2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D + persistedValue.swift"; sourceTree = "<group>"; };
 		7695135D2B56D51400B5B18E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		769E4D242B480CF300058B22 /* TripType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripType.swift; sourceTree = "<group>"; };
 		76A582652B6040ED00329EE2 /* BodyContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContainerView.swift; sourceTree = "<group>"; };
 		76C05D942B32B8A5003F4357 /* PathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInfo.swift; sourceTree = "<group>"; };
+		76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTestViewModel.swift; sourceTree = "<group>"; };
 		76FBCD2F2B5B156500F93F5C /* TrackingSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +141,7 @@
 			files = (
 				769513582B56D44E00B5B18E /* RealmSwift in Frameworks */,
 				769513562B56D44E00B5B18E /* Realm in Frameworks */,
+				765423D72B8E0CBB00C937E5 /* DGCharts in Frameworks */,
 				764B46F22AED1A3C00B0B9B5 /* SnapKit in Frameworks */,
 				764B928E2AFA43E000EC8854 /* FloatingPanel in Frameworks */,
 			);
@@ -163,6 +182,7 @@
 				761A76FA2B2AE2FF00FABC7D /* TrackingResultView */,
 				767BC5CC2B3D7314004C8765 /* History */,
 				767482FA2B2C0CB900C8F5D9 /* BaseCell */,
+				76ED130E2B8F63600093E3AD /* TempChartView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,6 +336,15 @@
 			path = TrackingResultSpeedInfoCell;
 			sourceTree = "<group>";
 		};
+		76ED130E2B8F63600093E3AD /* TempChartView */ = {
+			isa = PBXGroup;
+			children = (
+				76853D552B89A82500DA8C79 /* ChartTestViewController.swift */,
+				76F67A7E2B8C68C000760C30 /* ChartTestViewModel.swift */,
+			);
+			path = TempChartView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +355,7 @@
 				764B46D52AED197C00B0B9B5 /* Sources */,
 				764B46D62AED197C00B0B9B5 /* Frameworks */,
 				764B46D72AED197C00B0B9B5 /* Resources */,
+				765A4ED52B8B921B00E20F70 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,6 +367,7 @@
 				764B928D2AFA43E000EC8854 /* FloatingPanel */,
 				769513552B56D44E00B5B18E /* Realm */,
 				769513572B56D44E00B5B18E /* RealmSwift */,
+				765423D62B8E0CBB00C937E5 /* DGCharts */,
 			);
 			productName = SimpleLocationTracking;
 			productReference = 764B46D92AED197C00B0B9B5 /* SimpleLocationTracking.app */;
@@ -370,6 +401,7 @@
 				764B46F02AED1A3C00B0B9B5 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				764B928C2AFA43E000EC8854 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				769513542B56D44E00B5B18E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				765423D52B8E0CBB00C937E5 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 764B46DA2AED197C00B0B9B5 /* Products */;
 			projectDirPath = "";
@@ -403,6 +435,7 @@
 				767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */,
 				769E4D252B480CF300058B22 /* TripType.swift in Sources */,
 				7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */,
+				76F67A7F2B8C68C000760C30 /* ChartTestViewModel.swift in Sources */,
 				767BC5CB2B3D6F57004C8765 /* MainTabBarController.swift in Sources */,
 				767482F72B2C02EA00C8F5D9 /* SpeedInfoPanelViewCell.swift in Sources */,
 				763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */,
@@ -421,6 +454,7 @@
 				764B46DD2AED197C00B0B9B5 /* AppDelegate.swift in Sources */,
 				76481E5F2AFA7E9100FC5B8A /* LocationManager.swift in Sources */,
 				7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */,
+				76853D562B89A82500DA8C79 /* ChartTestViewController.swift in Sources */,
 				7695135A2B56D4D600B5B18E /* Array + toRealmList.swift in Sources */,
 				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,
 				762ED1832B76AA8800734720 /* StartButtonView.swift in Sources */,
@@ -590,8 +624,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -619,8 +653,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -678,6 +712,14 @@
 				minimumVersion = 2.8.0;
 			};
 		};
+		765423D52B8E0CBB00C937E5 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		769513542B56D44E00B5B18E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -698,6 +740,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 764B928C2AFA43E000EC8854 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		765423D62B8E0CBB00C937E5 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 765423D52B8E0CBB00C937E5 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 		769513552B56D44E00B5B18E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

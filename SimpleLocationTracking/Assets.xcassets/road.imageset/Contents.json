@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "icons8-road-98.png",
+      "filename" : "icons8-road-98 (2).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,6 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icons8-road-98 (2).png",
       "idiom" : "universal",
       "scale" : "1x"
     },

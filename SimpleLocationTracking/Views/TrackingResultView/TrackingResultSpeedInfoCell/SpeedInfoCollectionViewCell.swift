@@ -46,7 +46,7 @@ class SpeedInfoCollectionViewCell: UICollectionViewCell {
     }
 
     func setTitle() {
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 20)
         titleLabel.textColor = .gray
         titleLabel.textAlignment = .left
 

@@ -24,21 +24,21 @@ final class TrackingResultViewModel {
     }
 
     var start: CLLocationCoordinate2D {
-        guard let start = coordinates.first?.coordinate else { return CLLocationCoordinate2D() }
+        guard let start = locationDatas.first?.coordinate else { return CLLocationCoordinate2D() }
         return start
     }
 
     var end: CLLocationCoordinate2D {
-        guard let start = coordinates.last?.coordinate else { return CLLocationCoordinate2D() }
+        guard let start = locationDatas.last?.coordinate else { return CLLocationCoordinate2D() }
         return start
     }
 
-    var coordinates: [TimedLocationData] {
-        Array(path.coordinates)
+    var locationDatas: [LocationDataPerTenMeters] {
+        Array(path.locationDatas)
     }
 
     var speeds: [CLLocationSpeed] {
-        Array(path.speeds)
+        Array(path.speedsAndAltitudes.map { $0.speed })
     }
 
     var trackingData: TrackingData

@@ -5,7 +5,7 @@
 //  Created by TAEHYOUNG KIM on 10/18/23.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 import Combine
 
@@ -18,8 +18,9 @@ class LocationManager: NSObject {
     static let shared = LocationManager()
     private let locationManager = CLLocationManager()
     private var subscriptions = Set<AnyCancellable>()
-    @Published var authorizationStatus: CLAuthorizationStatus  = .notDetermined
-    var locationInfo: TrackingManager?
+    @Published var authorizationStatus: CLAuthorizationStatus?
+    var showAlert: (() -> Void)?
+    var trackingManager: TrackingManager?
 
     override init() {
         super.init()
@@ -65,10 +66,21 @@ class LocationManager: NSObject {
         locationManager.stopUpdatingLocation()
     }
 
-    func requestAuthorization() {
-        locationManager.requestWhenInUseAuthorization()
+    func requestAuthorization(authorized: (() -> Void)? = nil, denied: () -> Void) {
+        switch authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            denied()
+        case .authorizedAlways, .authorizedWhenInUse:
+            if let authorized {
+                authorized()
+            }
+        default:
+            break
+        }
     }
-    
+
     func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D, maxAttempts: Int = 3, currentAttempt: Int = 0) async -> String {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -92,20 +104,22 @@ class LocationManager: NSObject {
             }
         }
     }
-
-
-
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
-            locationInfo?.addLocationAndSpeed(location)
+            trackingManager?.addLocationAndSpeed(location)
         }
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
+        requestAuthorization {
+            DispatchQueue.main.async { [weak self] in
+                self?.showAlert?()
+            }
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

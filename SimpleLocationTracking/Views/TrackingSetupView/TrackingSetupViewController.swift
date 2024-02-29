@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import MapKit
 
 import SnapKit
 
@@ -14,11 +15,28 @@ class TrackingSetupViewController: UIViewController {
     var vm: TrackingSetupViewModel!
     var subscriptions = Set<AnyCancellable>()
 
+    let appTitle: UILabel = {
+        let title = UILabel()
+        title.text = "MyTracking"
+        title.numberOfLines = 1
+        title.textAlignment = .left
+        title.textColor = .label
+        title.font = .systemFont(ofSize: 30, weight: .black)
+        title.setContentCompressionResistancePriority(.required, for: .vertical)
+        return title
+    }()
+
+    let mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.layer.cornerRadius = 20
+        return mapView
+    }()
+
     var startTrackingButton: AnimatedRoundedButton!
 
     let modeMenuButton: MenuButton = {
         let button = MenuButton(frame: .zero, cornerRadius: .rounded)
-        button.configure(name: "Travel Mode", count: "\(ActivicyType.allCases.count) modes")
+        button.configure(name: "Tracking Mode", count: "\(ActivicyType.allCases.count) modes")
         button.update(image: "car", selectedItem: "Car")
         return button
     }()
@@ -30,6 +48,12 @@ class TrackingSetupViewController: UIViewController {
         return button
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        if vm.status == .authorizedAlways || vm.status == .authorizedWhenInUse {
+            mapView.userTrackingMode = .follow
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -39,8 +63,12 @@ class TrackingSetupViewController: UIViewController {
         setUnitMenu()
         setModeMenu()
         setConstraints()
+        vm.locationManager.showAlert = { [weak self] in
+            self?.alertWhenPermissionStatusIsRejected()
+        }
 
         bind()
+
     }
 
     func bind() {
@@ -48,7 +76,13 @@ class TrackingSetupViewController: UIViewController {
             .compactMap { $0 }
             .sink { [weak self] status in
                 guard let self else { return }
-                self.vm.goTrackingButtonTapped(status: status, authorized: self.startTracking, denied: self.alertWhenPermissionStatusIsRejected)
+                switch status {
+                case .authorizedAlways, .authorizedWhenInUse:
+                    mapView.userTrackingMode = .follow
+                    mapView.showsUserLocation = true
+                default:
+                    break
+                }
             }.store(in: &subscriptions)
 
         vm.settingManager.$unit
@@ -89,7 +123,7 @@ class TrackingSetupViewController: UIViewController {
         startTrackingButton = AnimatedRoundedButton(frame: .zero, cornerRadius: .rounded)
         let view = StartButtonView()
         startTrackingButton.addSubview(view)
-        startTrackingButton.backgroundColor = .secondarySystemBackground
+        startTrackingButton.backgroundColor = .accent
         startTrackingButton.addTarget(self, action: #selector(goTrackingButtonTapped), for: .touchUpInside)
         view.snp.makeConstraints { make in
             make.edges.equalTo(startTrackingButton).inset(UIEdgeInsets(top: 10, left: 26, bottom: 10, right: 26))
@@ -99,35 +133,46 @@ class TrackingSetupViewController: UIViewController {
     func setConstraints() {
         view.addSubview(startTrackingButton)
         startTrackingButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(padding_body_body)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
             make.height.equalTo(view.snp.height).multipliedBy(0.15)
         }
 
         let stackView = UIStackView(arrangedSubviews: [modeMenuButton, unitMenuButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 16
+        stackView.spacing = padding_body_body
 
         view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.bottom.equalTo(startTrackingButton.snp.top).inset(-16)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(startTrackingButton.snp.top).inset(-padding_body_body)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
             make.height.equalTo(view.snp.height).multipliedBy(0.25)
+        }
+
+        view.addSubview(mapView)
+        mapView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.bottom.equalTo(stackView.snp.top).inset(-padding_body_body)
+        }
+
+        view.addSubview(appTitle)
+        appTitle.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.bottom.equalTo(mapView.snp.top).inset(-padding_body_view)
         }
     }
 
 
 
     @objc func goTrackingButtonTapped() {
-        if vm.locationManager == nil {
-            vm.locationManager = LocationManager()
-            vm.bind()
-        } else {
-            guard let status = vm.status else { return }
-            vm.goTrackingButtonTapped(status: status, authorized: startTracking, denied: alertWhenPermissionStatusIsRejected)
+        vm.locationManager.requestAuthorization { [weak self] in
+            self?.startTracking()
+        } denied: { [weak self] in
+            self?.alertWhenPermissionStatusIsRejected()
         }
     }
+
 
     func alertWhenPermissionStatusIsRejected() {
         let title = "위치 정보 권한 요청"

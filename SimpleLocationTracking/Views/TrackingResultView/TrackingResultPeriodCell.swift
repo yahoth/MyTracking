@@ -14,7 +14,7 @@ class TrackingResultPeriodCell: UITableViewCell {
     let startDate = UILabel()
     let endDate = UILabel()
     let periodImage = UIImageView()
-    let vStack = UIStackView()
+    let hStack = UIStackView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,10 +31,10 @@ class TrackingResultPeriodCell: UITableViewCell {
     }
 
     func setStackView() {
-        vStack.axis = .vertical
-        vStack.distribution = .fillEqually
-        vStack.spacing = 4
-        contentView.addSubview(vStack)
+        hStack.axis = .horizontal
+        hStack.distribution = .fillProportionally
+        hStack.spacing = 4
+        contentView.addSubview(hStack)
     }
     func setLabel(_ label: UILabel) {
         label.textColor = .gray
@@ -44,32 +44,20 @@ class TrackingResultPeriodCell: UITableViewCell {
     }
 
     func setImage() {
-        periodImage.image = UIImage(systemName: "arrow.down")
+        periodImage.image = UIImage(systemName: "arrow.right")
         periodImage.tintColor = .gray
         periodImage.contentMode = .scaleAspectFit
     }
 
     func setConstraints() {
-        [startDate, periodImage, endDate].forEach(vStack.addArrangedSubview(_:))
-        vStack.snp.makeConstraints { make in
+        [startDate, periodImage, endDate].forEach(hStack.addArrangedSubview(_:))
+        hStack.snp.makeConstraints { make in
             make.edges.equalTo(contentView).inset(10)
         }
-//        startDate.snp.makeConstraints { make in
-//            make.top.horizontalEdges.equalTo(contentView).inset(padding_body_body)
-//        }
-//        periodImage.snp.makeConstraints { make in
-//            make.top.equalTo(startDate.snp.bottom).offset(10)
-//            make.centerX.equalTo(contentView)
-//            make.size.equalTo(20)
-//        }
-//        endDate.snp.makeConstraints { make in
-//            make.top.equalTo(periodImage.snp.bottom).offset(10)
-//            make.bottom.horizontalEdges.equalTo(contentView).inset(padding_body_body)
-//        }
     }
 
     func configure(start: Date, end: Date) {
-        startDate.text = start.formattedString(.full)
-        endDate.text = end.formattedString(.full)
+        startDate.text = start.formattedString(.hhmm)
+        endDate.text = end.formattedString(.hhmm)
     }
 }

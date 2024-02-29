@@ -624,8 +624,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -653,8 +653,8 @@
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치를 제공합니다\n";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 기반으로 현재 위치 및 트래킹 정보를 제공합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

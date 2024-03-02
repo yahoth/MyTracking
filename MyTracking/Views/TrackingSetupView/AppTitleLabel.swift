@@ -22,7 +22,7 @@ class AppTitleLabel: UILabel {
         self.numberOfLines = 1
         self.textAlignment = .left
         self.textColor = .label
-        self.font = .systemFont(ofSize: 30, weight: .black)
+        self.font = .sfCompact(size: 30, weight: .bold)
         self.setContentCompressionResistancePriority(.required, for: .vertical)
         self.text = title
     }

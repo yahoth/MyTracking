@@ -98,7 +98,7 @@
 		76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		76481E5C2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoPanelViewController.swift; sourceTree = "<group>"; };
 		76481E5E2AFA7E9100FC5B8A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		764B46D92AED197C00B0B9B5 /* SimpleLocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleLocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		764B46D92AED197C00B0B9B5 /* MyTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764B46DC2AED197C00B0B9B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764B46DE2AED197C00B0B9B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		764B46E52AED197D00B0B9B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 		764B46D02AED197C00B0B9B5 = {
 			isa = PBXGroup;
 			children = (
-				764B46DB2AED197C00B0B9B5 /* SimpleLocationTracking */,
+				764B46DB2AED197C00B0B9B5 /* MyTracking */,
 				764B46DA2AED197C00B0B9B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -270,12 +270,12 @@
 		764B46DA2AED197C00B0B9B5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				764B46D92AED197C00B0B9B5 /* SimpleLocationTracking.app */,
+				764B46D92AED197C00B0B9B5 /* MyTracking.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		764B46DB2AED197C00B0B9B5 /* SimpleLocationTracking */ = {
+		764B46DB2AED197C00B0B9B5 /* MyTracking */ = {
 			isa = PBXGroup;
 			children = (
 				764B46DC2AED197C00B0B9B5 /* AppDelegate.swift */,
@@ -292,7 +292,7 @@
 				764B46E72AED197D00B0B9B5 /* LaunchScreen.storyboard */,
 				764B46EA2AED197D00B0B9B5 /* Info.plist */,
 			);
-			path = SimpleLocationTracking;
+			path = MyTracking;
 			sourceTree = "<group>";
 		};
 		767482FA2B2C0CB900C8F5D9 /* BaseCell */ = {
@@ -367,9 +367,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		764B46D82AED197C00B0B9B5 /* SimpleLocationTracking */ = {
+		764B46D82AED197C00B0B9B5 /* MyTracking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 764B46ED2AED197D00B0B9B5 /* Build configuration list for PBXNativeTarget "SimpleLocationTracking" */;
+			buildConfigurationList = 764B46ED2AED197D00B0B9B5 /* Build configuration list for PBXNativeTarget "MyTracking" */;
 			buildPhases = (
 				764B46D52AED197C00B0B9B5 /* Sources */,
 				764B46D62AED197C00B0B9B5 /* Frameworks */,
@@ -380,7 +380,7 @@
 			);
 			dependencies = (
 			);
-			name = SimpleLocationTracking;
+			name = MyTracking;
 			packageProductDependencies = (
 				764B46F12AED1A3C00B0B9B5 /* SnapKit */,
 				764B928D2AFA43E000EC8854 /* FloatingPanel */,
@@ -389,7 +389,7 @@
 				765423D62B8E0CBB00C937E5 /* DGCharts */,
 			);
 			productName = SimpleLocationTracking;
-			productReference = 764B46D92AED197C00B0B9B5 /* SimpleLocationTracking.app */;
+			productReference = 764B46D92AED197C00B0B9B5 /* MyTracking.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -407,7 +407,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 764B46D42AED197C00B0B9B5 /* Build configuration list for PBXProject "SimpleLocationTracking" */;
+			buildConfigurationList = 764B46D42AED197C00B0B9B5 /* Build configuration list for PBXProject "MyTracking" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -427,7 +427,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				764B46D82AED197C00B0B9B5 /* SimpleLocationTracking */,
+				764B46D82AED197C00B0B9B5 /* MyTracking */,
 			);
 		};
 /* End PBXProject section */
@@ -666,9 +666,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(LocationAlwaysUsageDescription)";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(LocationWhenInUseUsageDescription)";
+				INFOPLIST_FILE = MyTracking/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -678,8 +678,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeduck.SimpleLocationTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeduck.MyTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -695,9 +699,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SimpleLocationTracking/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(LocationAlwaysUsageDescription)";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(LocationWhenInUseUsageDescription)";
+				INFOPLIST_FILE = MyTracking/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -707,8 +711,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeduck.SimpleLocationTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeduck.MyTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -718,7 +726,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		764B46D42AED197C00B0B9B5 /* Build configuration list for PBXProject "SimpleLocationTracking" */ = {
+		764B46D42AED197C00B0B9B5 /* Build configuration list for PBXProject "MyTracking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764B46EB2AED197D00B0B9B5 /* Debug */,
@@ -727,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		764B46ED2AED197D00B0B9B5 /* Build configuration list for PBXNativeTarget "SimpleLocationTracking" */ = {
+		764B46ED2AED197D00B0B9B5 /* Build configuration list for PBXNativeTarget "MyTracking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764B46EE2AED197D00B0B9B5 /* Debug */,

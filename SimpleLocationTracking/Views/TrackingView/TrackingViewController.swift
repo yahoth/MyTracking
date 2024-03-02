@@ -62,13 +62,13 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         }
 
         currentSpeedView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(mapView.snp.top).inset(-padding_body_body)
         }
 
         mapView.snp.makeConstraints { make in
             make.top.equalTo(view).inset(view.frame.height * 0.4)
-            make.horizontalEdges.equalTo(view)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view).inset(vm.mapViewBottomPadding)
         }
 
@@ -146,7 +146,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     func alertWhenStopButtonTapped() {
-        let canSave = vm.totalElapsedTime >= 1
+        let canSave = vm.totalElapsedTime >= 60
         let message = canSave ? "quit?".localized() : "tooShortToRecord".localized()
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 
@@ -226,7 +226,6 @@ class MyFloatingPanelLayout: FloatingPanelLayout {
 
     init(tipInset: CGFloat) {
         self.tipInset = tipInset
-        print("tip \(tipInset)")
     }
 
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] { [

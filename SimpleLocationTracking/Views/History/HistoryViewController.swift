@@ -29,8 +29,23 @@ class HistoryViewController: UIViewController {
         createCollectionView()
         createDatasource()
         updateCollectionView()
+        addRefreshControl()
         bind()
+
+
     }
+
+    func addRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+
+    @objc func refresh() {
+        applySnapshot()
+        collectionView.refreshControl?.endRefreshing()
+    }
+
 
     func createCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
@@ -56,7 +71,6 @@ class HistoryViewController: UIViewController {
             let section = self.datasource.snapshot().sectionIdentifiers[indexPath.section]
             var content = supplementaryView.defaultContentConfiguration()
             content.text = section.keys
-//            content.directionalLayoutMargins = .init(top: 20, leading: 20, bottom: 20, trailing: 20)
             supplementaryView.contentConfiguration = content
         }
 

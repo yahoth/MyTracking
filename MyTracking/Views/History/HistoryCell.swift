@@ -29,7 +29,7 @@ class HistoryCell: UICollectionViewCell {
 
     var typeImageContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         return view
     }()
 

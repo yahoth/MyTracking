@@ -35,11 +35,11 @@ class MainTabBarController: UITabBarController {
     func updateNavigationItem(vc: UIViewController) {
         switch vc {
         case is TrackingSetupViewController:
-            navigationController?.navigationBar.isHidden = true
+            self.navigationController?.isNavigationBarHidden = true
         case is HistoryViewController:
             navigationController?.navigationBar.prefersLargeTitles = false
             title = "Tracking History"
-            navigationController?.navigationBar.isHidden = false
+            self.navigationController?.isNavigationBarHidden = false
         default:
             break
         }

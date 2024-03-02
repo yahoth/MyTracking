@@ -18,6 +18,9 @@ enum ActivicyType: String, CaseIterable, PersistableEnum {
     case cycling
     case train
     case airplane
+    case ferry
+    case bike
+
 
     var image: String {
         switch self {
@@ -37,6 +40,11 @@ enum ActivicyType: String, CaseIterable, PersistableEnum {
             return "train"
         case .airplane:
             return "airplane"
+        case .ferry:
+            return "ferry"
+        case .bike:
+            return "bike"
         }
+
     }
 }

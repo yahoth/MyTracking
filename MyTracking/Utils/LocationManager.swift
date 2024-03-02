@@ -41,9 +41,9 @@ class LocationManager: NSObject {
 
     func update(type: ActivicyType) {
         switch type {
-        case .automobile:
+        case .automobile, .bike:
             setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .automotiveNavigation)
-        case .train, .offroad_vehicle:
+        case .train, .offroad_vehicle, .ferry:
             setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .otherNavigation)
         case .airplane:
             setup(accuracy: kCLLocationAccuracyBestForNavigation, type: .airborne)

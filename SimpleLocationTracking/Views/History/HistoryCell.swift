@@ -108,6 +108,13 @@ class HistoryCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
 
+        // shadow 적용
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 12
+        layer.shadowOffset = CGSize(width: 0, height: 0) // 필요에 따라 변경
+        layer.masksToBounds = false
+
         contentView.addSubview(topStackView)
         setConstraints()
         setTopContainer()

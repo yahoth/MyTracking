@@ -64,11 +64,11 @@ class TrackingManager {
             let previousLocation = locationInfo.locations.last
 
             if let previousLocation {
-                if Date().timeIntervalSince(previousLocation.timestamp) < 60 {
-                    points = [ previousLocation.coordinate, newLocation.coordinate ]
-                    totalDistance += newLocation.distance(from: previousLocation)
-                    totalAltitude += newLocation.altitude - previousLocation.altitude > 0  ? newLocation.altitude - previousLocation.altitude : 0
-                }
+                //                if Date().timeIntervalSince(previousLocation.timestamp) < 60 {
+                points = [ previousLocation.coordinate, newLocation.coordinate ]
+                totalDistance += newLocation.distance(from: previousLocation)
+                totalAltitude += newLocation.altitude - previousLocation.altitude > 0  ? newLocation.altitude - previousLocation.altitude : 0
+                //                }
             }
             locationInfo.locations.append(newLocation)
         }
@@ -88,7 +88,7 @@ class TrackingManager {
 
     private func isNewSpeedUsable(_ newLocation: CLLocation) -> Bool {
         guard newLocation.speedAccuracy >= 0 else { return false }
-        guard locationInfo.speedsAndAltitudes.count > 10 else { return true }
+//        guard locationInfo.speedsAndAltitudes.count > 10 else { return true }
         return true
     }
 }

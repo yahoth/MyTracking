@@ -27,12 +27,11 @@ class HistoryViewController: UIViewController {
         view.backgroundColor = .systemBackground
         vm = HistoryViewModel()
         createCollectionView()
+        setConstraints()
         createDatasource()
         updateCollectionView()
         addRefreshControl()
         bind()
-
-
     }
 
     func addRefreshControl() {
@@ -46,15 +45,22 @@ class HistoryViewController: UIViewController {
         collectionView.refreshControl?.endRefreshing()
     }
 
+    func setConstraints() {
+        let naviTitle = AppTitleLabel(frame: .zero, title: "History")
+        [naviTitle, collectionView].forEach(view.addSubview(_:))
+        naviTitle.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(naviTitle.snp.bottom).inset(-padding_body_view)
+            make.horizontalEdges.bottom.equalTo(view)
+        }
+    }
+
 
     func createCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
-        }
         collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: "HistoryCell")
-//        collectionView.register(HistoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HistoryHeaderView.identifier)
         collectionView.delegate = self
     }
 

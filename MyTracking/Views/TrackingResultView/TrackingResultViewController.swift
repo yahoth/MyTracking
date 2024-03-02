@@ -32,6 +32,16 @@ class TrackingResultViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
     func setDismissButton() {
         let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
         self.navigationItem.rightBarButtonItem = dismissItem

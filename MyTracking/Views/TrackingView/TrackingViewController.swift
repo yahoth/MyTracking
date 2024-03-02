@@ -146,7 +146,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     }
 
     func alertWhenStopButtonTapped() {
-        let canSave = vm.totalElapsedTime >= 60
+        let canSave = vm.totalElapsedTime >= 1
         let message = canSave ? "quit?".localized() : "tooShortToRecord".localized()
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
 

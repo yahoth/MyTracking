@@ -111,6 +111,7 @@ extension LocationManager: CLLocationManagerDelegate {
         for location in locations {
             trackingManager?.addLocationAndSpeed(location)
         }
+        
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -147,4 +148,6 @@ extension LocationManager: CLLocationManagerDelegate {
         print("*****DidResumeLocationUpdates*****")
         print("time: \(Date())")
     }
+
+
 }

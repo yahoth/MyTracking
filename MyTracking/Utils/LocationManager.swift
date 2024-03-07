@@ -86,8 +86,8 @@ class LocationManager: NSObject {
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         do {
             let placemark = try await geocoder.reverseGeocodeLocation(location).first
-
-            let result = "\(placemark?.locality ?? String()) \(placemark?.subLocality ?? String())"
+            let array = [placemark?.locality, placemark?.subLocality].compactMap{ $0 }
+            let result = array.joined(separator: " ")
 
             if result.trimmingCharacters(in: .whitespaces).count > 0 {
                 return result

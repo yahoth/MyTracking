@@ -100,29 +100,24 @@ extension TrackingResultRouteCellViewModel: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Pin"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-
-            (annotationView as? MKMarkerAnnotationView)?.titleVisibility = .hidden
-
-            setGlyphFor(annotation)
-            setMarkerColorFor(annotation)
-
         } else {
             annotationView?.annotation = annotation
         }
 
+        annotationView?.titleVisibility = .hidden
+//        annotationView?.glyphImage = UIImage(systemName: "circle.fill")
+//        annotationView?.selectedGlyphImage = UIImage(systemName: "circle.fill")
+        annotationView?.glyphText = ""
+        setMarkerColorFor(annotation, in: annotationView)
+
         return annotationView
+    }
 
-        func setMarkerColorFor(_ annotation: MKAnnotation) {
-            (annotationView as? MKMarkerAnnotationView)?.markerTintColor = annotation.title == "start" ? .green : .red
-        }
-
-        func setGlyphFor(_ annotation: MKAnnotation) {
-            (annotationView as? MKMarkerAnnotationView)?.glyphText = annotation.title == "start" ? "start" : "end"
-            (annotationView as? MKMarkerAnnotationView)?.glyphTintColor = .black
-        }
+    func setMarkerColorFor(_ annotation: MKAnnotation, in annotationView: MKMarkerAnnotationView?) {
+        annotationView?.markerTintColor = annotation.title == "start" ? .green : .red
     }
 }

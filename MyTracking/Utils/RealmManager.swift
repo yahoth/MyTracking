@@ -59,13 +59,13 @@ class RealmManager {
         }
     }
 
-    func update(str: String) {
-        let item = realm.objects(TrackingData.self).first!
+    func update(key: ObjectId, start: String, end: String) {
+        let item = realm.object(ofType: TrackingData.self, forPrimaryKey: key)
 
         do {
             try realm.write {
-                item.startLocation = str
-                item.endLocation = str
+                item?.startLocation = start
+                item?.endLocation = end
             }
         } catch let error as NSError {
             print(error.localizedDescription)

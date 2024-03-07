@@ -47,9 +47,10 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         vm.drawMap(mapView)
     }
 
-    func configure(start: String?, end: String?) {
-        routeLabelView.startPlaceLabel.text = start
-        routeLabelView.endPlaceLabel.text = end
+    func configure(start: String?, end: String?, present: @escaping () -> Void?) {
+        routeLabelView.fromPlaceLabel.text = start
+        routeLabelView.toPlaceLabel.text = end
+        routeLabelView.presentEditVC = present
     }
 
     func setMapViewContainer() {
@@ -75,7 +76,7 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
     }
 
     func setRouteLabel() {
-        routeLabelView = RouteLabelView()
+        routeLabelView = RouteLabelView(frame: .zero, isEdit: false)
         contentView.addSubview(routeLabelView)
         routeLabelView.snp.makeConstraints { make in
             make.top.equalTo(mapView.snp.bottom).offset(padding_body_body)

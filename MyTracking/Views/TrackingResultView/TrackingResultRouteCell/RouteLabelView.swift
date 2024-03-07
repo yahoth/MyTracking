@@ -11,51 +11,75 @@ import SnapKit
 
 class RouteLabelView: UIView {
 
-    let startContainer = UIView()
-    var startPlaceLabel: UILabel!
+    var fromPlaceLabel: UILabel!
+    var toPlaceLabel: UILabel!
 
-    let endContainer = UIView()
-    var endPlaceLabel: UILabel!
+    var fromLabel: UILabel!
+    var toLabel: UILabel!
 
-    var startMarkLabel: UILabel!
-    var endMarkLabel: UILabel!
     var vStackView: UIStackView!
 
-    override init(frame: CGRect) {
+    let editButton1 = UIButton()
+    let editButton2 = UIButton()
+
+    var presentEditVC: (() -> Void?)?
+
+    init(frame: CGRect, isEdit: Bool = false) {
+        self.isEdit = isEdit
         super.init(frame: frame)
-        setPlaceLabels()
-        setMarkLabels()
+        setFromAndToLabel()
+
+        if !isEdit {
+            setPlaceLabels()
+        }
+
+        [editButton1, editButton2].forEach(setEditButton(_:))
+
         setVStack()
+        // setHStack
+        if !isEdit {
+            set(mark: fromLabel, label: fromPlaceLabel, button: editButton1, idx: 0)
+            set(mark: toLabel, label: toPlaceLabel, button: editButton2, idx: 1)
+        } else {
+            set(mark: fromLabel, button: editButton1, idx: 0, textField: textfield1)
+            set(mark: toLabel, button: editButton2, idx: 1, textField: textfield2)
+        }
         setConstraints()
+
+
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func setPlaceLabels() {
-        startPlaceLabel = UILabel()
-        endPlaceLabel = UILabel()
-        [startPlaceLabel, endPlaceLabel].forEach { label in
+        fromPlaceLabel = UILabel()
+        toPlaceLabel = UILabel()
+        [fromPlaceLabel, toPlaceLabel].forEach { label in
             label.font = .systemFont(ofSize: 18, weight: .semibold)
             label.adjustsFontSizeToFitWidth = true
             label.numberOfLines = 0
             label.allowsDefaultTighteningForTruncation = true
             label.minimumScaleFactor = 0.8
+            label.textAlignment = .left
         }
     }
 
-    func setMarkLabels() {
-        startMarkLabel = UILabel()
-        startMarkLabel.text = "🏁"
-        endMarkLabel = UILabel()
-        endMarkLabel.text = "⛳️"
-        [startMarkLabel, endMarkLabel].forEach {
-            $0.font = .systemFont(ofSize: 18)
-            $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+    func setFromAndToLabel() {
+        fromLabel = UILabel()
+        toLabel = UILabel()
+
+        fromLabel.text = "From"
+        toLabel.text = "To"
+
+        [fromLabel, toLabel].forEach {
+            $0.textAlignment = .left
+            $0.numberOfLines = 1
+            $0.textColor = .gray
         }
     }
-    
+
     func setVStack() {
         vStackView = UIStackView()
         self.addSubview(vStackView)
@@ -69,24 +93,54 @@ class RouteLabelView: UIView {
         vStackView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-        set(container: startContainer, label: startPlaceLabel, mark: startMarkLabel)
-        set(container: endContainer, label: endPlaceLabel, mark: endMarkLabel)
+
+        [editButton1, editButton2].forEach {
+            $0.snp.makeConstraints { make in
+                make.height.equalTo(30)
+                make.width.equalTo(44)
+            }
+        }
+        [fromLabel, toLabel].forEach{
+            $0.snp.makeConstraints { make in
+                make.width.equalTo(44)
+            }
+        }
     }
 
-    func set(container: UIView, label: UILabel, mark: UILabel) {
-        vStackView.addArrangedSubview(container)
-        [label, mark].forEach(container.addSubview(_:))
-        mark.snp.makeConstraints { make in
-            make.top.bottom.equalTo(container)
-            make.leading.equalTo(container)
+    func setEditButton(_ button: UIButton) {
+        button.setImage(UIImage(named: "edit3"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+    }
+
+    @objc func editButtonTapped() {
+        print("editButtonTapped")
+        guard let presentEditVC else { return }
+        presentEditVC()
+    }
+
+    var isEdit: Bool
+    var textfield1 = UITextField()
+    var textfield2 = UITextField()
+
+
+    func set(mark: UILabel, label: UILabel? = nil, button: UIButton, idx: Int, textField: UITextField? = nil) {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        vStackView.addArrangedSubview(stackView)
+
+        let container = UIView()
+        container.backgroundColor = idx == 0 ? .green : .red
+        container.snp.makeConstraints { make in
+            make.width.equalTo(4)
         }
 
-        label.snp.makeConstraints { make in
-            make.centerX.equalTo(container)
-            make.top.equalTo(container)
-            make.leading.equalTo(mark.snp.trailing).offset(10)
-            make.trailing.lessThanOrEqualTo(container)
-            make.bottom.equalTo(container)
+        if !isEdit {
+            [container, mark, label!, button].forEach(stackView.addArrangedSubview(_:))
+        } else {
+            [container, mark, textField!].forEach(stackView.addArrangedSubview(_:))
         }
     }
 }

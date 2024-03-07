@@ -22,6 +22,7 @@
 		7639672F2B9312B200DC4701 /* SF-Compact-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 763967292B9312A300DC4701 /* SF-Compact-Rounded-Regular.otf */; };
 		763967332B93227C00DC4701 /* UIFont + SF Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967322B93227C00DC4701 /* UIFont + SF Compact.swift */; };
 		763967372B933CAE00DC4701 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967362B933CAE00DC4701 /* SettingViewController.swift */; };
+		7639673A2B99A1CB00DC4701 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967392B99A1CB00DC4701 /* EditViewController.swift */; };
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
 		763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */; };
 		76481E5B2AFA74BE00FC5B8A /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */; };
@@ -100,6 +101,7 @@
 		763967292B9312A300DC4701 /* SF-Compact-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Regular.otf"; sourceTree = "<group>"; };
 		763967322B93227C00DC4701 /* UIFont + SF Compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + SF Compact.swift"; sourceTree = "<group>"; };
 		763967362B933CAE00DC4701 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		763967392B99A1CB00DC4701 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
 		763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSpeedView.swift; sourceTree = "<group>"; };
 		76481E5A2AFA74BE00FC5B8A /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 			children = (
 				761A76F22B2ABF1B00FABC7D /* TrackingResultRouteCell.swift */,
 				767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */,
+				763967392B99A1CB00DC4701 /* EditViewController.swift */,
 			);
 			path = TrackingResultRouteCell;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				7695135E2B56D51400B5B18E /* RealmManager.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				7652152E2B889B7E001954AE /* TrackingManager.swift in Sources */,
+				7639673A2B99A1CB00DC4701 /* EditViewController.swift in Sources */,
 				76849A532B1856B600DD83F7 /* ActivityType.swift in Sources */,
 				7653E1972B68347A005B1950 /* TrackingResultPeriodCell.swift in Sources */,
 				767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */,

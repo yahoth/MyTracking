@@ -104,13 +104,21 @@ extension TrackingResultViewController: UITableViewDataSource {
             }
 
             cell.selectionStyle = .none
-            
+
+            let present = { [weak self] in
+                let vc = EditViewController()
+                vc.trackingData = self?.vm.trackingData
+                let nav = UINavigationController(rootViewController: vc)
+//                nav.modalPresentationStyle = .fullScreen
+                self?.present(nav, animated: true)
+            }
+
             if vm.viewType == .modal {
                 Task { [weak self]  in
-                    await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()), end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()))
+                    await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()), end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()), present: present)
                 }
             } else {
-                cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation)
+                cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation, present: present)
             }
             return cell
 
@@ -118,19 +126,9 @@ extension TrackingResultViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackingResultSpeedInfoCell", for: indexPath) as? TrackingResultSpeedInfoCell else { return UITableViewCell() }
             cell.vm = self.vm
             cell.selectionStyle = .none
-//            cell.setCollectionViewConstraints(superViewHeight: self.view.frame.height)
             return cell
         }
     }
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let start = vm.trackingData.startDate
-//        let end = vm.trackingData.endDate
-//        let isSameDay = Calendar.current.isDate(start, inSameDayAs: end)
-//
-//        return "\(start.formattedString(.full)) ~ \(isSameDay ? end.formattedString(.timeOnly) : end.formattedString(.full))"
-//    }
-
 }
 
 extension TrackingResultViewController: UITableViewDelegate {

@@ -42,6 +42,7 @@ class HistoryViewController: UIViewController {
 
     @objc func refresh() {
         applySnapshot()
+        collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing()
     }
 

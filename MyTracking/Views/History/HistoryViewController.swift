@@ -74,10 +74,11 @@ class HistoryViewController: UIViewController {
 
         let headerRegistration = UICollectionView.SupplementaryRegistration
         <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) {
-            (supplementaryView, elementKind, indexPath) in
-            let section = self.datasource.snapshot().sectionIdentifiers[indexPath.section]
+            [weak self] (supplementaryView, elementKind, indexPath) in
+            let section = self?.datasource.snapshot().sectionIdentifiers[indexPath.section]
             var content = supplementaryView.defaultContentConfiguration()
-            content.text = section.keys
+            content.text = self?.vm.formattedHeader(section?.keys ?? "")
+            content.textProperties.font = .systemFont(ofSize: 40, weight: .semibold)
             supplementaryView.contentConfiguration = content
         }
 
@@ -87,6 +88,8 @@ class HistoryViewController: UIViewController {
 
         let snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         datasource.apply(snapshot)
+
+        
     }
 
     func updateCollectionView() {

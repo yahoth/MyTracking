@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+"quit?" = "Voulez-vous quitter?";
+"tooShortToRecord" = "Le temps de suivi est trop court pour enregistrer. Voulez-vous quitter?";
+"startButtonSubTitle" = "Enregistrez votre voyage";
+"Distance" = "Distance";
+"Time" = "Temps";
+"Average Speed" = "Vitesse moyenne";
+"Top Speed" = "Vitesse de pointe";
+"Altitude" = "Altitude";
+"Current Altitude" = "Altitude actuelle";
+"Speed Info" = "Info de vitesse";
+"Route" = "Itinéraire";
+"Done" = "Terminé";
+"Tracking Mode" = "Mode de suivi";
+"Speed Unit" = "Unité de vitesse";
+"Select mode" = "Sélectionnez le mode";
+"Select unit of speed" = "Sélectionnez l'unité de vitesse";
+"No" = "Non";
+"Yes" = "Oui";
+"alertWhenDeniedPermissionTitle" = "Demande d'autorisation de localisation";
+"alertWhenDeniedPermissionMessage" = "Ce service nécessite des informations de localisation. Veuillez appuyer sur 'OK' pour changer l'autorisation de localisation";
+"OK" = "OK";
+"Close" = "Fermer";
+"%d modes" = "%d modes";
+"%d units" = "%d unités";
+

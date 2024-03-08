@@ -53,8 +53,4 @@ final class TrackingResultViewModel {
         self.trackingData = trackingData
         self.viewType = viewType
     }
-
-    func reverseGeocodeLocation(_ coordinate: CLLocationCoordinate2D) async -> String {
-        await LocationManager.shared.reverseGeocodeLocation(coordinate)
-    }
 }

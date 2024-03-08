@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+"quit?" = "終了しますか？";
+"tooShortToRecord" = "記録するには追跡時間が短すぎます。 終了しますか？";
+"startButtonSubTitle" = "あなたの旅を記録する";
+"Distance" = "距離";
+"Time" = "時間";
+"Average Speed" = "平均速度";
+"Top Speed" = "最高速度";
+"Altitude" = "高度";
+"Current Altitude" = "現在の高度";
+"Speed Info" = "速度情報";
+"Route" = "ルート";
+"Done" = "完了";
+"Tracking Mode" = "追跡モード";
+"Speed Unit" = "速度単位";
+"Select mode" = "モードを選択";
+"Select unit of speed" = "速度の単位を選択";
+"No" = "いいえ";
+"Yes" = "はい";
+"alertWhenDeniedPermissionTitle" = "位置情報許可リクエスト";
+"alertWhenDeniedPermissionMessage" = "このサービスは位置情報が必要です。 位置情報の許可を変更するには 'OK'をタップしてください";
+"OK" = "OK";
+"Close" = "閉じる";
+"%d modes" = "%d モード";
+"%d units" = "%d 単位";

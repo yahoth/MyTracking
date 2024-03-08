@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+"quit?" = "क्या आप बाहर निकलना चाहते हैं?";
+"tooShortToRecord" = "रिकॉर्ड करने के लिए ट्रैकिंग समय बहुत कम है। क्या आप बाहर निकलना चाहते हैं?";
+"startButtonSubTitle" = "अपनी यात्रा को रिकॉर्ड करें";
+"Distance" = "दूरी";
+"Time" = "समय";
+"Average Speed" = "औसत गति";
+"Top Speed" = "शीर्ष गति";
+"Altitude" = "ऊंचाई";
+"Current Altitude" = "वर्तमान ऊंचाई";
+"Speed Info" = "गति जानकारी";
+"Route" = "मार्ग";
+"Done" = "समाप्त";
+"Tracking Mode" = "ट्रैकिंग मोड";
+"Speed Unit" = "गति इकाई";
+"Select mode" = "मोड चुनें";
+"Select unit of speed" = "गति की इकाई चुनें";
+"No" = "नहीं";
+"Yes" = "हाँ";
+"alertWhenDeniedPermissionTitle" = "स्थान अनुमति अनुरोध";
+"alertWhenDeniedPermissionMessage" = "इस सेवा को स्थान जानकारी की आवश्यकता होती है। कृपया 'ठीक है' पर टैप करें ताकि स्थान अनुमति बदल सके";
+"OK" = "ठीक है";
+"Close" = "बंद करें";
+"%d modes" = "%d मोड";
+"%d units" = "%d इकाइयों";
+

@@ -10,27 +10,32 @@ import UIKit
 import SnapKit
 
 class EditViewController: UIViewController {
+    deinit {
+        print("EditViewController deinit")
+    }
+
     var routeLabelView: RouteLabelView = {
         let view = RouteLabelView(frame: .zero, isEdit: true)
-        view.textfield1.becomeFirstResponder()
         return view
     }()
 
+    var editChanges: (() -> Void)?
+
     var startPlaceTextField: UITextField {
-        routeLabelView.textfield1
+        routeLabelView.textField1
     }
 
     var endPlaceTextField: UITextField {
-        routeLabelView.textfield2
+        routeLabelView.textField2
     }
 
-    @Published var trackingData: TrackingData!
+    var trackingData: TrackingData!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         navigationItem.title = "Edit"
-        let doneItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(done))
+        let doneItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(done))
         navigationItem.rightBarButtonItems = [doneItem]
 
 
@@ -51,18 +56,11 @@ class EditViewController: UIViewController {
     }
 
     @objc func done() {
-        let start = startPlaceTextField.text ?? ""
-        let end = endPlaceTextField.text ?? ""
-        do {
-            try RealmManager.shared.realm.write {
-                trackingData.startLocation = start
-                trackingData.endLocation = end
-            }
-        } catch {
+        RealmManager.shared.update(item: trackingData, start: startPlaceTextField.text, end: endPlaceTextField.text)
 
+        dismiss(animated: true) { [weak self] in
+            self?.editChanges?()
         }
-
-        RealmManager.shared.update(key: trackingData.id, start: start, end: end)
     }
 
     func setConstraints() {
@@ -122,7 +120,6 @@ extension EditViewController: UITextFieldDelegate {
         } else {
             endPlaceTextField.resignFirstResponder()
         }
-
         return true
     }
 }

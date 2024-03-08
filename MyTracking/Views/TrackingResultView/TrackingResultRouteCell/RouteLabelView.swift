@@ -11,6 +11,10 @@ import SnapKit
 
 class RouteLabelView: UIView {
 
+    deinit {
+        print("routeLabelview Deinit")
+    }
+
     var fromPlaceLabel: UILabel!
     var toPlaceLabel: UILabel!
 
@@ -19,34 +23,27 @@ class RouteLabelView: UIView {
 
     var vStackView: UIStackView!
 
-    let editButton1 = UIButton()
-    let editButton2 = UIButton()
-
-    var presentEditVC: (() -> Void?)?
-
     init(frame: CGRect, isEdit: Bool = false) {
         self.isEdit = isEdit
         super.init(frame: frame)
+
+        setVStack()
         setFromAndToLabel()
 
         if !isEdit {
+            /// EditView가 아닐 경우 장소 레이블, 에딧 버튼 세팅
             setPlaceLabels()
-        }
+            setEditButton(editButton1, tag: 1)
+            setEditButton(editButton2, tag: 2)
 
-        [editButton1, editButton2].forEach(setEditButton(_:))
-
-        setVStack()
-        // setHStack
-        if !isEdit {
-            set(mark: fromLabel, label: fromPlaceLabel, button: editButton1, idx: 0)
-            set(mark: toLabel, label: toPlaceLabel, button: editButton2, idx: 1)
+            setHStack(label: fromLabel, placeLabel: fromPlaceLabel, editButton: editButton1, tag: 1)
+            setHStack(label: toLabel, placeLabel: toPlaceLabel, editButton: editButton2, tag: 2)
         } else {
-            set(mark: fromLabel, button: editButton1, idx: 0, textField: textfield1)
-            set(mark: toLabel, button: editButton2, idx: 1, textField: textfield2)
+            setHStack(label: fromLabel, textField: textField1, editButton: editButton1, tag: 1)
+            setHStack(label: toLabel, textField: textField2, editButton: editButton2, tag: 2)
         }
+
         setConstraints()
-
-
     }
 
     required init?(coder: NSCoder) {
@@ -107,40 +104,50 @@ class RouteLabelView: UIView {
         }
     }
 
-    func setEditButton(_ button: UIButton) {
-        button.setImage(UIImage(named: "edit3"), for: .normal)
+    let editButton1 = UIButton()
+    let editButton2 = UIButton()
+
+    func setEditButton(_ button: UIButton, tag: Int) {
+        button.tag = tag
+        button.setImage(UIImage(named: "edit"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     }
 
-    @objc func editButtonTapped() {
-        print("editButtonTapped")
+    var presentEditVC: ((Int) -> Void?)?
+
+    @objc func editButtonTapped(_ sender: UIButton) {
         guard let presentEditVC else { return }
-        presentEditVC()
+
+        if sender.tag == 1 {
+            presentEditVC(1)
+        } else if sender.tag == 2 {
+            presentEditVC(2)
+        }
     }
 
     var isEdit: Bool
-    var textfield1 = UITextField()
-    var textfield2 = UITextField()
+    var textField1 = UITextField()
+    var textField2 = UITextField()
 
 
-    func set(mark: UILabel, label: UILabel? = nil, button: UIButton, idx: Int, textField: UITextField? = nil) {
+    func setHStack(label: UILabel, placeLabel: UILabel? = nil, textField: UITextField? = nil, editButton: UIButton, tag: Int) {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.spacing = 8
         vStackView.addArrangedSubview(stackView)
 
-        let container = UIView()
-        container.backgroundColor = idx == 0 ? .green : .red
-        container.snp.makeConstraints { make in
+        let verticalColoredLine = UIView()
+        verticalColoredLine.backgroundColor = tag == 1 ? .green : .red
+        verticalColoredLine.snp.makeConstraints { make in
             make.width.equalTo(4)
         }
 
         if !isEdit {
-            [container, mark, label!, button].forEach(stackView.addArrangedSubview(_:))
+            [verticalColoredLine, label, placeLabel!, editButton].forEach(stackView.addArrangedSubview(_:))
         } else {
-            [container, mark, textField!].forEach(stackView.addArrangedSubview(_:))
+            [verticalColoredLine, label, textField!].forEach(stackView.addArrangedSubview(_:))
         }
     }
 }

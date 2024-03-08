@@ -47,10 +47,13 @@ class TrackingResultRouteCell: BaseTrackingResultCell {
         vm.drawMap(mapView)
     }
 
-    func configure(start: String?, end: String?, present: @escaping () -> Void?) {
+    func configure(start: String?, end: String?) {
         routeLabelView.fromPlaceLabel.text = start
         routeLabelView.toPlaceLabel.text = end
-        routeLabelView.presentEditVC = present
+    }
+
+    func configureClosure(presentEditVC: ((Int) -> Void)?) {
+        routeLabelView.presentEditVC = presentEditVC
     }
 
     func setMapViewContainer() {

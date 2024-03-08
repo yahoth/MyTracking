@@ -16,7 +16,7 @@ class HistoryCell: UICollectionViewCell {
     var topStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.backgroundColor = .blue
+        stackView.backgroundColor = .clear
         return stackView
     }()
 
@@ -77,9 +77,6 @@ class HistoryCell: UICollectionViewCell {
         topStackView.addArrangedSubview(bodyContainer)
     }
 
-    func setMidContainerConstraints() {
-    }
-
     func setBottmContainer() {
         topStackView.addArrangedSubview(bottomContainer)
     }
@@ -107,6 +104,8 @@ class HistoryCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .clear
 
         // shadow 적용
         layer.shadowColor = UIColor.black.cgColor
@@ -120,7 +119,6 @@ class HistoryCell: UICollectionViewCell {
         setTopContainer()
         setTopContainerConstraints()
         setMidContainer()
-        setMidContainerConstraints()
         setBottmContainer()
         setBottomContainerConstraints()
         typeImageContainer.layer.masksToBounds = true

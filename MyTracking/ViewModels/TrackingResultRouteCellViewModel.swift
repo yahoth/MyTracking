@@ -109,8 +109,6 @@ extension TrackingResultRouteCellViewModel: MKMapViewDelegate {
         }
 
         annotationView?.titleVisibility = .hidden
-//        annotationView?.glyphImage = UIImage(systemName: "circle.fill")
-//        annotationView?.selectedGlyphImage = UIImage(systemName: "circle.fill")
         annotationView?.glyphText = ""
         setMarkerColorFor(annotation, in: annotationView)
 

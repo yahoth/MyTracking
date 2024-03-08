@@ -58,4 +58,25 @@ class HistoryViewModel {
         guard let items = dic[key], items.indices.contains(indexPath.item) else { return nil }
         return items[indexPath.item]
     }
+
+    var languageCode: String {
+        if #available(iOS 16, *) {
+            return Locale.current.language.languageCode?.identifier ?? "en_US"
+        } else {
+            return Locale.current.languageCode ?? "en_US"
+        }
+    }
+
+    func formattedHeader(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM"
+        guard let date = dateFormatter.date(from: date) else {
+            print("hello")
+            return date
+        }
+        dateFormatter.locale = Locale(identifier: languageCode)
+
+        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MMM")
+        return dateFormatter.string(from: date)
+    }
 }

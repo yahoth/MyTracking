@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+"quit?" = "Möchten Sie beenden?";
+"tooShortToRecord" = "Die Verfolgungszeit ist zu kurz zum Aufzeichnen. Möchten Sie beenden?";
+"startButtonSubTitle" = "Ihre Reise aufzeichnen";
+"Distance" = "Entfernung";
+"Time" = "Zeit";
+"Average Speed" = "Durchschnittsgeschwindigkeit";
+"Top Speed" = "Höchstgeschwindigkeit";
+"Altitude" = "Höhe";
+"Current Altitude" = "Aktuelle Höhe";
+"Speed Info" = "Geschwindigkeitsinfo";
+"Route" = "Route";
+"Done" = "Fertig";
+"Tracking Mode" = "Verfolgungsmodus";
+"Speed Unit" = "Geschwindigkeitseinheit";
+"Select mode" = "Modus auswählen";
+"Select unit of speed" = "Geschwindigkeitseinheit auswählen";
+"No" = "Nein";
+"Yes" = "Ja";
+"alertWhenDeniedPermissionTitle" = "Standortberechtigungsanfrage";
+"alertWhenDeniedPermissionMessage" = "Dieser Dienst erfordert Standortinformationen. Bitte tippen Sie auf 'OK', um die Standortberechtigung zu ändern";
+"OK" = "OK";
+"Close" = "Schließen";
+"%d modes" = "%d Modi";
+"%d units" = "%d Einheiten";

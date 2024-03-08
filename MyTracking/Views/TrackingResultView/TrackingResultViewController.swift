@@ -105,21 +105,29 @@ extension TrackingResultViewController: UITableViewDataSource {
 
             cell.selectionStyle = .none
 
-            let present = { [weak self] in
+            let editChanges: () -> Void = { [weak self, weak cell] in
+                cell?.configure(start: self?.vm.trackingData.startLocation, end: self?.vm.trackingData.endLocation)
+            }
+
+            let presentEditVC = { [weak self] (tag: Int) in
                 let vc = EditViewController()
+
                 vc.trackingData = self?.vm.trackingData
                 let nav = UINavigationController(rootViewController: vc)
-//                nav.modalPresentationStyle = .fullScreen
+
+                if tag == 1 {
+                    vc.startPlaceTextField.becomeFirstResponder()
+                } else {
+                    vc.endPlaceTextField.becomeFirstResponder()
+                }
+
+                vc.editChanges = editChanges
                 self?.present(nav, animated: true)
             }
 
-            if vm.viewType == .modal {
-                Task { [weak self]  in
-                    await cell.configure(start: self?.vm.reverseGeocodeLocation(self?.vm.start ?? CLLocationCoordinate2D()), end: self?.vm.reverseGeocodeLocation(self?.vm.end ?? CLLocationCoordinate2D()), present: present)
-                }
-            } else {
-                cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation, present: present)
-            }
+            cell.configure(start: vm.trackingData.startLocation, end: vm.trackingData.endLocation)
+            cell.configureClosure(presentEditVC: presentEditVC)
+
             return cell
 
         } else {

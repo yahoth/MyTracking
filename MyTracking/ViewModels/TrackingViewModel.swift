@@ -32,6 +32,9 @@ final class TrackingViewModel {
         guard let root = window.rootViewController else { return 0}
         return root.view.safeAreaInsets.bottom
     }
+    
+    var workItem: DispatchWorkItem?
+    var isFirstCall = true
 
     var navigationBarHeight: CGFloat = 0
 

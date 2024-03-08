@@ -14,7 +14,6 @@ import SnapKit
 
 
 class TrackingViewController: UIViewController, FloatingPanelControllerDelegate {
-    var workItem: DispatchWorkItem?
     deinit {
         print("TrackingViewController deinit")
     }
@@ -29,7 +28,6 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     //Model
     var vm: TrackingViewModel!
     var subscriptions = Set<AnyCancellable>()
-    var isFirstCall = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,7 +174,8 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         if canSave {
             let vc = TrackingResultViewController()
 
-            Task {
+            Task { [weak self] in
+                guard let self else { return }
                 await vc.vm = TrackingResultViewModel(trackingData: self.vm.createTrackingResult(), viewType: .modal)
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.modalPresentationStyle = .fullScreen
@@ -266,18 +265,18 @@ extension TrackingViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
-        if isFirstCall {
-            isFirstCall = false
+        if vm.isFirstCall {
+            vm.isFirstCall = false
             return
         }
         // 이전에 예약된 작업이 있다면 취소
-        workItem?.cancel()
+        vm.workItem?.cancel()
 
-        workItem = DispatchWorkItem { [weak self] in
+        vm.workItem = DispatchWorkItem { [weak self] in
             self?.trackingLocation()
         }
 
         // 5초 후에 workItem을 실행
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: workItem!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: vm.workItem!)
     }
 }

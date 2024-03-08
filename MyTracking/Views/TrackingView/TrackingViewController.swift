@@ -23,7 +23,8 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     var trackingButton: UIButton!
     var currentSpeedView: CurrentSpeedView!
     var fpc: FloatingPanelController!
-    let appTitle = AppTitleLabel(frame: .zero, title: "My\(SettingManager.shared.activityType.rawValue.capitalized)")
+    let appTitle = AppTitleLabel(frame: .zero, title: "\(SettingManager.shared.activityType.rawValue.capitalized)")
+    var activityTypeImageView: UIImageView!
 
     //Model
     var vm: TrackingViewModel!
@@ -38,8 +39,8 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         currentSpeedView = CurrentSpeedView()
         setLocationTrackingButton()
         setMapView()
-
-        [appTitle, mapView, currentSpeedView, trackingButton].forEach { view.addSubview($0) }
+        setActivityTypeImageView()
+        [activityTypeImageView, appTitle, mapView, currentSpeedView, trackingButton].forEach { view.addSubview($0) }
 
         setFPC()
         setConstraints()
@@ -56,10 +57,22 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
         mapView.userTrackingMode = .followWithHeading
     }
 
+    func setActivityTypeImageView() {
+        activityTypeImageView = UIImageView()
+        activityTypeImageView.image = UIImage(named: SettingManager.shared.activityType.image)
+        activityTypeImageView.contentMode = .scaleAspectFill
+    }
+
     func setConstraints() {
         appTitle.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.leading.equalTo(activityTypeImageView.snp.trailing).inset(-4)
+            make.top.equalTo(activityTypeImageView)
             make.bottom.equalTo(currentSpeedView.snp.top).inset(-padding_body_body)
+        }
+
+        activityTypeImageView.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
+            make.size.equalTo(appTitle.snp.height)
         }
 
         currentSpeedView.snp.makeConstraints { make in

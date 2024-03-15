@@ -6,5 +6,5 @@
   
 */
 
-"NSLocationWhenInUseUsageDescription" = "Based on location information, it provides current location and tracking information";
-"NSLocationAlwaysUsageDescription" = "Based on location information, it provides current location and tracking information";
+"NSLocationWhenInUseUsageDescription" = "Basé sur les informations de localisation, il fournit la position actuelle et les informations de suivi";
+"NSLocationAlwaysUsageDescription" = "Basé sur les informations de localisation, il fournit la position actuelle et les informations de suivi";

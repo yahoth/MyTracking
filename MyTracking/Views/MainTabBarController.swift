@@ -41,16 +41,12 @@ class MainTabBarController: UITabBarController {
 //        delegate = self
 
         let mainVC = TrackingSetupViewController()
-        mainVC.tabBarItem = UITabBarItem(title: "Tracking", image: UIImage(systemName: "mappin.and.ellipse"), tag: 0)
+        mainVC.tabBarItem = UITabBarItem(title: "Tracking".localized(), image: UIImage(systemName: "mappin.and.ellipse"), tag: 0)
 
         let historyVC = HistoryViewController()
-        historyVC.tabBarItem = UITabBarItem(title: "History", image: UIImage(systemName: "filemenu.and.selection"), tag: 1)
+        historyVC.tabBarItem = UITabBarItem(title: "History".localized(), image: UIImage(systemName: "filemenu.and.selection"), tag: 1)
 
-        let settingVC = SettingViewController()
-
-        settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gearshape"), tag: 2)
-
-        self.viewControllers = [mainVC, historyVC, settingVC]
+        self.viewControllers = [mainVC, historyVC]
     }
 
     func setTabBarColor() {

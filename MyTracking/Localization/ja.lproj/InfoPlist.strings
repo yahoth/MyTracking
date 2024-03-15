@@ -6,5 +6,5 @@
   
 */
 
-"NSLocationWhenInUseUsageDescription" = "Based on location information, it provides current location and tracking information";
-"NSLocationAlwaysUsageDescription" = "Based on location information, it provides current location and tracking information";
+"NSLocationWhenInUseUsageDescription" = "位置情報に基づいて、現在の位置と追跡情報を提供します";
+"NSLocationAlwaysUsageDescription" = "位置情報に基づいて、現在の位置と追跡情報を提供します";

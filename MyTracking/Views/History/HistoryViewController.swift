@@ -47,7 +47,7 @@ class HistoryViewController: UIViewController {
     }
 
     func setConstraints() {
-        let naviTitle = AppTitleLabel(frame: .zero, title: "History")
+        let naviTitle = AppTitleLabel(frame: .zero, title: "History".localized())
         [naviTitle, collectionView].forEach(view.addSubview(_:))
         naviTitle.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
@@ -136,9 +136,9 @@ class HistoryViewController: UIViewController {
     }
 
     func layout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)

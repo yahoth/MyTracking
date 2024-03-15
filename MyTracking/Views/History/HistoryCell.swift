@@ -112,6 +112,7 @@ class HistoryCell: UICollectionViewCell {
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 12
         layer.shadowOffset = CGSize(width: 0, height: 0) // 필요에 따라 변경
+        layer.shadowPath = UIBezierPath(rect: layer.bounds).cgPath
         layer.masksToBounds = false
 
         contentView.addSubview(topStackView)

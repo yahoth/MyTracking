@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "Vuoi uscire?";
+"tooShortToRecord" = "Il tempo di tracciamento è troppo breve per essere registrato. Vuoi uscire?";
+"startButtonSubTitle" = "Registra il Tuo Viaggio";
+
+"Distance" = "Distanza";
+"Time" = "Tempo";
+"Average Speed" = "Velocità Media";
+"Top Speed" = "Velocità Massima";
+"Altitude" = "Altitudine";
+"Current Altitude" = "Altitudine Attuale";
+"Speed Info" = "Informazioni sulla Velocità";
+"Route" = "Percorso";
+"Done" = "Fatto";
+"Tracking Mode" = "Modalità di Tracciamento";
+"Speed Unit" = "Unità di Velocità";
+
+"Select mode" = "Seleziona modalità";
+"Select unit of speed" = "Seleziona unità di velocità";
+"No" = "No";
+"Yes" = "Sì";
+
+"alertWhenDeniedPermissionTitle" = "Richiesta di Permesso di Localizzazione";
+"alertWhenDeniedPermissionMessage" = "Questo servizio richiede informazioni sulla localizzazione. Per favore, tocca 'OK' per cambiare il permesso di localizzazione";
+"OK" = "OK";
+"Close" = "Chiudi";
+
+"%d modes" = "%d modalità";
+"%d units" = "%d unità";
+
+"automobile" = "automóvel";
+"off-road vehicle" = "veículo todo-o-terreno";
+"running" = "corrida";
+"walking" = "caminhada";
+"hiking" = "caminhada";
+"cycling" = "ciclismo";
+"train" = "comboio";
+"airplane" = "avião";
+"ferry" = "ferry";
+"bike" = "mota";
+
+"From" = "Partenza";
+"To" = "Destinazione";
+"Tracking" = "Tracciamento";
+"History" = "Storia";

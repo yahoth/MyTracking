@@ -88,7 +88,7 @@ class TrackingSetupViewController: UIViewController {
         vm.settingManager.$activityType
             .receive(on: DispatchQueue.main)
             .sink { [weak self] mode in
-                self?.modeMenuButton.update(image: mode.image, selectedItem: mode.rawValue.capitalized)
+                self?.modeMenuButton.update(image: mode.image, selectedItem: mode.rawValue.localized().capitalized)
             }.store(in: &subscriptions)
     }
 
@@ -104,7 +104,7 @@ class TrackingSetupViewController: UIViewController {
 
     func setModeMenu() {
         let menu = ActivicyType.allCases.map { [weak self] mode in
-            UIAction(title: mode.rawValue.capitalized, image: UIImage(named: mode.image)) { _ in
+            UIAction(title: mode.rawValue.localized().capitalized, image: UIImage(named: mode.image)) { _ in
                 self?.vm.settingManager.updateActivityType(mode)
             }
         }

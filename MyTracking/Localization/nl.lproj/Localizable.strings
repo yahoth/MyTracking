@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "Wilt u afsluiten?";
+"tooShortToRecord" = "De trackingtijd is te kort om te registreren. Wilt u afsluiten?";
+"startButtonSubTitle" = "Leg Uw Reis Vast";
+
+"Distance" = "Afstand";
+"Time" = "Tijd";
+"Average Speed" = "Gemiddelde Snelheid";
+"Top Speed" = "Topsnelheid";
+"Altitude" = "Hoogte";
+"Current Altitude" = "Huidige Hoogte";
+"Speed Info" = "Snelheidsinfo";
+"Route" = "Route";
+"Done" = "Klaar";
+"Tracking Mode" = "Tracking Modus";
+"Speed Unit" = "Snelheidseenheid";
+
+"Select mode" = "Selecteer modus";
+"Select unit of speed" = "Selecteer snelheidseenheid";
+"No" = "Nee";
+"Yes" = "Ja";
+
+"alertWhenDeniedPermissionTitle" = "Verzoek om Locatietoestemming";
+"alertWhenDeniedPermissionMessage" = "Deze service vereist locatie-informatie. Tik op 'OK' om de locatietoestemming te wijzigen";
+"OK" = "OK";
+"Close" = "Sluiten";
+
+"%d modes" = "%d modi";
+"%d units" = "%d eenheden";
+
+"automobile" = "auto";
+"off-road vehicle" = "terreinwagen";
+"running" = "hardlopen";
+"walking" = "wandelen";
+"hiking" = "hiken";
+"cycling" = "fietsen";
+"train" = "trein";
+"airplane" = "vliegtuig";
+"ferry" = "veerboot";
+"bike" = "motorfiets";
+
+"From" = "Vertrek";
+"To" = "Bestemming";
+"Tracking" = "Traceren";
+"History" = "Geschiedenis";

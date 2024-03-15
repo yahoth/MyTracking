@@ -30,3 +30,18 @@
 "%d modes" = "%d मोड";
 "%d units" = "%d इकाइयों";
 
+"automobile" = "ऑटोमोबाइल";
+"off-road vehicle" = "ऑफ-रोड वाहन";
+"running" = "दौड़ना";
+"walking" = "चलना";
+"hiking" = "हाइकिंग";
+"cycling" = "साइकिल चलाना";
+"train" = "ट्रेन";
+"airplane" = "विमान";
+"ferry" = "नाव";
+"bike" = "बाइक";
+
+"From" = "प्रस्थान";
+"To" = "गंतव्य";
+"Tracking" = "ट्रैकिंग";
+"History" = "इतिहास";

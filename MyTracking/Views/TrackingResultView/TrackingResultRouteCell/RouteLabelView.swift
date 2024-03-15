@@ -67,13 +67,15 @@ class RouteLabelView: UIView {
         fromLabel = UILabel()
         toLabel = UILabel()
 
-        fromLabel.text = "From"
-        toLabel.text = "To"
+        fromLabel.text = "From".localized()
+        toLabel.text = "To".localized()
 
         [fromLabel, toLabel].forEach {
-            $0.textAlignment = .left
-            $0.numberOfLines = 1
-            $0.textColor = .gray
+            $0?.textAlignment = .left
+            $0?.numberOfLines = 2
+            $0?.textColor = .gray
+            $0?.adjustsFontSizeToFitWidth = true
+            $0?.minimumScaleFactor = 0.7
         }
     }
 

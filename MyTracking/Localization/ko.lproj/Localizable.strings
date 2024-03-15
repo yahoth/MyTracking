@@ -33,3 +33,19 @@
 
 "%d modes" = "%d개 모드";
 "%d units" = "%d개 단위";
+
+"automobile" = "자동차";
+"off-road vehicle" = "오프로드 차량";
+"running" = "달리기";
+"walking" = "걷기";
+"hiking" = "등산";
+"cycling" = "자전거 타기";
+"train" = "기차";
+"airplane" = "비행기";
+"ferry" = "페리";
+"bike" = "오토바이";
+
+"From" = "출발지";
+"To" = "도착지";
+"Tracking" = "트래킹";
+"History" = "기록";

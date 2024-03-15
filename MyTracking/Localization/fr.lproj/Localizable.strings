@@ -30,3 +30,18 @@
 "%d modes" = "%d modes";
 "%d units" = "%d unités";
 
+"automobile" = "automobile";
+"off-road vehicle" = "véhicule tout-terrain";
+"running" = "course à pied";
+"walking" = "marche";
+"hiking" = "randonnée";
+"cycling" = "cyclisme";
+"train" = "train";
+"airplane" = "avion";
+"ferry" = "ferry";
+"bike" = "moto";
+
+"From" = "Départ";
+"To" = "Arrivée";
+"Tracking" = "Suivi";
+"History" = "Historique";

@@ -24,18 +24,6 @@ class MainTabBarController: UITabBarController {
 
     }
 
-//    func updateNavigationItem(vc: UIViewController) {
-//        switch vc {
-//        case is TrackingSetupViewController:
-//            self.navigationController?.isNavigationBarHidden = true
-//        case is HistoryViewController:
-//            navigationController?.navigationBar.prefersLargeTitles = false
-//            self.navigationController?.isNavigationBarHidden = true
-//
-//        default:
-//            break
-//        }
-//    }
 
     func setTabBar() {
 //        delegate = self
@@ -54,9 +42,3 @@ class MainTabBarController: UITabBarController {
         tabBarApppearance.backgroundColor = .systemBackground
     }
 }
-
-//extension MainTabBarController: UITabBarControllerDelegate {
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        updateNavigationItem(vc: viewController)
-//    }
-//}

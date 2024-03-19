@@ -42,6 +42,7 @@
 		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
 		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
 		767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */; };
+		7675DFFD2BA88D16000B35E1 /* EmptyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675DFFC2BA88D16000B35E1 /* EmptyHistoryView.swift */; };
 		767BC5CB2B3D6F57004C8765 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */; };
 		767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */; };
 		767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */; };
@@ -128,6 +129,7 @@
 		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
 		767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLabelView.swift; sourceTree = "<group>"; };
+		7675DFFC2BA88D16000B35E1 /* EmptyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyHistoryView.swift; sourceTree = "<group>"; };
 		767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */,
 				767D41C02B3EB2D500C66905 /* HistoryCell.swift */,
 				76A582652B6040ED00329EE2 /* BodyContainerView.swift */,
+				7675DFFC2BA88D16000B35E1 /* EmptyHistoryView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				764B46DD2AED197C00B0B9B5 /* AppDelegate.swift in Sources */,
 				76481E5F2AFA7E9100FC5B8A /* LocationManager.swift in Sources */,
 				7666F2CD2B17316500F5826F /* BaseSpeedInfoCell.swift in Sources */,
+				7675DFFD2BA88D16000B35E1 /* EmptyHistoryView.swift in Sources */,
 				76853D562B89A82500DA8C79 /* ChartTestViewController.swift in Sources */,
 				7695135A2B56D4D600B5B18E /* Array + toRealmList.swift in Sources */,
 				76481E5D2AFA74CE00FC5B8A /* SpeedInfoPanelViewController.swift in Sources */,

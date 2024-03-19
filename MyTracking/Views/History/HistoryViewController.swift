@@ -15,6 +15,20 @@ class HistoryViewController: UIViewController {
 
     var datasource: UICollectionViewDiffableDataSource<Section, Item>!
     var collectionView: UICollectionView!
+
+    let noHistoryLabel : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .systemGray
+        label.font = .systemFont(ofSize: 30, weight: .semibold)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        label.text = "There is no tracking history"
+        return label
+    }()
+
+
+
     var vm: HistoryViewModel!
     var subscriptions = Set<AnyCancellable>()
     typealias Item = TrackingData
@@ -42,19 +56,24 @@ class HistoryViewController: UIViewController {
 
     @objc func refresh() {
         applySnapshot()
+        updateUI()
         collectionView.reloadData()
         collectionView.refreshControl?.endRefreshing()
     }
 
     func setConstraints() {
         let naviTitle = AppTitleLabel(frame: .zero, title: "History".localized())
-        [naviTitle, collectionView].forEach(view.addSubview(_:))
+        [naviTitle, collectionView, noHistoryLabel].forEach(view.addSubview(_:))
         naviTitle.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(padding_body_view)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(naviTitle.snp.bottom).inset(-padding_body_view)
             make.horizontalEdges.bottom.equalTo(view)
+        }
+
+        noHistoryLabel.snp.makeConstraints { make in
+            make.edges.equalTo(view).inset(padding_body_view)
         }
     }
 
@@ -97,10 +116,21 @@ class HistoryViewController: UIViewController {
             guard let self else { return }
             switch changes {
             case .initial, .update:
+                updateUI()
                 self.applySnapshot()
             case .error(let error):
                 print("collection view update error: \(error)")
             }
+        }
+    }
+
+    func updateUI() {
+        if vm.trackingDatas.count > 0 {
+            noHistoryLabel.isHidden = true
+            collectionView.isHidden = false
+        } else {
+            noHistoryLabel.isHidden = false
+            collectionView.isHidden = true
         }
     }
 

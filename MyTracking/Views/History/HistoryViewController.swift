@@ -27,8 +27,6 @@ class HistoryViewController: UIViewController {
         return label
     }()
 
-
-
     var vm: HistoryViewModel!
     var subscriptions = Set<AnyCancellable>()
     typealias Item = TrackingData
@@ -144,17 +142,18 @@ class HistoryViewController: UIViewController {
     }
 
     func delete(item: TrackingData) {
-        var snapshot = datasource.snapshot()
-        let section = snapshot.sectionIdentifier(containingItem: item)!
-        snapshot.deleteItems([item])
-
-        if snapshot.itemIdentifiers(inSection: section).isEmpty {
-            snapshot.deleteSections([section])
-        }
-
-        datasource.apply(snapshot) { [weak self] in
-            self?.vm.realmManager.deleteObjectsOf(type: item)
-        }
+        self.vm.realmManager.deleteObjectsOf(type: item)
+//
+//        var snapshot = datasource.snapshot()
+//        let section = snapshot.sectionIdentifier(containingItem: item)!
+//        snapshot.deleteItems([item])
+//
+//        if snapshot.itemIdentifiers(inSection: section).isEmpty {
+//            snapshot.deleteSections([section])
+//        }
+//
+//        datasource.apply(snapshot) { [weak self] in
+//        }
     }
 
     func bind() {

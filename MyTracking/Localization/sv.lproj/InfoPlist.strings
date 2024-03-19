@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "Baserat på platsinformation, tillhandahåller den nuvarande platsen och spårningsinformation";
+"NSLocationAlwaysUsageDescription" = "Baserat på platsinformation, tillhandahåller den nuvarande platsen och spårningsinformation";

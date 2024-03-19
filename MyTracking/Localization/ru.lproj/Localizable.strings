@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "Вы хотите выйти?";
+"tooShortToRecord" = "Время отслеживания слишком короткое для записи. Вы хотите выйти?";
+"startButtonSubTitle" = "Записать Ваше Путешествие";
+
+"Distance" = "Расстояние";
+"Time" = "Время";
+"Average Speed" = "Средняя Скорость";
+"Top Speed" = "Максимальная Скорость";
+"Altitude" = "Высота";
+"Current Altitude" = "Текущая Высота";
+"Speed Info" = "Информация о Скорости";
+"Route" = "Маршрут";
+"Done" = "Готово";
+"Tracking Mode" = "Режим Отслеживания";
+"Speed Unit" = "Единица Скорости";
+
+"Select mode" = "Выбрать режим";
+"Select unit of speed" = "Выбрать единицу скорости";
+"No" = "Нет";
+"Yes" = "Да";
+
+"alertWhenDeniedPermissionTitle" = "Запрос Разрешения на Местоположение";
+"alertWhenDeniedPermissionMessage" = "Для этой услуги требуется информация о местоположении. Пожалуйста, нажмите 'OK', чтобы изменить разрешение на местоположение";
+"OK" = "ОК";
+"Close" = "Закрыть";
+
+"%d modes" = "%d режимов";
+"%d units" = "%d единиц";
+
+"automobile" = "автомобиль";
+"off-road vehicle" = "внедорожник";
+"running" = "бег";
+"walking" = "ходьба";
+"hiking" = "пеший туризм";
+"cycling" = "велосипедный спорт";
+"train" = "поезд";
+"airplane" = "самолет";
+"ferry" = "паром";
+"bike" = "мотоцикл";
+
+"From" = "Отправление";
+"To" = "Назначение";
+"Tracking" = "Отслеживание";
+"History" = "История";

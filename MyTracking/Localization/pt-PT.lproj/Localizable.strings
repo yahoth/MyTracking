@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "Deseja sair?";
+"tooShortToRecord" = "O tempo de rastreio é muito curto para gravar. Deseja sair?";
+"startButtonSubTitle" = "Registre Sua Jornada";
+"Distance" = "Distância";
+"Time" = "Tempo";
+"Average Speed" = "Velocidade Média";
+"Top Speed" = "Velocidade Máxima";
+"Altitude" = "Altitude";
+"Current Altitude" = "Altitude Atual";
+"Speed Info" = "Informação de Velocidade";
+"Route" = "Rota";
+"Done" = "Concluído";
+"Tracking Mode" = "Modo de Rastreio";
+"Speed Unit" = "Unidade de Velocidade";
+"Select mode" = "Selecionar modo";
+"Select unit of speed" = "Selecionar unidade de velocidade";
+"No" = "Não";
+"Yes" = "Sim";
+"alertWhenDeniedPermissionTitle" = "Pedido de Permissão de Localização";
+"alertWhenDeniedPermissionMessage" = "Este serviço requer informações de localização. Por favor, toque em 'OK' para alterar a permissão de localização";
+"OK" = "OK";
+"Close" = "Fechar";
+"%d modes" = "%d modos";
+"%d units" = "%d unidades";
+
+"automobile" = "automóvel";
+"off-road vehicle" = "veículo todo-o-terreno";
+"running" = "corrida";
+"walking" = "caminhada";
+"hiking" = "caminhada";
+"cycling" = "ciclismo";
+"train" = "comboio";
+"airplane" = "avião";
+"ferry" = "ferry";
+"bike" = "mota";
+
+"From" = "Saída";
+"To" = "Destino";
+"Tracking" = "Rastreamento";
+"History" = "História";

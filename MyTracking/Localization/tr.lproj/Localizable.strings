@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "Çıkmak ister misiniz?";
+"tooShortToRecord" = "Takip süresi kayıt için çok kısa. Çıkmak ister misiniz?";
+"startButtonSubTitle" = "Yolculuğunuzu Kaydedin";
+
+"Distance" = "Mesafe";
+"Time" = "Zaman";
+"Average Speed" = "Ortalama Hız";
+"Top Speed" = "Maksimum Hız";
+"Altitude" = "Yükseklik";
+"Current Altitude" = "Güncel Yükseklik";
+"Speed Info" = "Hız Bilgisi";
+"Route" = "Rota";
+"Done" = "Tamam";
+"Tracking Mode" = "Takip Modu";
+"Speed Unit" = "Hız Birimi";
+
+"Select mode" = "Mod Seç";
+"Select unit of speed" = "Hız birimi seç";
+"No" = "Hayır";
+"Yes" = "Evet";
+
+"alertWhenDeniedPermissionTitle" = "Konum İzni İsteği";
+"alertWhenDeniedPermissionMessage" = "Bu hizmet konum bilgisi gerektirir. Konum iznini değiştirmek için 'Tamam'a dokunun";
+"OK" = "Tamam";
+"Close" = "Kapat";
+
+"%d modes" = "%d modlar";
+"%d units" = "%d birimler";
+
+"automobile" = "otomobil";
+"off-road vehicle" = "arazi aracı";
+"running" = "koşu";
+"walking" = "yürüyüş";
+"hiking" = "yürüyüş";
+"cycling" = "bisiklet sürme";
+"train" = "tren";
+"airplane" = "uçak";
+"ferry" = "feribot";
+"bike" = "motosiklet";
+
+"From" = "Başlangıç";
+"To" = "Varış";
+"Tracking" = "Takip";
+"History" = "Geçmiş";

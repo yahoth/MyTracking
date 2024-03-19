@@ -19,6 +19,7 @@ class TrackingData: Object {
     @Persisted var endLocation: String?
     @Persisted var tripType: TripType = .oneWay
     @Persisted var activityType: ActivicyType
+    @Persisted var isDelete = false
 
     convenience init(speedInfos: List<SpeedInfo>, pathInfo: PathInfo, startDate: Date, endDate: Date, startLocation: String?, endLocation: String?, tripType: TripType = .oneWay, activityType: ActivicyType
     ) {

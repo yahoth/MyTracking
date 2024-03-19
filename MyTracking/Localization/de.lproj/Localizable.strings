@@ -29,3 +29,19 @@
 "Close" = "Schließen";
 "%d modes" = "%d Modi";
 "%d units" = "%d Einheiten";
+
+"automobile" = "Automobil";
+"off-road vehicle" = "Geländewagen";
+"running" = "Laufen";
+"walking" = "Gehen";
+"hiking" = "Wandern";
+"cycling" = "Radfahren";
+"train" = "Zug";
+"airplane" = "Flugzeug";
+"ferry" = "Fähre";
+"bike" = "Motorrad";
+
+"From" = "Abfahrt";
+"To" = "Ziel";
+"Tracking" = "Verfolgung";
+"History" = "Geschichte";

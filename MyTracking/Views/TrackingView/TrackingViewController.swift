@@ -22,7 +22,7 @@ class TrackingViewController: UIViewController, FloatingPanelControllerDelegate 
     var trackingButton: UIButton!
     var currentSpeedView: CurrentSpeedView!
     var fpc: FloatingPanelController!
-    let appTitle = AppTitleLabel(frame: .zero, title: "\(SettingManager.shared.activityType.rawValue.capitalized)")
+    let appTitle = AppTitleLabel(frame: .zero, title: "\(SettingManager.shared.activityType.rawValue.localized().capitalized)")
     var activityTypeImageView: UIImageView!
 
     //Model

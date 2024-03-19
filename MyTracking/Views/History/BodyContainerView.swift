@@ -43,13 +43,13 @@ class BodyContainerView: UIView {
         leftLabel.snp.makeConstraints { make in
             make.width.equalTo(container).multipliedBy(0.7)
             make.leading.top.equalTo(container)
-            make.bottom.lessThanOrEqualTo(container)
+            make.bottom.equalTo(container)
         }
         rightLabel.snp.makeConstraints { make in
             make.width.equalTo(container).multipliedBy(0.25)
             make.trailing.equalTo(container)
             make.top.equalTo(leftLabel.snp.top)
-            make.bottom.lessThanOrEqualTo(container)
+            make.bottom.equalTo(container)
             make.leading.greaterThanOrEqualTo(leftLabel.snp.trailing)
         }
     }
@@ -70,6 +70,7 @@ class BodyContainerView: UIView {
         [startLocation, endLocation, distance].forEach(setDataLabels(_:))
         setTimeLabel()
         setStackView()
+
         setLabelContainer(leftLabel: fromLabel, rightLabel: timeLabel)
         setLabelContainer(leftLabel: startLocation, rightLabel: time)
         setEmptySpacing()
@@ -81,17 +82,15 @@ class BodyContainerView: UIView {
 
     func setLabels(_ label: UILabel) {
         label.textColor = .gray
-        time.adjustsFontSizeToFitWidth = true
-        time.minimumScaleFactor = 0.5
-        time.numberOfLines = 1
-
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
+        label.numberOfLines = 1
     }
 
     func setDataLabels(_ label: UILabel) {
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 0
-
     }
 
     func setTimeLabel() {
@@ -103,10 +102,10 @@ class BodyContainerView: UIView {
     }
 
     func configureLabels() {
-        fromLabel.text = "From"
-        toLabel.text = "To"
-        timeLabel.text = "Time"
-        distanceLabel.text = "Distance"
+        fromLabel.text = "From".localized()
+        toLabel.text = "To".localized()
+        timeLabel.text = "Time".localized()
+        distanceLabel.text = "Distance".localized()
     }
 
     required init?(coder: NSCoder) {

@@ -25,6 +25,8 @@ class SpeedInfoPanelViewCell: BaseSpeedInfoCell {
     func setLabels() {
         titleLabel.font = .systemFont(ofSize: 20)
         titleLabel.textColor = .white
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.8
 
         valueLabel.font = .systemFont(ofSize: 28, weight: .bold)
         valueLabel.textColor = .white

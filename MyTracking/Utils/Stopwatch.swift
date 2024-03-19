@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class Stopwatch: ObservableObject {
+class Stopwatch {
     deinit {
         print("Stopwatch deinit")
     }

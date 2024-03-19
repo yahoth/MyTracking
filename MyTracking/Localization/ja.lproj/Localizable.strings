@@ -29,3 +29,19 @@
 "Close" = "閉じる";
 "%d modes" = "%d モード";
 "%d units" = "%d 単位";
+
+"automobile" = "自動車 (じどうしゃ)";
+"off-road vehicle" = "オフロード車 (おふろーどしゃ)";
+"running" = "ランニング";
+"walking" = "ウォーキング";
+"hiking" = "ハイキング";
+"cycling" = "サイクリング";
+"train" = "電車 (でんしゃ)";
+"airplane" = "飛行機 (ひこうき)";
+"ferry" = "フェリー";
+"bike" = "バイク";
+
+"From" = "出発地";
+"To" = "到着地";
+"Tracking" = "追跡";
+"History" = "履歴";

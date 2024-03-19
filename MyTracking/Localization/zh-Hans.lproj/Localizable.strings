@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "您想退出吗？";
+"tooShortToRecord" = "跟踪时间太短，无法记录。您想退出吗？";
+"startButtonSubTitle" = "记录您的旅程";
+
+"Distance" = "距离";
+"Time" = "时间";
+"Average Speed" = "平均速度";
+"Top Speed" = "最高速度";
+"Altitude" = "海拔";
+"Current Altitude" = "当前海拔";
+"Speed Info" = "速度信息";
+"Route" = "路线";
+"Done" = "完成";
+"Tracking Mode" = "跟踪模式";
+"Speed Unit" = "速度单位";
+
+"Select mode" = "选择模式";
+"Select unit of speed" = "选择速度单位";
+"No" = "否";
+"Yes" = "是";
+
+"alertWhenDeniedPermissionTitle" = "位置权限请求";
+"alertWhenDeniedPermissionMessage" = "此服务需要位置信息。请点击'确定'更改位置权限";
+"OK" = "确定";
+"Close" = "关闭";
+
+"%d modes" = "%d 模式";
+"%d units" = "%d 单位";
+
+"automobile" = "汽车 (qìchē)";
+"off-road vehicle" = "越野车 (yuèyě chē)";
+"running" = "跑步 (pǎobù)";
+"walking" = "步行 (bùxíng)";
+"hiking" = "徒步 (túbù)";
+"cycling" = "骑自行车 (qí zìxíngchē)";
+"train" = "火车 (huǒchē)";
+"airplane" = "飞机 (fēijī)";
+"ferry" = "渡船 (dùchuán)";
+"bike" = "摩托车 (mótuōchē)";
+
+"From" = "出发地";
+"To" = "目的地";
+"Tracking" = "追踪";
+"History" = "历史";

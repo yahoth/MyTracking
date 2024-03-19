@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "هل ترغب في الخروج؟";
+"tooShortToRecord" = "وقت التتبع قصير جدًا للتسجيل. هل ترغب في الخروج؟";
+"startButtonSubTitle" = "سجل رحلتك";
+
+"Distance" = "المسافة";
+"Time" = "الوقت";
+"Average Speed" = "السرعة المتوسطة";
+"Top Speed" = "أقصى سرعة";
+"Altitude" = "الارتفاع";
+"Current Altitude" = "الارتفاع الحالي";
+"Speed Info" = "معلومات السرعة";
+"Route" = "المسار";
+"Done" = "تم";
+"Tracking Mode" = "وضع التتبع";
+"Speed Unit" = "وحدة السرعة";
+
+"Select mode" = "اختر الوضع";
+"Select unit of speed" = "اختر وحدة السرعة";
+"No" = "لا";
+"Yes" = "نعم";
+
+"alertWhenDeniedPermissionTitle" = "طلب إذن الموقع";
+"alertWhenDeniedPermissionMessage" = "هذه الخدمة تتطلب معلومات الموقع. الرجاء النقر على 'موافق' لتغيير إذن الموقع";
+"OK" = "موافق";
+"Close" = "إغلاق";
+
+"%d modes" = "%d أوضاع";
+"%d units" = "%d وحدات";
+
+"automobile" = "سيارة";
+"off-road vehicle" = "مركبة الطرق الوعرة";
+"running" = "الجري";
+"walking" = "المشي";
+"hiking" = "التنزه";
+"cycling" = "ركوب الدراجات";
+"train" = "قطار";
+"airplane" = "طائرة";
+"ferry" = "عبّارة";
+"bike" = "دراجة نارية";
+
+"From" = "من";
+"To" = "إلى";
+"Tracking" = "تتبع";
+"History" = "التاريخ";

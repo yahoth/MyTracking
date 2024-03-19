@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  SimpleLocationTracking
+
+  Created by TAEHYOUNG KIM on 2/29/24.
+  
+*/
+
+"quit?" = "您想退出嗎？";
+"tooShortToRecord" = "追踪時間太短，無法記錄。您想退出嗎？";
+"startButtonSubTitle" = "記錄您的旅程";
+
+"Distance" = "距離";
+"Time" = "時間";
+"Average Speed" = "平均速度";
+"Top Speed" = "最高速度";
+"Altitude" = "海拔";
+"Current Altitude" = "當前海拔";
+"Speed Info" = "速度資訊";
+"Route" = "路線";
+"Done" = "完成";
+"Tracking Mode" = "追踪模式";
+"Speed Unit" = "速度單位";
+
+"Select mode" = "選擇模式";
+"Select unit of speed" = "選擇速度單位";
+"No" = "否";
+"Yes" = "是";
+
+"alertWhenDeniedPermissionTitle" = "位置權限請求";
+"alertWhenDeniedPermissionMessage" = "此服務需要位置資訊。請點擊'確定'更改位置權限";
+"OK" = "確定";
+"Close" = "關閉";
+
+"%d modes" = "%d 模式";
+"%d units" = "%d 單位";
+
+"automobile" = "汽車 (汽车)";
+"off-road vehicle" = "越野車 (越野车)";
+"running" = "跑步 (跑步)";
+"walking" = "步行 (步行)";
+"hiking" = "登山 (登山)";
+"cycling" = "自行車騎行 (自行车骑行)";
+"train" = "火車 (火车)";
+"airplane" = "飛機 (飞机)";
+"ferry" = "渡輪 (渡轮)";
+"bike" = "機車, 摩托車 (机车, 摩托车)";
+
+"From" = "出發地";
+"To" = "目的地";
+"Tracking" = "追踪";
+"History" = "歷史";

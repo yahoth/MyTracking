@@ -34,7 +34,9 @@ class RealmManager {
     }
 
     func read() -> Results<TrackingData> {
-        realm.objects(TrackingData.self).sorted(byKeyPath: "startDate", ascending: false)
+        realm.objects(TrackingData.self).sorted(byKeyPath: "startDate", ascending: false).where { objects in
+            objects.isDelete == false
+        }
     }
 
     //Delete All Objects in a Realm
@@ -51,8 +53,9 @@ class RealmManager {
     //Delete All Objects of a Specific Type
     func deleteObjectsOf(type: TrackingData) {
         do {
-            try realm.write(withoutNotifying: [notificationToken!]) {
-                realm.delete(type)
+            try realm.write {
+//                realm.delete(type)
+                type.isDelete = true
             }
         } catch let error as NSError {
             print(error.localizedDescription)

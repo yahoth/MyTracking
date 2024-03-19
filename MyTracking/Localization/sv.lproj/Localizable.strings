@@ -35,19 +35,18 @@
 "%d modes" = "%d modes";
 "%d units" = "%d units";
 
-"automobile" = "automobile";
-"off-road vehicle" = "off-road vehicle";
-"running" = "running";
-"walking" = "walking";
-"hiking" = "hiking";
-"cycling" = "cycling";
-"train" = "train";
-"airplane" = "airplane";
-"ferry" = "ferry";
-"bike" = "bike";
+"automobile" = "bil";
+"off-road vehicle" = "terrängfordon";
+"running" = "löpning";
+"walking" = "gång";
+"hiking" = "vandring";
+"cycling" = "cykling";
+"train" = "tåg";
+"airplane" = "flygplan";
+"ferry" = "färja";
+"bike" = "motorcykel";
 
-"From" = "From";
-"To" = "To";
-"Tracking" = "Tracking";
-"History" = "History";
-//Japanese, Hindi, French, German, Chinese(simplified, traditional), spanish, portuguese(brazil, portugal), italian, russian, dutch, swedish, turkish, arabic
+"From" = "Från";
+"To" = "Till";
+"Tracking" = "Spårning";
+"History" = "Historik";

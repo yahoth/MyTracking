@@ -74,7 +74,13 @@ class TrackingManager {
         }
 
         if isNewSpeedUsable(newLocation) {
-            locationInfo.speedsAndAltitudes.append(SpeedAndAltitudePerSeconds(speed: newLocation.speed, altitude: newLocation.altitude, date: newLocation.timestamp))
+            let speedsCount = locationInfo.speedsAndAltitudes.count
+            if speedsCount < 2 {
+                locationInfo.speedsAndAltitudes.append(SpeedAndAltitudePerSeconds(speed: newLocation.speed, altitude: newLocation.altitude, date: newLocation.timestamp))
+            } else {
+                let flatteningSpeed = (locationInfo.speedsAndAltitudes[speedsCount-2].speed + locationInfo.speedsAndAltitudes[speedsCount-1].speed + newLocation.speed) / 3.0
+                locationInfo.speedsAndAltitudes.append(SpeedAndAltitudePerSeconds(speed: flatteningSpeed, altitude: newLocation.altitude, date: newLocation.timestamp))
+            }
         }
     }
 
@@ -88,7 +94,6 @@ class TrackingManager {
 
     private func isNewSpeedUsable(_ newLocation: CLLocation) -> Bool {
         guard newLocation.speedAccuracy >= 0 else { return false }
-//        guard locationInfo.speedsAndAltitudes.count > 10 else { return true }
         return true
     }
 }

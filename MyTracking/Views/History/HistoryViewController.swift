@@ -23,7 +23,7 @@ class HistoryViewController: UIViewController {
         label.font = .systemFont(ofSize: 30, weight: .semibold)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
-        label.text = "There is no tracking history"
+        label.text = "There is no tracking history".localized()
         return label
     }()
 

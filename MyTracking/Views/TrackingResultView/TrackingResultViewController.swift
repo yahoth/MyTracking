@@ -27,9 +27,7 @@ class TrackingResultViewController: UIViewController {
 
         setTableView()
         setConstrains()
-        if vm.viewType == .modal {
-            setDismissButton()
-        }
+        setNavigationBarButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,14 +40,46 @@ class TrackingResultViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    func setDismissButton() {
-        let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
-        self.navigationItem.rightBarButtonItem = dismissItem
+    func setNavigationBarButton() {
+        let shareItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareHistory))
+        if vm.viewType == .modal {
+            let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
+            self.navigationItem.rightBarButtonItems = [shareItem, dismissItem]
+        } else {
+            self.navigationItem.rightBarButtonItems = [shareItem]
+        }
+    }
+
+    @objc func shareHistory() {
+//        if let image = captureView(view) { // yourLongView는 이미지로 변환하고자 하는 뷰
+//            shareImage(image)
+//        }
+
     }
 
     @objc func doneTracking() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
+    func captureView(_ view: UIView) -> UIImage? {
+//        print("size: \(view.bounds.size)")
+//        let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+//        let image = renderer.image { ctx in
+//            view.drawHierarchy(in: CGRect.init(x: 0, y: -44, width: view.bounds.width, height: view.bounds.height), afterScreenUpdates: true)
+//        }
+        return nil
+    }
+
+    func shareImage(_ image: UIImage) {
+//        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//        // iPad에서는 popover로 표시해야 하므로 anchor를 설정
+//        if let popoverController = activityViewController.popoverPresentationController {
+//            popoverController.sourceView = self.view // 또는 버튼 등 특정 뷰를 기준으로 설정
+//            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+//            popoverController.permittedArrowDirections = [] // 화살표 방향 없음
+//        }
+//        self.present(activityViewController, animated: true, completion: nil)
+    }
+
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)

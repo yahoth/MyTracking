@@ -42,8 +42,6 @@
 		767482F92B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */; };
 		767482FC2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */; };
 		767482FE2B2C4BA300C8F5D9 /* RouteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */; };
-		7679E6E62BADC33B00C217D7 /* Share.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7679E6E52BADC33B00C217D7 /* Share.xib */; };
-		7679E6E82BADC9F000C217D7 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679E6E72BADC9F000C217D7 /* ShareView.swift */; };
 		767BC5CB2B3D6F57004C8765 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */; };
 		767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */; };
 		767BC5D02B3D7589004C8765 /* TrackingSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */; };
@@ -51,6 +49,8 @@
 		767D41C32B3EB67A00C66905 /* TrackingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D41C22B3EB67A00C66905 /* TrackingData.swift */; };
 		7680CCD32B33F2D700ADFD7A /* SizeConvention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */; };
 		7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */; };
+		76845D0F2BB19CF100FDC95C /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76845D0E2BB19CF100FDC95C /* Share.storyboard */; };
+		76845D112BB19EAF00FDC95C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76845D102BB19EAF00FDC95C /* ShareViewController.swift */; };
 		76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4C2B18563B00DD83F7 /* Stopwatch.swift */; };
 		76849A4F2B18566B00DD83F7 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A4E2B18566B00DD83F7 /* SettingManager.swift */; };
 		76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76849A502B18567000DD83F7 /* UnitOfSpeed.swift */; };
@@ -130,8 +130,6 @@
 		767482F82B2C05DF00C8F5D9 /* SpeedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		767482FB2B2C1B4F00C8F5D9 /* SpeedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfoItemCell.swift; sourceTree = "<group>"; };
 		767482FD2B2C4BA300C8F5D9 /* RouteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLabelView.swift; sourceTree = "<group>"; };
-		7679E6E52BADC33B00C217D7 /* Share.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Share.xib; sourceTree = "<group>"; };
-		7679E6E72BADC9F000C217D7 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		767BC5CA2B3D6F57004C8765 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		767BC5CD2B3D7334004C8765 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		767BC5CF2B3D7589004C8765 /* TrackingSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingSetupViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +137,8 @@
 		767D41C22B3EB67A00C66905 /* TrackingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingData.swift; sourceTree = "<group>"; };
 		7680CCD22B33F2D700ADFD7A /* SizeConvention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConvention.swift; sourceTree = "<group>"; };
 		7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingResultMapDetailViewController.swift; sourceTree = "<group>"; };
+		76845D0E2BB19CF100FDC95C /* Share.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
+		76845D102BB19EAF00FDC95C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		76849A4C2B18563B00DD83F7 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76849A4E2B18566B00DD83F7 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		76849A502B18567000DD83F7 /* UnitOfSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOfSpeed.swift; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 				761A76EE2B2AAEC000FABC7D /* TrackingResultViewController.swift */,
 				7680CCD62B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift */,
 				7653E1962B68347A005B1950 /* TrackingResultPeriodCell.swift */,
-				7679E6E52BADC33B00C217D7 /* Share.xib */,
-				7679E6E72BADC9F000C217D7 /* ShareView.swift */,
+				76845D0E2BB19CF100FDC95C /* Share.storyboard */,
+				76845D102BB19EAF00FDC95C /* ShareViewController.swift */,
 				76878EB52B31506500309D73 /* TrackingResultRouteCell */,
 				76878EB62B31507B00309D73 /* TrackingResultSpeedInfoCell */,
 			);
@@ -508,7 +508,7 @@
 				764B46E92AED197D00B0B9B5 /* LaunchScreen.storyboard in Resources */,
 				76DBA6242B909CE000AC754E /* InfoPlist.strings in Resources */,
 				76DBA61E2B9099AE00AC754E /* Localizable.strings in Resources */,
-				7679E6E62BADC33B00C217D7 /* Share.xib in Resources */,
+				76845D0F2BB19CF100FDC95C /* Share.storyboard in Resources */,
 				7639672C2B9312A800DC4701 /* SF-Compact-Rounded-Bold.otf in Resources */,
 				764B46E62AED197D00B0B9B5 /* Assets.xcassets in Resources */,
 			);
@@ -540,6 +540,7 @@
 				761A76FC2B2AE3C900FABC7D /* TrackingResultViewModel.swift in Sources */,
 				76849A512B18567000DD83F7 /* UnitOfSpeed.swift in Sources */,
 				76C05D952B32B8A5003F4357 /* PathInfo.swift in Sources */,
+				76845D112BB19EAF00FDC95C /* ShareViewController.swift in Sources */,
 				761A76F12B2AB90500FABC7D /* BaseTrackingResultCell.swift in Sources */,
 				761A76F32B2ABF1B00FABC7D /* TrackingResultRouteCell.swift in Sources */,
 				763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */,
@@ -555,7 +556,6 @@
 				76849A4D2B18563B00DD83F7 /* Stopwatch.swift in Sources */,
 				762195E32B32DA0D00D59F23 /* TrackingResultRouteCellViewModel.swift in Sources */,
 				767D41C12B3EB2D500C66905 /* HistoryCell.swift in Sources */,
-				7679E6E82BADC9F000C217D7 /* ShareView.swift in Sources */,
 				7695135E2B56D51400B5B18E /* RealmManager.swift in Sources */,
 				7666F2CB2B17268800F5826F /* TrackingViewModel.swift in Sources */,
 				7652152E2B889B7E001954AE /* TrackingManager.swift in Sources */,

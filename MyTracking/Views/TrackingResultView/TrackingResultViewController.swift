@@ -51,33 +51,47 @@ class TrackingResultViewController: UIViewController {
     }
 
     @objc func shareHistory() {
-//        if let image = captureView(view) { // yourLongView는 이미지로 변환하고자 하는 뷰
-//            shareImage(image)
-//        }
-
+        print(vm.trackingData)
+        let indexPath = IndexPath(row: 1, section: 0)
+        let image = captureMapViewInCell(tableView: tableView, at: indexPath)
+        let sb = UIStoryboard(name: "Share", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
+        vc.trackingData = vm.trackingData
+        vc.image = image
+        present(vc, animated: true)
     }
 
     @objc func doneTracking() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
-    func captureView(_ view: UIView) -> UIImage? {
-//        print("size: \(view.bounds.size)")
-//        let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
-//        let image = renderer.image { ctx in
-//            view.drawHierarchy(in: CGRect.init(x: 0, y: -44, width: view.bounds.width, height: view.bounds.height), afterScreenUpdates: true)
-//        }
-        return nil
+
+    func captureMapViewInCell(tableView: UITableView, at indexPath: IndexPath) -> UIImage? {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TrackingResultRouteCell else {
+            return nil
+        }
+
+        return captureMapView(cell.mapView)
+    }
+
+
+    func captureMapView(_ mapView: MKMapView) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: mapView.bounds.size)
+        let image = renderer.image { ctx in
+//            mapView.layer.render(in: ctx.cgContext)
+            mapView.drawHierarchy(in: mapView.bounds, afterScreenUpdates: true)
+        }
+        return image
     }
 
     func shareImage(_ image: UIImage) {
-//        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-//        // iPad에서는 popover로 표시해야 하므로 anchor를 설정
-//        if let popoverController = activityViewController.popoverPresentationController {
-//            popoverController.sourceView = self.view // 또는 버튼 등 특정 뷰를 기준으로 설정
-//            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-//            popoverController.permittedArrowDirections = [] // 화살표 방향 없음
-//        }
-//        self.present(activityViewController, animated: true, completion: nil)
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        // iPad에서는 popover로 표시해야 하므로 anchor를 설정
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = self.view // 또는 버튼 등 특정 뷰를 기준으로 설정
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = [] // 화살표 방향 없음
+        }
+        self.present(activityViewController, animated: true, completion: nil)
     }
 
 

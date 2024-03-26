@@ -10,6 +10,7 @@ import Combine
 
 class ShareViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var startLocation: UILabel!
     @IBOutlet weak var endLocation: UILabel!
     @IBOutlet weak var time: UILabel!
@@ -19,15 +20,19 @@ class ShareViewController: UIViewController {
     @IBOutlet weak var altitude: UILabel!
     @IBOutlet weak var topSpeed: UILabel!
 
-    @IBOutlet weak var topContainer: UIView!
-    @IBOutlet weak var bottomContainer: UIStackView!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
+    @IBOutlet weak var topSpeedLabel: UILabel!
+    
+
 
     @Published var trackingData: TrackingData!
     @Published var image: UIImage!
     var subscriptions = Set<AnyCancellable>()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configure(item: item)
+        view.backgroundColor = .clear
         setCornerStyle()
         bind()
     }
@@ -49,23 +54,32 @@ class ShareViewController: UIViewController {
     }
 
     func setCornerStyle() {
-        topContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        bottomContainer.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        [topContainer, bottomContainer].forEach {
-            $0.layer.cornerRadius = 16
-        }
+        containerView.layer.cornerRadius = 16
+        containerView.clipsToBounds = true
     }
 
     func configure(item: TrackingData) {
         startLocation.text = item.startLocation
         endLocation.text = item.endLocation
-        time.text = item.speedInfos.first(where: { info in
-            info.title == "Time"
-        })?.value.resultTime
-//        mapViewImage.image = UIImage(named: "LaunchScreen")
-        distance.text = "123km"
-        averageSpeed.text = "122km/h"
-        altitude.text = "1500m"
-        topSpeed.text = "122km/h"
+
+        distanceLabel.text = "Distance".localized()
+        averageSpeedLabel.text = "Average Speed".localized()
+        altitudeLabel.text = "Altitude".localized()
+        topSpeedLabel.text = "Top Speed".localized()
+
+        time.text = (item.speedInfos.first { $0.title == "Time" }?.value ?? 0).timeFormatter
+
+        let unit = SettingManager.shared.unit
+
+        let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
+        let averageSpeedInfo = item.speedInfos.first { $0.title == "Average Speed" }
+        let topSpeedInfo = item.speedInfos.first { $0.title == "Top Speed" }
+        let altitudeInfo = item.speedInfos.first { $0.title == "Altitude" }
+        distance.text = "\(String(format: "%.1f", distanceInfo?.value.distanceToSelectedUnit(unit) ?? 0)) \(unit.correspondingDistanceUnit)"
+
+        averageSpeed.text = "\(String(format: "%.0f", averageSpeedInfo?.value.speedToSelectedUnit(unit) ?? 0))\(unit.displayedSpeedUnit)"
+        altitude.text = "\(String(format: "%.0f", altitudeInfo?.value.altitudeToSelectedUnit(unit) ?? 0))\(unit.correspondingAltitudeUnit)"
+
+        topSpeed.text = "\(String(format: "%.0f", topSpeedInfo?.value.speedToSelectedUnit(unit) ?? 0))\(unit.displayedSpeedUnit)"
     }
 }

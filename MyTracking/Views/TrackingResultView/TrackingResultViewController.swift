@@ -16,9 +16,9 @@ class TrackingResultViewController: UIViewController {
         print("TrackingResultViewController deinit")
     }
 
-    var tableView: UITableView!
+    private var tableView: UITableView!
     var vm: TrackingResultViewModel!
-    var subscriptions = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,50 +40,57 @@ class TrackingResultViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    func setNavigationBarButton() {
+    private func setNavigationBarButton() {
         let shareItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareHistory))
         if vm.viewType == .modal {
             let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
-            self.navigationItem.rightBarButtonItems = [shareItem, dismissItem]
+            self.navigationItem.rightBarButtonItems = [dismissItem, shareItem]
         } else {
             self.navigationItem.rightBarButtonItems = [shareItem]
         }
     }
 
-    @objc func shareHistory() {
-        print(vm.trackingData)
+    @objc private func shareHistory() {
         let indexPath = IndexPath(row: 1, section: 0)
         let image = captureMapViewInCell(tableView: tableView, at: indexPath)
         let sb = UIStoryboard(name: "Share", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
         vc.trackingData = vm.trackingData
         vc.image = image
-        present(vc, animated: true)
+
+        // 뷰가 로드되도록 함
+        vc.loadViewIfNeeded()
+        vc.view.layoutIfNeeded()
+
+        // 짧은 딜레이 후 이미지 캡처
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let image = self.captureView(view: vc.containerView) {
+                self.shareImage(image)
+            }
+        }
     }
 
-    @objc func doneTracking() {
+    @objc private func doneTracking() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
 
-    func captureMapViewInCell(tableView: UITableView, at indexPath: IndexPath) -> UIImage? {
+    private func captureMapViewInCell(tableView: UITableView, at indexPath: IndexPath) -> UIImage? {
         guard let cell = tableView.cellForRow(at: indexPath) as? TrackingResultRouteCell else {
             return nil
         }
 
-        return captureMapView(cell.mapView)
+        return captureView(view: cell.mapView)
     }
 
-
-    func captureMapView(_ mapView: MKMapView) -> UIImage? {
-        let renderer = UIGraphicsImageRenderer(size: mapView.bounds.size)
+    private func captureView(view: UIView) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
         let image = renderer.image { ctx in
-//            mapView.layer.render(in: ctx.cgContext)
-            mapView.drawHierarchy(in: mapView.bounds, afterScreenUpdates: true)
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         }
         return image
     }
 
-    func shareImage(_ image: UIImage) {
+    private func shareImage(_ image: UIImage) {
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         // iPad에서는 popover로 표시해야 하므로 anchor를 설정
         if let popoverController = activityViewController.popoverPresentationController {
@@ -112,7 +119,7 @@ class TrackingResultViewController: UIViewController {
         }
     }
 
-    func setConstrains() {
+    private func setConstrains() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)

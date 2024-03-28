@@ -16,9 +16,9 @@ class TrackingResultViewController: UIViewController {
         print("TrackingResultViewController deinit")
     }
 
-    var tableView: UITableView!
+    private var tableView: UITableView!
     var vm: TrackingResultViewModel!
-    var subscriptions = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,7 @@ class TrackingResultViewController: UIViewController {
 
         setTableView()
         setConstrains()
-        if vm.viewType == .modal {
-            setDismissButton()
-        }
+        setNavigationBarButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,14 +40,67 @@ class TrackingResultViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    func setDismissButton() {
-        let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
-        self.navigationItem.rightBarButtonItem = dismissItem
+    private func setNavigationBarButton() {
+        let shareItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareHistory))
+        if vm.viewType == .modal {
+            let dismissItem = UIBarButtonItem(title: "Done".localized(), style: .done, target: self, action: #selector(doneTracking))
+            self.navigationItem.rightBarButtonItems = [dismissItem, shareItem]
+        } else {
+            self.navigationItem.rightBarButtonItems = [shareItem]
+        }
     }
 
-    @objc func doneTracking() {
+    @objc private func shareHistory() {
+        let indexPath = IndexPath(row: 1, section: 0)
+        let image = captureMapViewInCell(tableView: tableView, at: indexPath)
+        let sb = UIStoryboard(name: "Share", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
+        vc.trackingData = vm.trackingData
+        vc.image = image
+
+        // 뷰가 로드되도록 함
+        vc.loadViewIfNeeded()
+        vc.view.layoutIfNeeded()
+
+        // 짧은 딜레이 후 이미지 캡처
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let image = self.captureView(view: vc.containerView) {
+                self.shareImage(image)
+            }
+        }
+    }
+
+    @objc private func doneTracking() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true)
     }
+
+    private func captureMapViewInCell(tableView: UITableView, at indexPath: IndexPath) -> UIImage? {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TrackingResultRouteCell else {
+            return nil
+        }
+
+        return captureView(view: cell.mapView)
+    }
+
+    private func captureView(view: UIView) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        let image = renderer.image { ctx in
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        }
+        return image
+    }
+
+    private func shareImage(_ image: UIImage) {
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        // iPad에서는 popover로 표시해야 하므로 anchor를 설정
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = self.view // 또는 버튼 등 특정 뷰를 기준으로 설정
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = [] // 화살표 방향 없음
+        }
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
 
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
@@ -68,7 +119,7 @@ class TrackingResultViewController: UIViewController {
         }
     }
 
-    func setConstrains() {
+    private func setConstrains() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)

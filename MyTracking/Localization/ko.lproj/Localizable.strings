@@ -49,3 +49,5 @@
 "To" = "도착지";
 "Tracking" = "트래킹";
 "History" = "기록";
+
+"There is no tracking history" = "트래킹 기록이 없습니다";

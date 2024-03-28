@@ -13,11 +13,6 @@
 		<string>en</string>
 		<string>ko</string>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF-Compact-Rounded-Bold.otf</string>
-		<string>SF-Compact-Rounded-Regular.otf</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

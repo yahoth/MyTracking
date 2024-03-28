@@ -137,30 +137,10 @@ class HistoryCell: UICollectionViewCell {
 
         bodyContainer.startLocation.text = item.startLocation
         bodyContainer.endLocation.text = item.endLocation
-        bodyContainer.time.text = timeFormatter(Int(item.speedInfos.first { $0.title == "Time" }?.value ?? 0))
+        bodyContainer.time.text = (item.speedInfos.first { $0.title == "Time" }?.value ?? 0).timeFormatter
                 let distanceInfo = item.speedInfos.first { $0.title == "Distance" }
         bodyContainer.distance.text = "\(String(format: "%.1f", distanceInfo?.value.distanceToSelectedUnit(unit) ?? 0)) \(unit.correspondingDistanceUnit)"
     }
-
-
-    func timeFormatter(_ time: Int) -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        let localeID = Locale.preferredLanguages.first
-        if #available(iOS 16, *) {
-            let deviceLocale = Locale(identifier: localeID ?? "en_US").language.languageCode?.identifier
-            formatter.calendar?.locale = Locale(identifier: deviceLocale ?? "en_US")
-        } else {
-            let deviceLocale = Locale(identifier: localeID ?? "en_US").languageCode
-            formatter.calendar?.locale = Locale(identifier: deviceLocale ?? "en_US")
-        }
-
-        // 1시간 초과될 경우 초 단위 표시 안함
-        formatter.allowedUnits = time < 3600 ? [.minute, .second] : [.hour, .minute]
-
-        return formatter.string(from: TimeInterval(time)) ?? ""
-    }
-
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

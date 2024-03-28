@@ -18,9 +18,7 @@
 		762ED1812B76AA6500734720 /* AnimatedRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1802B76AA6500734720 /* AnimatedRoundedButton.swift */; };
 		762ED1832B76AA8800734720 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1822B76AA8800734720 /* StartButtonView.swift */; };
 		762ED1872B76BBBD00734720 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762ED1862B76BBBD00734720 /* MenuButton.swift */; };
-		7639672C2B9312A800DC4701 /* SF-Compact-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 763967262B9312A200DC4701 /* SF-Compact-Rounded-Bold.otf */; };
-		7639672F2B9312B200DC4701 /* SF-Compact-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 763967292B9312A300DC4701 /* SF-Compact-Rounded-Regular.otf */; };
-		763967332B93227C00DC4701 /* UIFont + SF Compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967322B93227C00DC4701 /* UIFont + SF Compact.swift */; };
+		763967332B93227C00DC4701 /* UIFont + RoundedFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967322B93227C00DC4701 /* UIFont + RoundedFont.swift */; };
 		7639673A2B99A1CB00DC4701 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763967392B99A1CB00DC4701 /* EditViewController.swift */; };
 		763B02B22AFAA0F30034B7E9 /* SpeedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */; };
 		763B02B42AFAADAB0034B7E9 /* CurrentSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */; };
@@ -99,9 +97,7 @@
 		762ED1802B76AA6500734720 /* AnimatedRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedRoundedButton.swift; sourceTree = "<group>"; };
 		762ED1822B76AA8800734720 /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		762ED1862B76BBBD00734720 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
-		763967262B9312A200DC4701 /* SF-Compact-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Bold.otf"; sourceTree = "<group>"; };
-		763967292B9312A300DC4701 /* SF-Compact-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Regular.otf"; sourceTree = "<group>"; };
-		763967322B93227C00DC4701 /* UIFont + SF Compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + SF Compact.swift"; sourceTree = "<group>"; };
+		763967322B93227C00DC4701 /* UIFont + RoundedFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + RoundedFont.swift"; sourceTree = "<group>"; };
 		763967392B99A1CB00DC4701 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		763B02B12AFAA0F30034B7E9 /* SpeedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedInfo.swift; sourceTree = "<group>"; };
 		763B02B32AFAADAB0034B7E9 /* CurrentSpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSpeedView.swift; sourceTree = "<group>"; };
@@ -303,15 +299,6 @@
 			path = TrackingSetupView;
 			sourceTree = "<group>";
 		};
-		763967212B93129400DC4701 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				763967262B9312A200DC4701 /* SF-Compact-Rounded-Bold.otf */,
-				763967292B9312A300DC4701 /* SF-Compact-Rounded-Regular.otf */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		764B46D02AED197C00B0B9B5 = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +318,6 @@
 		764B46DB2AED197C00B0B9B5 /* MyTracking */ = {
 			isa = PBXGroup;
 			children = (
-				763967212B93129400DC4701 /* Resources */,
 				764B46DC2AED197C00B0B9B5 /* AppDelegate.swift */,
 				764B46DE2AED197C00B0B9B5 /* SceneDelegate.swift */,
 				76DBA6282B909E2700AC754E /* Localization */,
@@ -379,7 +365,7 @@
 				769513592B56D4D600B5B18E /* Array + toRealmList.swift */,
 				7695135B2B56D4EC00B5B18E /* CLLocationCoordinate2D + persistedValue.swift */,
 				76DBA6292B90A04C00AC754E /* String + localized.swift */,
-				763967322B93227C00DC4701 /* UIFont + SF Compact.swift */,
+				763967322B93227C00DC4701 /* UIFont + RoundedFont.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -507,12 +493,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7639672F2B9312B200DC4701 /* SF-Compact-Rounded-Regular.otf in Resources */,
 				764B46E92AED197D00B0B9B5 /* LaunchScreen.storyboard in Resources */,
 				76DBA6242B909CE000AC754E /* InfoPlist.strings in Resources */,
 				76DBA61E2B9099AE00AC754E /* Localizable.strings in Resources */,
 				76845D0F2BB19CF100FDC95C /* Share.storyboard in Resources */,
-				7639672C2B9312A800DC4701 /* SF-Compact-Rounded-Bold.otf in Resources */,
 				764B46E62AED197D00B0B9B5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,7 +512,7 @@
 				7624E1332B28AA8700094845 /* Double + UnitOfSpeed.swift in Sources */,
 				767BC5CE2B3D7334004C8765 /* HistoryViewController.swift in Sources */,
 				769E4D252B480CF300058B22 /* TripType.swift in Sources */,
-				763967332B93227C00DC4701 /* UIFont + SF Compact.swift in Sources */,
+				763967332B93227C00DC4701 /* UIFont + RoundedFont.swift in Sources */,
 				7680CCD72B341C6F00ADFD7A /* TrackingResultMapDetailViewController.swift in Sources */,
 				76F67A7F2B8C68C000760C30 /* ChartTestViewModel.swift in Sources */,
 				767BC5CB2B3D6F57004C8765 /* MainTabBarController.swift in Sources */,
@@ -777,6 +761,7 @@
 				INFOPLIST_FILE = MyTracking/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = photo;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -812,6 +797,7 @@
 				INFOPLIST_FILE = MyTracking/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = photo;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

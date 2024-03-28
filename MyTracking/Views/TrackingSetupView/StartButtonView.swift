@@ -52,14 +52,14 @@ class StartButtonView: UIStackView {
     }
 
     func setTitle() {
-        title.font = .sfCompact(size: 50, weight: .regular)
+        title.font = .roundedFont(size: 50, weight: .bold)
         title.textColor = .white
         title.adjustsFontSizeToFitWidth = true
         title.text = "Start Tracking"
     }
 
     func setSubTitle() {
-        subTitle.font = .sfCompact(size: 50, weight: .regular)
+        subTitle.font = .roundedFont(size: 50, weight: .regular)
         subTitle.textColor = .systemGray6
         subTitle.adjustsFontSizeToFitWidth = true
         subTitle.text = "startButtonSubTitle".localized()
